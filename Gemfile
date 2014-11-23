@@ -37,3 +37,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
+group :test, :development do
+  gem 'rspec-rails', '~> 2.14.2'
+end
+
+group :test do
+  gem 'capybara', '2.1.0'
+end
