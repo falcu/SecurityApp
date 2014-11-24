@@ -25,6 +25,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt-ruby'
+
+gem "active_model_serializers", "=0.8.1"
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -44,4 +47,5 @@ end
 
 group :test do
   gem 'capybara', '2.1.0'
+  gem 'factory_girl_rails', '~> 4.2.1'
 end
