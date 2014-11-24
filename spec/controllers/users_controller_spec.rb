@@ -15,8 +15,9 @@ describe UsersController do
   it "succesfully create an user, json returned" do
     create_post(user)
     expect(response.status).to eq(200)
-    expect(json["name"]).to eq("username")
-    expect(json["email"]).to eq("user@address.com")
+    expect(json["name"]).to eq(user.name)
+    expect(json["email"]).to eq(user.email)
+    expect(json["token"]).not_to be_nil
   end
 
 end
