@@ -1,7 +1,7 @@
 module AuthenticationHelpers
-  def create_post(user)
-      send(:post,"create",{:user =>
-                              {:name => user.name, :email => user.email, :password => user.password, :password_confirmation => user.password }})
+  def post_user(user)
+     post :create , {:user => {:name => user.name, :email => user.email, :password => user.password, :password_confirmation => user.password },
+                    :format => "json"}
     end
 
   end

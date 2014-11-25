@@ -3,9 +3,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      render json: @user
+      respond_to do |format|
+        format.json { render json: @user }
+      end
     else
-      render json: {message: 'Unable to save user'}, status: 401
+      respond_to do |format|
+        format.json {render json: {message: 'Unable to save user'}, status: 401}
+        end
     end
   end
 
