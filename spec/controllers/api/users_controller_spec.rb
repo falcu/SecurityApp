@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Api::UsersController do
   let(:user) { FactoryGirl.build(:user) }
-  let(:bad_user) { FactoryGirl.build(:user,email: "") }
+  let(:bad_user) { FactoryGirl.build(:user, email: "") }
   let(:json) { JSON.parse(response.body) }
 
   it "succesfully create an user" do
@@ -28,10 +28,35 @@ describe Api::UsersController do
   end
 
   it "Two users with same email, second user should not be created" do
-  post_user(user)
-  expect(response.status).to eq(200)
-  post_user(user)
-  expect(response.status).to eq(401)
+    post_user(user)
+    expect(response.status).to eq(200)
+    post_user(user)
+    expect(response.status).to eq(401)
   end
+
+  it "Sign in with correct credentials" do
+    new_user = FactoryGirl.create(:user)
+    post :sign_in , {:user => {:email => user.email, :password => user.password},
+                    :format => "json"}
+    expect(response.status).to eq(200)
+    expect(json["token"]).to eq(new_user.token)
+  end
+
+  it "Sign in with bad credentials, access denied" do
+    FactoryGirl.create(:user)
+    post :sign_in , {:user => {:email => user.email, :password => "badpassword"},
+                     :format => "json"}
+    expect(response.status).to eq(401)
+    expect(json["token"]).to be_nil
+  end
+
+  it "Sign in with nonexistent email, access denied" do
+    new_user = FactoryGirl.create(:user)
+    post :sign_in , {:user => {:email => "fakeemail", :password => new_user.password},
+                     :format => "json"}
+    expect(response.status).to eq(401)
+    expect(json["token"]).to be_nil
+  end
+
 
 end

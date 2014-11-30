@@ -12,6 +12,17 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def sign_in
+    user = User.find_by_email(params[:user][:email])
+    if user && user.authenticate(params[:user][:password])
+      respond_to do |format|
+        format.json { render json: user}
+      end
+    else
+      respond_bad_json('Unable to sign in user')
+    end
+  end
+
   private
   def user_params
     params.require(:user).permit(:name,:email,:password,

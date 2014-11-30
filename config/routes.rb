@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :users
+    post "users", to: "users#sign_in", as: "sign_in"
 
     resources :groups
     put "groups/:id", to: "groups#add", as: "add_member"
