@@ -85,4 +85,66 @@ describe Api::GroupsController do
     expect(Group.first.members.count).to eq(2)
   end
 
+  it "Delete 1 member, is creator, succeded" do
+    user = User.first
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    post_group(group)
+    saved_group = Group.first
+    new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+    saved_group.members << new_member1
+    saved_group.save
+    saved_group.reload
+    expect(saved_group.members.count).to eq(1)
+
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    members = [new_member1]
+    delete_members(saved_group,members)
+    saved_group.reload
+
+    expect(response.status).to eq(200)
+    expect(saved_group.members.count).to eq(0)
+  end
+
+  it "Delete 1 member, is not creator, access denied" do
+    user = User.first
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    post_group(group)
+    saved_group = Group.first
+    new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+    saved_group.members << new_member1
+    saved_group.save
+    saved_group.reload
+    expect(saved_group.members.count).to eq(1)
+
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials("faketoken")
+    members = [new_member1]
+    delete_members(saved_group,members)
+    saved_group.reload
+
+    expect(response.status).to eq(401)
+    expect(saved_group.members.count).to eq(1)
+  end
+
+  it "Delete 2 members" do
+    user = User.first
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    post_group(group)
+    saved_group = Group.first
+    new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+    new_member2 = FactoryGirl.create(:user, :name => "new_member2", :email => "new_member2@someemail.com", :password => "123456")
+    saved_group.members << new_member1
+    saved_group.members << new_member2
+    saved_group.save
+    saved_group.reload
+    expect(saved_group.members.count).to eq(2)
+
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    members = [new_member1,new_member2]
+    delete_members(saved_group,members)
+    saved_group.reload
+
+    expect(response.status).to eq(200)
+    expect(saved_group.members.count).to eq(0)
+  end
+
 end

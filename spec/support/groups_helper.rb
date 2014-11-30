@@ -9,6 +9,11 @@ module GroupsHelpers
     put :add, {id: group.id, :members_email => members_emails, :format => "json"}
   end
 
+  def delete_members(group,members)
+    members_emails = members.collect { |member| member.email }
+    delete :remove_members, {id: group.id, :members_email => members_emails, :format => "json"}
+  end
+
 end
 RSpec.configure do |c|
   c.include GroupsHelpers, type: :controller

@@ -37,6 +37,29 @@ class Api::GroupsController < ApiController
     end
   end
 
+  def remove_members
+    if is_current_user_not_creator
+      respond_bad_json('You are not the creator')
+      return
+    end
+
+    (params[:members_email]).each do |email|
+      new_member = User.find_by_email(email)
+      if new_member
+        @group.members -= [new_member]
+      end
+    end
+
+    if @group.save
+      respond_to do |format|
+        format.json { render json: @group }
+      end
+    else
+      respond_bad_json('Unable to add members')
+    end
+
+  end
+
   private
   def group_params
     params.require(:group).permit(:name)
