@@ -11,7 +11,7 @@ describe Api::GroupsController do
   it "Create group" do
     user = User.first
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-    post_group(group,user)
+    post_group(group)
 
     expect(response.status).to eq(200)
     groupDb = Group.first
@@ -24,16 +24,15 @@ describe Api::GroupsController do
   it "Create group, json expected" do
     user = User.first
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-    post_group(group,user)
+    post_group(group)
 
     expect(response.status).to eq(200)
     expect(json["name"]).to eq(group.name)
   end
 
   it "Create group, wrong token, access denied" do
-    user = FactoryGirl.build(:user)
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials("faketoken")
-    post_group(group,user)
+    post_group(group)
 
     expect(Group.first).to be_nil
     expect(response.status).to eq(401)
@@ -42,16 +41,48 @@ describe Api::GroupsController do
   it "Add member to group, is creator and email exists, add correctly" do
     user = User.first
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-    post_group(group,user)
+    post_group(group)
 
     expect(Group.first.members.count).to be(0)
     new_member = FactoryGirl.create(:user, :name => "new_user", :email => "new_user@someemail.com", :password => "123456")
+    members = [new_member]
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-    put :add, {id: Group.first.id, :member_email => new_member.email, :format => "json"}
+    put_members(Group.first,members)
 
     expect(response.status).to eq(200)
     expect(Group.first.members.count).to eq(1)
     expect(Group.first.members.first.email).to eq(new_member.email)
+  end
+
+  it "Add member to group, if not creator, access denied" do
+    user = User.first
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    post_group(group)
+
+    new_member = FactoryGirl.create(:user, :name => "new_member", :email => "new_member@someemail.com", :password => "123456")
+    members = [new_member]
+    other_user = FactoryGirl.create(:user, :name => "new_user", :email => "new_user@someemail.com", :password => "123456")
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(other_user.token)
+    put_members(Group.first,members)
+
+    expect(response.status).to eq(401)
+    expect(Group.first.members.count).to eq(0)
+  end
+
+  it "Add 2 members to group" do
+    user = User.first
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    post_group(group)
+
+    expect(Group.first.members.count).to eq(0)
+    new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+    new_member2 = FactoryGirl.create(:user, :name => "new_member2", :email => "new_member2@someemail.com", :password => "123456")
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    members = [new_member1,new_member2]
+    put_members(Group.first,members)
+
+    expect(response.status).to eq(200)
+    expect(Group.first.members.count).to eq(2)
   end
 
 end

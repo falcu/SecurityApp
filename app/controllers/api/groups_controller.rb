@@ -1,10 +1,11 @@
 class Api::GroupsController < ApiController
-  before_action :set_user, only: [:create]
+  include ApiHelper
+
   before_action :set_group, except: [:create]
 
   def create
     @group = Group.new(group_params)
-    @group.creator = @user
+    @group.creator = @current_user
     if @group.save
       respond_to do |format|
         format.json { render json: @group }
@@ -15,19 +16,24 @@ class Api::GroupsController < ApiController
   end
 
   def add
-    new_member = User.find_by_email(params[:member_email])
-    message = 'Unable to add member'
-    if new_member
-      @group.members << new_member
-      if @group.save
-        respond_to do |format|
-          format.json { render json: @group }
-        end
-      else
-        respond_bad_json(message)
+    if is_current_user_not_creator
+      respond_bad_json('You are not the creator')
+      return
+    end
+
+    (params[:members_email]).each do |email|
+      new_member = User.find_by_email(email)
+      if new_member
+        @group.members << new_member
+      end
+    end
+
+    if @group.save
+      respond_to do |format|
+        format.json { render json: @group }
       end
     else
-      respond_bad_json(message)
+      respond_bad_json('Unable to add members')
     end
   end
 
@@ -37,13 +43,18 @@ class Api::GroupsController < ApiController
   end
 
   private
-  def set_user
-    @user = User.find(params[:user_id])
+  def set_group
+    @group = Group.find(params[:id])
   end
 
   private
-  def set_group
-    @group = Group.find(params[:id])
+  def is_current_user_creator
+     @current_user.id == @group.creator.id
+  end
+
+  private
+  def is_current_user_not_creator
+    not is_current_user_creator
   end
 
 end
