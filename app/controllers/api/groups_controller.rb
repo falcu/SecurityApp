@@ -2,6 +2,7 @@ class Api::GroupsController < ApiController
   include ApiHelper
 
   before_action :set_group, except: [:create]
+  before_action :check_creator, only: [:add,:remove_members]
 
   def create
     @group = Group.new(group_params)
@@ -16,10 +17,6 @@ class Api::GroupsController < ApiController
   end
 
   def add
-    if is_current_user_not_creator
-      respond_bad_json('You are not the creator')
-      return
-    end
 
     (params[:members_email]).each do |email|
       new_member = User.find_by_email(email)
@@ -38,10 +35,6 @@ class Api::GroupsController < ApiController
   end
 
   def remove_members
-    if is_current_user_not_creator
-      respond_bad_json('You are not the creator')
-      return
-    end
 
     (params[:members_email]).each do |email|
       new_member = User.find_by_email(email)
@@ -78,6 +71,13 @@ class Api::GroupsController < ApiController
   private
   def is_current_user_not_creator
     not is_current_user_creator
+  end
+
+  private
+  def check_creator
+    if is_current_user_not_creator
+      respond_bad_json('You are not the creator')
+    end
   end
 
 end
