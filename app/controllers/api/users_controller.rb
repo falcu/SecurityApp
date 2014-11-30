@@ -1,4 +1,5 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
+  include ApiHelper
 
   def create
     @user = User.new(user_params)
@@ -7,9 +8,7 @@ class UsersController < ApplicationController
         format.json { render json: @user }
       end
     else
-      respond_to do |format|
-        format.json {render json: {message: 'Unable to save user'}, status: 401}
-        end
+      respond_bad_json('Unable to save user')
     end
   end
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController do
+describe Api::UsersController do
   let(:user) { FactoryGirl.build(:user) }
   let(:bad_user) { FactoryGirl.build(:user,email: "") }
   let(:json) { JSON.parse(response.body) }

@@ -21,7 +21,7 @@ describe Api::GroupsController do
     expect(groupDb.creator.id).to eq(user.id)
   end
 
-  it "Create group, succesfull json expected" do
+  it "Create group, json expected" do
     user = User.first
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
     post_group(group,user)
@@ -37,6 +37,21 @@ describe Api::GroupsController do
 
     expect(Group.first).to be_nil
     expect(response.status).to eq(401)
+  end
+
+  it "Add member to group, is creator and email exists, add correctly" do
+    user = User.first
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    post_group(group,user)
+
+    expect(Group.first.members.count).to be(0)
+    new_member = FactoryGirl.create(:user, :name => "new_user", :email => "new_user@someemail.com", :password => "123456")
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    put :add, {id: Group.first.id, :member_email => new_member.email, :format => "json"}
+
+    expect(response.status).to eq(200)
+    expect(Group.first.members.count).to eq(1)
+    expect(Group.first.members.first.email).to eq(new_member.email)
   end
 
 end

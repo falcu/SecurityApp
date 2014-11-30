@@ -1,5 +1,6 @@
 class Api::GroupsController < ApiController
   before_action :set_user, only: [:create]
+  before_action :set_group, except: [:create]
 
   def create
     @group = Group.new(group_params)
@@ -9,9 +10,24 @@ class Api::GroupsController < ApiController
         format.json { render json: @group }
       end
     else
-      respond_to do |format|
-        format.json {render json: {message: 'Unable to create group'}, status: 401}
+      respond_bad_json('Unable to create group')
+    end
+  end
+
+  def add
+    new_member = User.find_by_email(params[:member_email])
+    message = 'Unable to add member'
+    if new_member
+      @group.members << new_member
+      if @group.save
+        respond_to do |format|
+          format.json { render json: @group }
+        end
+      else
+        respond_bad_json(message)
       end
+    else
+      respond_bad_json(message)
     end
   end
 
@@ -24,4 +40,10 @@ class Api::GroupsController < ApiController
   def set_user
     @user = User.find(params[:user_id])
   end
+
+  private
+  def set_group
+    @group = Group.find(params[:id])
+  end
+
 end
