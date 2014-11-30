@@ -147,4 +147,81 @@ describe Api::GroupsController do
     expect(saved_group.members.count).to eq(0)
   end
 
+  it "Member quits group" do
+    user = User.first
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    post_group(group)
+    saved_group = Group.first
+    new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+    new_member2 = FactoryGirl.create(:user, :name => "new_member2", :email => "new_member2@someemail.com", :password => "123456")
+    saved_group.members << new_member1
+    saved_group.members << new_member2
+    saved_group.save
+    saved_group.reload
+    expect(saved_group.members.count).to eq(2)
+
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(new_member1.token)
+    put :quit, {id: saved_group.id, :format => "json"}
+    saved_group.reload
+
+    expect(response.status).to eq(200)
+    expect(saved_group.members.count).to eq(1)
+  end
+
+  it "Not a member tries to quit group" do
+    user = User.first
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    post_group(group)
+    saved_group = Group.first
+    new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+    new_member2 = FactoryGirl.create(:user, :name => "new_member2", :email => "new_member2@someemail.com", :password => "123456")
+    saved_group.members << new_member1
+    saved_group.save
+    saved_group.reload
+    expect(saved_group.members.count).to eq(1)
+
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(new_member2.token)
+    put :quit, {id: saved_group.id, :format => "json"}
+    saved_group.reload
+
+    expect(response.status).to eq(401)
+    expect(saved_group.members.count).to eq(1)
+  end
+
+  it "Creator quits group, members available ,new creator is assigned" do
+    user = User.first
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    post_group(group)
+    saved_group = Group.first
+    new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+    new_member2 = FactoryGirl.create(:user, :name => "new_member2", :email => "new_member2@someemail.com", :password => "123456")
+    saved_group.members << new_member1
+    saved_group.members << new_member2
+    saved_group.save
+    saved_group.reload
+    expect(saved_group.members.count).to eq(2)
+    creator_candidates = [new_member1, new_member2]
+
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    put :quit, {id: saved_group.id, :format => "json"}
+    saved_group.reload
+
+    expect(response.status).to eq(200)
+    expect(saved_group.members.count).to eq(1)
+    expect(creator_candidates.include?(saved_group.creator)).to be_true
+  end
+
+  it "Creator quits group, no members, group is deleted" do
+    user = User.first
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    post_group(group)
+    id = Group.first.id
+
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    put :quit, {id: id, :format => "json"}
+
+    expect(response.status).to eq(200)
+    expect {Group.find(id)}.to raise_exception
+  end
+
 end

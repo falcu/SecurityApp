@@ -24,7 +24,7 @@ describe Api::UsersController do
   it "bad user with no email" do
     post_user(bad_user)
     expect(response.status).to eq(401)
-    expect(json["message"]).to eq("Unable to save user")
+    expect(json["error"]).to eq("Unable to save user")
   end
 
   it "Two users with same email, second user should not be created" do

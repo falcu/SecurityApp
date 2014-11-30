@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
     resources :groups
     put "groups/:id", to: "groups#add", as: "add_member"
+    put "groups/:id", to: "groups#quit", as: "quit_member"
     delete "groups/:id", to: "groups#remove_members", as: "remove_members"
   end
   # The priority is based upon order of creation: first created -> highest priority.

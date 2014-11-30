@@ -53,6 +53,41 @@ class Api::GroupsController < ApiController
 
   end
 
+  def quit
+    if is_current_user_creator
+      assign_new_creator
+      if @group.creator.nil?
+        if @group.destroy
+          respond_to do |format|
+            format.json {render json: {message: 'Group deleted'}, status: 200}
+          end
+        else
+          respond_bad_json('Unable to remove member')
+        end
+        return
+      end
+      if @group.save
+        respond_to do |format|
+          format.json { render json: @group }
+        end
+      else
+        respond_bad_json('Unable to remove member')
+      end
+    elsif @group.members.include?(@current_user)
+      @group.members -= [@current_user]
+      if @group.save
+        respond_to do |format|
+          format.json { render json: @group }
+        end
+      else
+        respond_bad_json('Unable to remove member')
+      end
+    else
+      respond_bad_json('You are not a member of this group!')
+    end
+
+  end
+
   private
   def group_params
     params.require(:group).permit(:name)
@@ -78,6 +113,16 @@ class Api::GroupsController < ApiController
     if is_current_user_not_creator
       respond_bad_json('You are not the creator')
     end
+  end
+
+  private
+  def assign_new_creator
+    new_creator = @group.members.first
+    @group.creator = new_creator
+    if new_creator
+      @group.members -= [new_creator]
+    end
+
   end
 
 end
