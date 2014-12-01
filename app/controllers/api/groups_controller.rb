@@ -2,22 +2,16 @@ class Api::GroupsController < ApiController
   include ApiHelper
 
   before_action :set_group, except: [:create]
-  before_action :check_creator, only: [:add,:remove_members]
+  before_action :authorize_creator, only: [:add,:remove_members]
+  before_action :authorize_member, only: [:quit]
 
   def create
     @group = Group.new(group_params)
     @group.creator = @current_user
-    if @group.save
-      respond_to do |format|
-        format.json { render json: @group }
-      end
-    else
-      respond_bad_json('Unable to create group')
-    end
+    try_to_save_group('Unable to create group')
   end
 
   def add
-
     (params[:members_email]).each do |email|
       new_member = User.find_by_email(email)
       if new_member
@@ -25,17 +19,10 @@ class Api::GroupsController < ApiController
       end
     end
 
-    if @group.save
-      respond_to do |format|
-        format.json { render json: @group }
-      end
-    else
-      respond_bad_json('Unable to add members')
-    end
+    try_to_save_group('Unable to add members')
   end
 
   def remove_members
-
     (params[:members_email]).each do |email|
       new_member = User.find_by_email(email)
       if new_member
@@ -43,14 +30,7 @@ class Api::GroupsController < ApiController
       end
     end
 
-    if @group.save
-      respond_to do |format|
-        format.json { render json: @group }
-      end
-    else
-      respond_bad_json('Unable to add members')
-    end
-
+    try_to_save_group('Unable to add members')
   end
 
   def quit
@@ -66,25 +46,11 @@ class Api::GroupsController < ApiController
         end
         return
       end
-      if @group.save
-        respond_to do |format|
-          format.json { render json: @group }
-        end
-      else
-        respond_bad_json('Unable to remove member')
-      end
     elsif @group.members.include?(@current_user)
       @group.members -= [@current_user]
-      if @group.save
-        respond_to do |format|
-          format.json { render json: @group }
-        end
-      else
-        respond_bad_json('Unable to remove member')
-      end
-    else
-      respond_bad_json('You are not a member of this group!')
     end
+
+    try_to_save_group('Unable to remove member')
 
   end
 
@@ -109,7 +75,7 @@ class Api::GroupsController < ApiController
   end
 
   private
-  def check_creator
+  def authorize_creator
     if is_current_user_not_creator
       respond_bad_json('You are not the creator')
     end
@@ -123,6 +89,24 @@ class Api::GroupsController < ApiController
       @group.members -= [new_creator]
     end
 
+  end
+
+  private
+  def try_to_save_group(error_message)
+    if @group.save
+      respond_to do |format|
+        format.json { render json: @group }
+      end
+    else
+      respond_bad_json(error_message)
+    end
+  end
+
+  private
+  def authorize_member
+    if is_current_user_not_creator && !@group.members.include?(@current_user)
+      respond_bad_json('You are not a member of this group!')
+    end
   end
 
 end
