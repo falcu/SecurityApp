@@ -18,7 +18,6 @@ class Api::GroupsController < ApiController
         @group.members << new_member
       end
     end
-
     try_to_save_group('Unable to add members')
   end
 
@@ -88,7 +87,6 @@ class Api::GroupsController < ApiController
     if new_creator
       @group.members -= [new_creator]
     end
-
   end
 
   private
