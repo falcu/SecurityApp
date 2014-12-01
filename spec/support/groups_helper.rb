@@ -18,6 +18,10 @@ module GroupsHelpers
     put :quit, {id: group.id, :format => "json"}
   end
 
+  def rename_group(group,name)
+    put :rename, {id: group.id,:name => name ,:format => "json"}
+  end
+
 end
 RSpec.configure do |c|
   c.include GroupsHelpers, type: :controller

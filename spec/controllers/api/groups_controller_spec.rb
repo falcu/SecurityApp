@@ -232,7 +232,7 @@ describe Api::GroupsController do
     expected_name = "new name"
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-    put :rename, {id: saved_group.id,:name => expected_name ,:format => "json"}
+    rename_group(saved_group,expected_name)
 
     expect(response.status).to eq(200)
     expect(Group.first.name).to eq(expected_name)
@@ -246,7 +246,7 @@ describe Api::GroupsController do
     expected_name = "new name"
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials("faketoken")
-    put :rename, {id: saved_group.id,:name => expected_name ,:format => "json"}
+    rename_group(saved_group,expected_name)
 
     expect(response.status).to eq(401)
     expect(Group.first.name).to eq(saved_group.name)
