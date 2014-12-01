@@ -2,7 +2,7 @@ class Api::GroupsController < ApiController
   include ApiHelper
 
   before_action :set_group, except: [:create]
-  before_action :authorize_creator, only: [:add,:remove_members]
+  before_action :authorize_creator, only: [:add,:remove_members,:rename]
   before_action :authorize_member, only: [:quit]
 
   def create
@@ -50,7 +50,11 @@ class Api::GroupsController < ApiController
     end
 
     try_to_save_group('Unable to remove member')
+  end
 
+  def rename
+    @group.name = params[:name]
+    try_to_save_group('Unable to change name')
   end
 
   private

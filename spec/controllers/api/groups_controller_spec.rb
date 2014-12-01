@@ -215,13 +215,41 @@ describe Api::GroupsController do
     user = User.first
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
     create_group(group)
-    group = Group.first
+    saved_group = Group.first
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-    quit_group(group)
+    quit_group(saved_group)
 
     expect(response.status).to eq(200)
-    expect {Group.find(group.id)}.to raise_exception
+    expect {Group.find(saved_group.id)}.to raise_exception
+  end
+
+  it "Creator renames group" do
+    user = User.first
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    create_group(group)
+    saved_group = Group.first
+    expected_name = "new name"
+
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    put :rename, {id: saved_group.id,:name => expected_name ,:format => "json"}
+
+    expect(response.status).to eq(200)
+    expect(Group.first.name).to eq(expected_name)
+  end
+
+  it "Fake user tries to change name" do
+    user = User.first
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    create_group(group)
+    saved_group = Group.first
+    expected_name = "new name"
+
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials("faketoken")
+    put :rename, {id: saved_group.id,:name => expected_name ,:format => "json"}
+
+    expect(response.status).to eq(401)
+    expect(Group.first.name).to eq(saved_group.name)
   end
 
 end
