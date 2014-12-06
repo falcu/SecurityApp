@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   before_create :generate_token
   validates :email, presence: true
   validates :email, uniqueness: true
+  has_many :frequencies
+  has_many :localities,through: :frequencies
 
   private
   def generate_token

@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141129211626) do
+ActiveRecord::Schema.define(version: 20141206210253) do
+
+  create_table "frequencies", force: true do |t|
+    t.integer "user_id"
+    t.integer "locality_id"
+    t.integer "value",       default: 0
+  end
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -21,6 +27,12 @@ ActiveRecord::Schema.define(version: 20141129211626) do
   end
 
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
+
+  create_table "localities", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

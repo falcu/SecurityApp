@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     put "groups/:id", to: "groups#quit", as: "quit_member"
     put "groups/:id", to: "groups#rename", as: "rename_group"
     delete "groups/:id", to: "groups#remove_members", as: "remove_members"
+
+    resources :localities
+    put "localities", to: "localities#notify_locality", as: "notify_locality"
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
