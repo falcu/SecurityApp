@@ -1,0 +1,251 @@
+{
+    "results" : [
+        {
+            "address_components" : [
+                {
+                    "long_name" : "2001-2089",
+                    "short_name" : "2001-2089",
+                    "types" : [ "street_number" ]
+                },
+                {
+                    "long_name" : "Mariano Pelliza",
+                    "short_name" : "Mariano Pelliza",
+                    "types" : [ "route" ]
+                },
+                {
+                    "long_name" : "Olivos",
+                    "short_name" : "Olivos",
+                    "types" : [ "locality", "political" ]
+                },
+                {
+                    "long_name" : "Vicente López",
+                    "short_name" : "Vicente López",
+                    "types" : [ "administrative_area_level_2", "political" ]
+                },
+                {
+                    "long_name" : "Buenos Aires",
+                    "short_name" : "BA",
+                    "types" : [ "administrative_area_level_1", "political" ]
+                },
+                {
+                    "long_name" : "Argentina",
+                    "short_name" : "AR",
+                    "types" : [ "country", "political" ]
+                }
+            ],
+            "formatted_address" : "Mariano Pelliza 2001-2089, Olivos, Buenos Aires, Argentina",
+            "geometry" : {
+                "bounds" : {
+                    "northeast" : {
+                        "lat" : -34.5104485,
+                        "lng" : -58.4966393
+                    },
+                    "southwest" : {
+                        "lat" : -34.5108032,
+                        "lng" : -58.4974327
+                    }
+                },
+                "location" : {
+                    "lat" : -34.5104561,
+                    "lng" : -58.4966949
+                },
+                "location_type" : "RANGE_INTERPOLATED",
+                "viewport" : {
+                    "northeast" : {
+                        "lat" : -34.5092768697085,
+                        "lng" : -58.49568701970849
+                    },
+                    "southwest" : {
+                        "lat" : -34.5119748302915,
+                        "lng" : -58.4983849802915
+                    }
+                }
+            },
+            "types" : [ "street_address" ]
+        },
+        {
+            "address_components" : [
+                {
+                    "long_name" : "Olivos",
+                    "short_name" : "Olivos",
+                    "types" : [ "locality", "political" ]
+                },
+                {
+                    "long_name" : "Vicente López",
+                    "short_name" : "Vicente López",
+                    "types" : [ "administrative_area_level_2", "political" ]
+                },
+                {
+                    "long_name" : "Buenos Aires",
+                    "short_name" : "BA",
+                    "types" : [ "administrative_area_level_1", "political" ]
+                },
+                {
+                    "long_name" : "Argentina",
+                    "short_name" : "AR",
+                    "types" : [ "country", "political" ]
+                }
+            ],
+            "formatted_address" : "Olivos, Buenos Aires, Argentina",
+            "geometry" : {
+                "bounds" : {
+                    "northeast" : {
+                        "lat" : -34.4978104,
+                        "lng" : -58.4710413
+                    },
+                    "southwest" : {
+                        "lat" : -34.5285565,
+                        "lng" : -58.52545379999999
+                    }
+                },
+                "location" : {
+                    "lat" : -34.5105515,
+                    "lng" : -58.4963913
+                },
+                "location_type" : "APPROXIMATE",
+                "viewport" : {
+                    "northeast" : {
+                        "lat" : -34.4978104,
+                        "lng" : -58.4710413
+                    },
+                    "southwest" : {
+                        "lat" : -34.5285565,
+                        "lng" : -58.52545379999999
+                    }
+                }
+            },
+            "types" : [ "locality", "political" ]
+        },
+        {
+            "address_components" : [
+                {
+                    "long_name" : "Vicente López",
+                    "short_name" : "Vicente López",
+                    "types" : [ "administrative_area_level_2", "political" ]
+                },
+                {
+                    "long_name" : "Buenos Aires",
+                    "short_name" : "BA",
+                    "types" : [ "administrative_area_level_1", "political" ]
+                },
+                {
+                    "long_name" : "Argentina",
+                    "short_name" : "AR",
+                    "types" : [ "country", "political" ]
+                }
+            ],
+            "formatted_address" : "Vicente López, Buenos Aires, Argentina",
+            "geometry" : {
+                "bounds" : {
+                    "northeast" : {
+                        "lat" : -34.4896904,
+                        "lng" : -58.459408
+                    },
+                    "southwest" : {
+                        "lat" : -34.5691944,
+                        "lng" : -58.5538597
+                    }
+                },
+                "location" : {
+                    "lat" : -34.5209468,
+                    "lng" : -58.4972596
+                },
+                "location_type" : "APPROXIMATE",
+                "viewport" : {
+                    "northeast" : {
+                        "lat" : -34.4896904,
+                        "lng" : -58.459408
+                    },
+                    "southwest" : {
+                        "lat" : -34.5691944,
+                        "lng" : -58.5538597
+                    }
+                }
+            },
+            "types" : [ "administrative_area_level_2", "political" ]
+        },
+        {
+            "address_components" : [
+                {
+                    "long_name" : "Buenos Aires",
+                    "short_name" : "BA",
+                    "types" : [ "administrative_area_level_1", "political" ]
+                },
+                {
+                    "long_name" : "Argentina",
+                    "short_name" : "AR",
+                    "types" : [ "country", "political" ]
+                }
+            ],
+            "formatted_address" : "Buenos Aires, Argentina",
+            "geometry" : {
+                "bounds" : {
+                    "northeast" : {
+                        "lat" : -33.2633349,
+                        "lng" : -56.6647662
+                    },
+                    "southwest" : {
+                        "lat" : -41.0404548,
+                        "lng" : -63.39359690000001
+                    }
+                },
+                "location" : {
+                    "lat" : -37.2017285,
+                    "lng" : -59.84106969999999
+                },
+                "location_type" : "APPROXIMATE",
+                "viewport" : {
+                    "northeast" : {
+                        "lat" : -33.2633349,
+                        "lng" : -56.6647662
+                    },
+                    "southwest" : {
+                        "lat" : -41.0404548,
+                        "lng" : -63.39359690000001
+                    }
+                }
+            },
+            "types" : [ "administrative_area_level_1", "political" ]
+        },
+        {
+            "address_components" : [
+                {
+                    "long_name" : "Argentina",
+                    "short_name" : "AR",
+                    "types" : [ "country", "political" ]
+                }
+            ],
+            "formatted_address" : "Argentina",
+            "geometry" : {
+                "bounds" : {
+                    "northeast" : {
+                        "lat" : -21.7808136,
+                        "lng" : -53.637481
+                    },
+                    "southwest" : {
+                        "lat" : -55.0577146,
+                        "lng" : -73.56036019999999
+                    }
+                },
+                "location" : {
+                    "lat" : -38.416097,
+                    "lng" : -63.61667199999999
+                },
+                "location_type" : "APPROXIMATE",
+                "viewport" : {
+                    "northeast" : {
+                        "lat" : -21.7808136,
+                        "lng" : -53.637481
+                    },
+                    "southwest" : {
+                        "lat" : -55.0577146,
+                        "lng" : -73.56036019999999
+                    }
+                }
+            },
+            "types" : [ "country", "political" ]
+        }
+    ],
+    "status" : "OK"
+}
+
