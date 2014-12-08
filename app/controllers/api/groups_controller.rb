@@ -41,7 +41,7 @@ class Api::GroupsController < ApiController
             format.json {render json: {message: 'Group deleted'}, status: 200}
           end
         else
-          respond_bad_json('Unable to remove member')
+          respond_bad_json('Unable to remove member',400)
         end
         return
       end
@@ -80,7 +80,7 @@ class Api::GroupsController < ApiController
   private
   def authorize_creator
     if is_current_user_not_creator
-      respond_bad_json('You are not the creator')
+      respond_bad_json('You are not the creator',401)
     end
   end
 
@@ -100,14 +100,14 @@ class Api::GroupsController < ApiController
         format.json { render json: @group }
       end
     else
-      respond_bad_json(error_message)
+      respond_bad_json(error_message,400)
     end
   end
 
   private
   def authorize_member
     if is_current_user_not_creator && !@group.members.include?(@current_user)
-      respond_bad_json('You are not a member of this group!')
+      respond_bad_json('You are not a member of this group!',401)
     end
   end
 

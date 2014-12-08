@@ -23,7 +23,7 @@ describe Api::UsersController do
 
   it "bad user with no email" do
     post_user(bad_user)
-    expect(response.status).to eq(401)
+    expect(response.status).to eq(400)
     expect(json["error"]).to eq("Unable to save user")
   end
 
@@ -31,7 +31,7 @@ describe Api::UsersController do
     post_user(user)
     expect(response.status).to eq(200)
     post_user(user)
-    expect(response.status).to eq(401)
+    expect(response.status).to eq(400)
   end
 
   it "Sign in with correct credentials" do

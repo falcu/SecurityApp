@@ -8,7 +8,7 @@ class Api::UsersController < ApplicationController
         format.json { render json: @user }
       end
     else
-      respond_bad_json('Unable to save user')
+      respond_bad_json('Unable to save user',400)
     end
   end
 
@@ -19,7 +19,7 @@ class Api::UsersController < ApplicationController
         format.json { render json: user}
       end
     else
-      respond_bad_json('Unable to sign in user')
+      respond_bad_json('Unable to sign in user',401)
     end
   end
 

@@ -10,7 +10,7 @@ class Api::LocalitiesController < ApiController
       if frequency
         frequency.value = frequency.value + 1
       else
-        frequency = @current_user.frequencies.build(user_id: @current_user.id, locality_id: @locality.id,value: 1)
+        frequency = @current_user.frequencies.build(locality_id: @locality.id,value: 1)
       end
 
       if frequency.save
@@ -18,7 +18,7 @@ class Api::LocalitiesController < ApiController
           format.json {render json: {message: 'Done'}, status: 200}
         end
       else
-        respond_bad_json('Unable to save frequency')
+        respond_bad_json('Unable to save frequency',400)
       end
 
 
@@ -27,7 +27,11 @@ class Api::LocalitiesController < ApiController
   private
   def set_locality
     locality_name = find_locality(params[:latitude],params[:longitude])
+    if locality_name
     @locality = Locality.find_by_name(locality_name)
+    else
+      respond_bad_json("Invalid coordinates",400)
+      end
   end
 
 end
