@@ -29,6 +29,8 @@ gem 'bcrypt-ruby'
 
 gem "active_model_serializers", "=0.8.1"
 
+gem 'rpush'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

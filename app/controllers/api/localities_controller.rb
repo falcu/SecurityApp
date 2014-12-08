@@ -21,7 +21,6 @@ class Api::LocalitiesController < ApiController
         respond_bad_json('Unable to save frequency',400)
       end
 
-
   end
 
   private
