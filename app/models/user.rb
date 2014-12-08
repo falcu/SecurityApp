@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   has_many :frequencies
   has_many :localities,through: :frequencies
+  has_many :devices
 
   private
   def generate_token
