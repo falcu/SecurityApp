@@ -18,7 +18,7 @@ describe Api::LocalitiesController do
     user = User.first
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-    put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", :format => "json"}
+    notify_locality("-34.510462","-58.496691")
 
     user.reload
     olivos_locality = Locality.find_by_name("Olivos")
@@ -37,7 +37,7 @@ describe Api::LocalitiesController do
     Net::HTTP.stub(:get).and_return(olivos_json)
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials("faketoken")
-    put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", :format => "json"}
+    notify_locality("-34.510462","-58.496691")
 
     user = User.first
     expect(response.status).to eq(401)
