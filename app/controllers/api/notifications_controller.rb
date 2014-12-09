@@ -1,7 +1,9 @@
-class Api::NotificationsController < ApiController
+class Api::NotificationsController < Api::GroupsAuthorizationController
   include Api::LocalitiesHelper
 
-  before_action :set_group
+  before_action do
+    set_group(params[:group_id])
+  end
   before_action :authorize_member
 
   def notify
@@ -26,28 +28,6 @@ class Api::NotificationsController < ApiController
       members = Array.new(@group.members)
       members.insert(0,@group.creator)
       reg_ids = members.select{|member| member.id!=@current_user.id}.collect{|user| user.devices.map(&:registration_id).join(",")}.join(",")
-    end
-  end
-
-  private
-  def is_current_user_creator
-    @current_user.id == @group.creator.id
-  end
-
-  private
-  def is_current_user_member
-    @group.members.include?(@current_user)
-  end
-
-  private
-  def set_group
-    @group = Group.find(params[:group_id])
-  end
-
-  private
-  def authorize_member
-    if !is_current_user_creator && !is_current_user_member
-      respond_bad_json('You are not a member of this group!',401)
     end
   end
 

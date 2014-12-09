@@ -1,7 +1,9 @@
-class Api::GroupsController < ApiController
+class Api::GroupsController < Api::GroupsAuthorizationController
   include ApiHelper
 
-  before_action :set_group, except: [:create]
+  before_action except: [:create] do
+    set_group(params[:id])
+  end
   before_action :authorize_creator, only: [:add,:remove_members,:rename]
   before_action :authorize_member, only: [:quit]
 
@@ -63,28 +65,6 @@ class Api::GroupsController < ApiController
   end
 
   private
-  def set_group
-    @group = Group.find(params[:id])
-  end
-
-  private
-  def is_current_user_creator
-     @current_user.id == @group.creator.id
-  end
-
-  private
-  def is_current_user_not_creator
-    not is_current_user_creator
-  end
-
-  private
-  def authorize_creator
-    if is_current_user_not_creator
-      respond_bad_json('You are not the creator',401)
-    end
-  end
-
-  private
   def assign_new_creator
     new_creator = @group.members.first
     @group.creator = new_creator
@@ -101,13 +81,6 @@ class Api::GroupsController < ApiController
       end
     else
       respond_bad_json(error_message,400)
-    end
-  end
-
-  private
-  def authorize_member
-    if is_current_user_not_creator && !@group.members.include?(@current_user)
-      respond_bad_json('You are not a member of this group!',401)
     end
   end
 
