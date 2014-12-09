@@ -252,4 +252,58 @@ describe Api::GroupsController do
     expect(Group.first.name).to eq(saved_group.name)
   end
 
+  it "A user that creates 1 groups, gets his groups information" do
+    user = User.first
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    create_group(group)
+
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    get :user_information, {:format => "json"}
+
+    expect(response.status).to eq(200)
+    expect(json["groups"].count).to eq(1)
+    expect(json["groups"][0]["name"]). to eq(group.name)
+  end
+
+  it "A user that creates 2 groups, gets his groups information" do
+    user = User.first
+    group1 = FactoryGirl.build(:group,:name => "group1")
+    group2 = FactoryGirl.build(:group,:name => "group2")
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    create_group(group1)
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    create_group(group2)
+
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    get :user_information, {:format => "json"}
+
+    expect(response.status).to eq(200)
+    expect(json["groups"].count).to eq(2)
+    expect(json["groups"][0]["name"]). to eq(group1.name)
+    expect(json["groups"][1]["name"]). to eq(group2.name)
+  end
+
+  it "A user that creates 1 groups and its member of other group, gets his groups information" do
+    user = User.first
+    other_user = FactoryGirl.create(:user,name: "other_user",email: "other_user@email.com", password: "123")
+    group1 = FactoryGirl.build(:group,:name => "group1")
+    group2 = FactoryGirl.build(:group,:name => "group2")
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    create_group(group1)
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(other_user.token)
+    create_group(group2)
+    members = [user]
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(other_user.token)
+    group2 = Group.find_by_name("group2")
+    add_members(group2,members)
+
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    get :user_information, {:format => "json"}
+
+    expect(response.status).to eq(200)
+    expect(json["groups"].count).to eq(2)
+    expect(json["groups"][0]["name"]). to eq(group1.name)
+    expect(json["groups"][1]["name"]). to eq(group2.name)
+  end
+
 end

@@ -1,7 +1,7 @@
 class Api::GroupsController < Api::GroupsAuthorizationController
   include ApiHelper
 
-  before_action except: [:create] do
+  before_action except: [:create,:user_information] do
     set_group(params[:id])
   end
   before_action :authorize_creator, only: [:add,:remove_members,:rename]
@@ -57,6 +57,15 @@ class Api::GroupsController < Api::GroupsAuthorizationController
   def rename
     @group.name = params[:name]
     try_to_save_group('Unable to change name')
+  end
+
+  def user_information
+    member_of =  Group.joins("INNER JOIN users_groups ON users_groups.group_id = groups.id").where("users_groups.user_id = ?",@current_user.id)
+    creator_of = Group.where("user_id = ?", @current_user.id)
+    groups = creator_of + member_of
+    respond_to do |format|
+      format.json { render json: {groups: groups} }
+    end
   end
 
   private

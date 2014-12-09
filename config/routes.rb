@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     put "groups/:id", to: "groups#quit", as: "quit_member"
     put "groups/:id", to: "groups#rename", as: "rename_group"
     delete "groups/:id", to: "groups#remove_members", as: "remove_members"
+    get "groups", to: "groups#user_information", as: "user_information"
 
     resources :localities
     put "localities", to: "localities#notify_locality", as: "notify_locality"
