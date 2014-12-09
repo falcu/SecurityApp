@@ -57,6 +57,23 @@ describe Api::NotificationsController do
 
     expect(response.status).to eq(401)
 
+  end
+
+  it "Creator of a group sends alarm with zoom, the other members are notified with custom message and the current location with zoom" do
+    group = Group.find_by_name("group1")
+    creator = User.find_by_email("creator@email.com")
+    double = double("Rpush::Gcm::Notification")
+    expect(double).to receive(:data=).with(message: "I'm in danger", location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,15z")
+    expect(double).to receive(:registration_ids=).with(["token","user1_123,user2_123"])
+    allow(double).to receive(:save!)
+    Rpush::Gcm::Notification.stub(:new).and_return(double)
+
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
+    post :notify ,{group_id: group.id, latitude: "-34.510462" , longitude: "-58.496691", zoom: "15" , alarm: "I'm in danger",
+                   :format => "json"}
+
+    expect(response.status).to eq(200)
+
 
   end
 

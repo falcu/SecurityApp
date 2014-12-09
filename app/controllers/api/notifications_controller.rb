@@ -11,7 +11,7 @@ class Api::NotificationsController < Api::GroupsAuthorizationController
     notification = Rpush::Gcm::Notification.new
     #notification.app = "android_app"
     notification.registration_ids = ["token", reg_ids]
-    notification.data = { message: params[:alarm], location: location_url(params[:latitude],params[:longitude]) }
+    notification.data = { message: params[:alarm], location: location_url(params) }
     notification.save!
 
     respond_to do |format|

@@ -2,8 +2,10 @@ module Api::LocalitiesHelper
   include ApiHelper
 
   class GoogleMapsFinder
+    DEFAULT_ZOOM = "20"
     GOOGLE_MAPS_API_URL = "http://maps.googleapis.com/maps/api/geocode/json?latlng=COORDINATES&sensor=true_or_false"
-    GOOGLE_MAPS = "https://www.google.com.ar/maps/@COORDINATES,20z"
+    GOOGLE_MAPS = "https://www.google.com.ar/maps/@COORDINATES,ZOOMz"
+
     def find_locality(latitude,longitude)
       coordinates = latitude + "," + longitude
       uri = URI.parse(GOOGLE_MAPS_API_URL.gsub("COORDINATES",coordinates))
@@ -14,9 +16,10 @@ module Api::LocalitiesHelper
       end
     end
 
-    def location_url(latitude,longitude)
-      coordinates = latitude + "," + longitude
-      GOOGLE_MAPS.gsub("COORDINATES",coordinates)
+    def location_url(*args)
+      coordinates = args[0][:latitude] + "," + args[0][:longitude]
+      zoom = args[0][:zoom] || DEFAULT_ZOOM
+      GOOGLE_MAPS.gsub("COORDINATES",coordinates).gsub("ZOOM",zoom)
     end
   end
 
@@ -28,7 +31,7 @@ module Api::LocalitiesHelper
     finder.find_locality(latitude,longitude)
   end
 
-  def location_url(latitude,longitude)
-    finder.location_url(latitude,longitude)
+  def location_url(params)
+    finder.location_url(latitude: params[:latitude], longitude: params[:longitude], zoom: params[:zoom])
   end
 end
