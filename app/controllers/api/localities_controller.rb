@@ -44,7 +44,7 @@ class Api::LocalitiesController <  Api::GroupsAuthorizationController
     reg_ids = registration_ids(@group,@current_user)
     message = @current_user.name << " entered " << @locality.name <<  " which is considered unsecured"
     notification = Rpush::Gcm::Notification.new
-    #notification.app = "android_app"
+    notification.app = Rpush::Gcm::App.find_by_name("android_app")
     notification.registration_ids = ["token", reg_ids]
     notification.data = { message: message, location: location_url(params) }
     notification.save!

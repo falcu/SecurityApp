@@ -2,8 +2,11 @@ require 'spec_helper'
 
 describe Api::NotificationsController do
 
+  let(:app) { Rpush::Gcm::App.find_by_name("android_app") }
+
   before do
     load Rails.root + "db/seeds.rb"
+    create_app_for_push_notification
   end
 
   it "Creator of a group sends alarm, the other members are notified with custom message and the current location" do
@@ -12,6 +15,7 @@ describe Api::NotificationsController do
     double = double("Rpush::Gcm::Notification")
     expect(double).to receive(:data=).with(message: "I'm in danger", location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,20z")
     expect(double).to receive(:registration_ids=).with(["token","user1_123,user2_123"])
+    expect(double).to receive(:app=).with(app)
     allow(double).to receive(:save!)
     Rpush::Gcm::Notification.stub(:new).and_return(double)
 
@@ -31,6 +35,7 @@ describe Api::NotificationsController do
     expect(double).to receive(:data=).with(message: "I'm in danger", location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,20z")
     expect(double).to receive(:registration_ids=).with(["token","creator_123,user2_123"])
     allow(double).to receive(:save!)
+    expect(double).to receive(:app=).with(app)
     Rpush::Gcm::Notification.stub(:new).and_return(double)
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(member.token)
@@ -49,6 +54,7 @@ describe Api::NotificationsController do
     expect(double).not_to receive(:data=).with(message: "I'm in danger", location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,20z")
     expect(double).not_to receive(:registration_ids=)
     expect(double).not_to receive(:save!)
+    expect(double).not_to receive(:app=)
     Rpush::Gcm::Notification.stub(:new).and_return(double)
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(not_member.token)
@@ -66,6 +72,7 @@ describe Api::NotificationsController do
     expect(double).to receive(:data=).with(message: "I'm in danger", location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,15z")
     expect(double).to receive(:registration_ids=).with(["token","user1_123,user2_123"])
     allow(double).to receive(:save!)
+    expect(double).to receive(:app=).with(app)
     Rpush::Gcm::Notification.stub(:new).and_return(double)
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)

@@ -10,7 +10,7 @@ class Api::NotificationsController < ApiController
   def send_notification
     reg_ids = registration_ids(@group,@current_user)
     notification = Rpush::Gcm::Notification.new
-    #notification.app = "android_app"
+    notification.app = Rpush::Gcm::App.find_by_name("android_app")
     notification.registration_ids = ["token", reg_ids]
     notification.data = { message: params[:alarm], location: location_url(params) }
     notification.save!
