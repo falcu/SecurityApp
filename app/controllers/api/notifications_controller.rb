@@ -1,13 +1,14 @@
-class Api::NotificationsController < Api::GroupsAuthorizationController
+class Api::NotificationsController < ApiController
   include Api::LocalitiesHelper
+  include Api::GroupsHelper
 
+  before_action :set_group
   before_action do
-    set_group(params[:group_id])
+    authorize_member(@group,@current_user)
   end
-  before_action :authorize_member
 
-  def notify
-    reg_ids = registration_ids
+  def send_notification
+    reg_ids = registration_ids(@group,@current_user)
     notification = Rpush::Gcm::Notification.new
     #notification.app = "android_app"
     notification.registration_ids = ["token", reg_ids]
@@ -21,14 +22,8 @@ class Api::NotificationsController < Api::GroupsAuthorizationController
   end
 
   private
-  def registration_ids
-    if is_current_user_creator
-      reg_ids = @group.members.collect{|user| user.devices.map(&:registration_id).join(",")}.join(",")
-    elsif is_current_user_member
-      members = Array.new(@group.members)
-      members.insert(0,@group.creator)
-      reg_ids = members.select{|member| member.id!=@current_user.id}.collect{|user| user.devices.map(&:registration_id).join(",")}.join(",")
-    end
+  def set_group
+    @group = Group.find(params[:group_id])
   end
 
 

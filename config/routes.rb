@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     put "localities", to: "localities#notify_locality", as: "notify_locality"
 
     resources :notifications
-    post "notifications", to: "notifications#notify", as: "notify"
+    post "notifications", to: "notifications#send_notification", as: "send_notification"
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

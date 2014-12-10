@@ -1,0 +1,250 @@
+{
+    "results" : [
+        {
+            "address_components" : [
+                {
+                    "long_name" : "2501-2599",
+                    "short_name" : "2501-2599",
+                    "types" : [ "street_number" ]
+                },
+                {
+                    "long_name" : "Avenida Santa Fe",
+                    "short_name" : "Av Sta Fe",
+                    "types" : [ "route" ]
+                },
+                {
+                    "long_name" : "Martínez",
+                    "short_name" : "Martínez",
+                    "types" : [ "locality", "political" ]
+                },
+                {
+                    "long_name" : "San Isidro",
+                    "short_name" : "San Isidro",
+                    "types" : [ "administrative_area_level_2", "political" ]
+                },
+                {
+                    "long_name" : "Buenos Aires",
+                    "short_name" : "BA",
+                    "types" : [ "administrative_area_level_1", "political" ]
+                },
+                {
+                    "long_name" : "Argentina",
+                    "short_name" : "AR",
+                    "types" : [ "country", "political" ]
+                }
+            ],
+            "formatted_address" : "Avenida Santa Fe 2501-2599, Martínez, Buenos Aires, Argentina",
+            "geometry" : {
+                "bounds" : {
+                    "northeast" : {
+                        "lat" : -34.4940643,
+                        "lng" : -58.49804690000001
+                    },
+                    "southwest" : {
+                        "lat" : -34.4948959,
+                        "lng" : -58.4982643
+                    }
+                },
+                "location" : {
+                    "lat" : -34.4942731,
+                    "lng" : -58.4982286
+                },
+                "location_type" : "RANGE_INTERPOLATED",
+                "viewport" : {
+                    "northeast" : {
+                        "lat" : -34.49313111970849,
+                        "lng" : -58.49680661970849
+                    },
+                    "southwest" : {
+                        "lat" : -34.49582908029149,
+                        "lng" : -58.4995045802915
+                    }
+                }
+            },
+            "types" : [ "street_address" ]
+        },
+        {
+            "address_components" : [
+                {
+                    "long_name" : "Martínez",
+                    "short_name" : "Martínez",
+                    "types" : [ "locality", "political" ]
+                },
+                {
+                    "long_name" : "San Isidro",
+                    "short_name" : "San Isidro",
+                    "types" : [ "administrative_area_level_2", "political" ]
+                },
+                {
+                    "long_name" : "Buenos Aires",
+                    "short_name" : "BA",
+                    "types" : [ "administrative_area_level_1", "political" ]
+                },
+                {
+                    "long_name" : "Argentina",
+                    "short_name" : "AR",
+                    "types" : [ "country", "political" ]
+                }
+            ],
+            "formatted_address" : "Martínez, Buenos Aires, Argentina",
+            "geometry" : {
+                "bounds" : {
+                    "northeast" : {
+                        "lat" : -34.4744225,
+                        "lng" : -58.47937119999999
+                    },
+                    "southwest" : {
+                        "lat" : -34.51313020000001,
+                        "lng" : -58.5511017
+                    }
+                },
+                "location" : {
+                    "lat" : -34.4948079,
+                    "lng" : -58.5164546
+                },
+                "location_type" : "APPROXIMATE",
+                "viewport" : {
+                    "northeast" : {
+                        "lat" : -34.4744225,
+                        "lng" : -58.47937119999999
+                    },
+                    "southwest" : {
+                        "lat" : -34.51313020000001,
+                        "lng" : -58.5511017
+                    }
+                }
+            },
+            "types" : [ "locality", "political" ]
+        },
+        {
+            "address_components" : [
+                {
+                    "long_name" : "San Isidro",
+                    "short_name" : "San Isidro",
+                    "types" : [ "administrative_area_level_2", "political" ]
+                },
+                {
+                    "long_name" : "Buenos Aires",
+                    "short_name" : "BA",
+                    "types" : [ "administrative_area_level_1", "political" ]
+                },
+                {
+                    "long_name" : "Argentina",
+                    "short_name" : "AR",
+                    "types" : [ "country", "political" ]
+                }
+            ],
+            "formatted_address" : "San Isidro, Buenos Aires, Argentina",
+            "geometry" : {
+                "bounds" : {
+                    "northeast" : {
+                        "lat" : -34.4468104,
+                        "lng" : -58.47937119999999
+                    },
+                    "southwest" : {
+                        "lat" : -34.5302887,
+                        "lng" : -58.5964282
+                    }
+                },
+                "location" : {
+                    "lat" : -34.4940691,
+                    "lng" : -58.5429553
+                },
+                "location_type" : "APPROXIMATE",
+                "viewport" : {
+                    "northeast" : {
+                        "lat" : -34.4468104,
+                        "lng" : -58.47937119999999
+                    },
+                    "southwest" : {
+                        "lat" : -34.5302887,
+                        "lng" : -58.5964282
+                    }
+                }
+            },
+            "types" : [ "administrative_area_level_2", "political" ]
+        },
+        {
+            "address_components" : [
+                {
+                    "long_name" : "Buenos Aires",
+                    "short_name" : "BA",
+                    "types" : [ "administrative_area_level_1", "political" ]
+                },
+                {
+                    "long_name" : "Argentina",
+                    "short_name" : "AR",
+                    "types" : [ "country", "political" ]
+                }
+            ],
+            "formatted_address" : "Buenos Aires, Argentina",
+            "geometry" : {
+                "bounds" : {
+                    "northeast" : {
+                        "lat" : -33.2633349,
+                        "lng" : -56.6647662
+                    },
+                    "southwest" : {
+                        "lat" : -41.0404548,
+                        "lng" : -63.39359690000001
+                    }
+                },
+                "location" : {
+                    "lat" : -37.2017285,
+                    "lng" : -59.84106969999999
+                },
+                "location_type" : "APPROXIMATE",
+                "viewport" : {
+                    "northeast" : {
+                        "lat" : -33.2633349,
+                        "lng" : -56.6647662
+                    },
+                    "southwest" : {
+                        "lat" : -41.0404548,
+                        "lng" : -63.39359690000001
+                    }
+                }
+            },
+            "types" : [ "administrative_area_level_1", "political" ]
+        },
+        {
+            "address_components" : [
+                {
+                    "long_name" : "Argentina",
+                    "short_name" : "AR",
+                    "types" : [ "country", "political" ]
+                }
+            ],
+            "formatted_address" : "Argentina",
+            "geometry" : {
+                "bounds" : {
+                    "northeast" : {
+                        "lat" : -21.7808136,
+                        "lng" : -53.637481
+                    },
+                    "southwest" : {
+                        "lat" : -55.0577146,
+                        "lng" : -73.56036019999999
+                    }
+                },
+                "location" : {
+                    "lat" : -38.416097,
+                    "lng" : -63.61667199999999
+                },
+                "location_type" : "APPROXIMATE",
+                "viewport" : {
+                    "northeast" : {
+                        "lat" : -21.7808136,
+                        "lng" : -53.637481
+                    },
+                    "southwest" : {
+                        "lat" : -55.0577146,
+                        "lng" : -73.56036019999999
+                    }
+                }
+            },
+            "types" : [ "country", "political" ]
+        }
+    ],
+    "status" : "OK"
+}

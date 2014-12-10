@@ -3,7 +3,8 @@ require 'net/http'
 
 describe Api::LocalitiesController do
   let(:json) { JSON.parse(response.body) }
-  let(:path) { Rails.root + "spec/fixtures/olivos.json" }
+  let(:olivos_path) { Rails.root + "spec/fixtures/olivos.json" }
+  let(:martinez_path) { Rails.root + "spec/fixtures/martinez.json" }
   let(:invalid_path) { Rails.root + "spec/fixtures/invalid_coordinates.json" }
 
   before do
@@ -14,7 +15,7 @@ describe Api::LocalitiesController do
   it "User notifies Olivos location, no previous record, freq with value 1" do
     expected_locality = "Olivos"
     expected_uri = URI.parse("http://maps.googleapis.com/maps/api/geocode/json?latlng=-34.510462,-58.496691&sensor=true_or_false")
-    olivos_json = File.read(path)
+    olivos_json = File.read(olivos_path)
     Net::HTTP.stub(:get).with(expected_uri).and_return(olivos_json)
     user = User.first
 
@@ -34,7 +35,7 @@ describe Api::LocalitiesController do
   end
 
   it "Fake user notifies location, access denied" do
-    olivos_json = File.read(path)
+    olivos_json = File.read(olivos_path)
     Net::HTTP.stub(:get).and_return(olivos_json)
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials("faketoken")
@@ -49,7 +50,7 @@ describe Api::LocalitiesController do
   it "User notifies Olivos location, previous record with value 3, freq increase to 4" do
     expected_locality = "Olivos"
     expected_uri = URI.parse("http://maps.googleapis.com/maps/api/geocode/json?latlng=-34.510462,-58.496691&sensor=true_or_false")
-    olivos_json = File.read(path)
+    olivos_json = File.read(olivos_path)
     Net::HTTP.stub(:get).with(expected_uri).and_return(olivos_json)
     user = User.first
     olivos_locality = Locality.find_by_name("Olivos")
@@ -85,6 +86,25 @@ describe Api::LocalitiesController do
     expect(user.localities.first).to be_nil
     expect(response.status).to eq(400)
   end
+
+  it "User notifies unsecure location, a push notification is sent to all the members of the group" do
+    martinez = File.read(martinez_path)
+    martinez_locality = Locality.find_by_name("Martinez")
+    Net::HTTP.stub(:get).and_return(martinez)
+    user = User.find_by_email("user1@email.com")
+
+    double = double("Rpush::Gcm::Notification")
+    expect(double).to receive(:data=).with(message: "user1 entered Martinez which is considered unsecured", location: "https://www.google.com.ar/maps/@-34.494271,-58.498217,20z")
+    expect(double).to receive(:registration_ids=).with(["token","creator_123,user2_123"])
+    allow(double).to receive(:save!)
+    Rpush::Gcm::Notification.stub(:new).and_return(double)
+
+    group = Group.find_by_name("group1")
+    id = group.id
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+    put :notify_locality, {latitude: "-34.494271", longitude: "-58.498217", group_id: group.id, :format => "json"}
+  end
+
 
 
 

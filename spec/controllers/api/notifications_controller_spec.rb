@@ -16,7 +16,7 @@ describe Api::NotificationsController do
     Rpush::Gcm::Notification.stub(:new).and_return(double)
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
-    post :notify ,{group_id: group.id, latitude: "-34.510462" , longitude: "-58.496691", alarm: "I'm in danger",
+    post :send_notification ,{group_id: group.id, latitude: "-34.510462" , longitude: "-58.496691", alarm: "I'm in danger",
                      :format => "json"}
 
     expect(response.status).to eq(200)
@@ -34,7 +34,7 @@ describe Api::NotificationsController do
     Rpush::Gcm::Notification.stub(:new).and_return(double)
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(member.token)
-    post :notify ,{group_id: group.id, latitude: "-34.510462", longitude: "-58.496691", alarm: "I'm in danger",
+    post :send_notification ,{group_id: group.id, latitude: "-34.510462", longitude: "-58.496691", alarm: "I'm in danger",
                    :format => "json"}
 
     expect(response.status).to eq(200)
@@ -52,7 +52,7 @@ describe Api::NotificationsController do
     Rpush::Gcm::Notification.stub(:new).and_return(double)
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(not_member.token)
-    post :notify ,{group_id: group.id, latitude: "-34.510462", longitude: "-58.496691", alarm: "I'm in danger",
+    post :send_notification ,{group_id: group.id, latitude: "-34.510462", longitude: "-58.496691", alarm: "I'm in danger",
                    :format => "json"}
 
     expect(response.status).to eq(401)
@@ -69,7 +69,7 @@ describe Api::NotificationsController do
     Rpush::Gcm::Notification.stub(:new).and_return(double)
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
-    post :notify ,{group_id: group.id, latitude: "-34.510462" , longitude: "-58.496691", zoom: "15" , alarm: "I'm in danger",
+    post :send_notification ,{group_id: group.id, latitude: "-34.510462" , longitude: "-58.496691", zoom: "15" , alarm: "I'm in danger",
                    :format => "json"}
 
     expect(response.status).to eq(200)

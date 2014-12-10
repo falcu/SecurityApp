@@ -1,11 +1,14 @@
-class Api::GroupsController < Api::GroupsAuthorizationController
+class Api::GroupsController < ApiController
   include ApiHelper
+  include Api::GroupsHelper
 
-  before_action except: [:create,:user_information] do
-    set_group(params[:id])
+  before_action :set_group, except: [:create,:user_information]
+  before_action  only: [:add,:remove_members,:rename] do
+    authorize_creator(@group,@current_user)
   end
-  before_action :authorize_creator, only: [:add,:remove_members,:rename]
-  before_action :authorize_member, only: [:quit]
+  before_action only: [:quit] do
+    authorize_member(@group,@current_user)
+  end
 
   def create
     @group = Group.new(group_params)
@@ -35,7 +38,7 @@ class Api::GroupsController < Api::GroupsAuthorizationController
   end
 
   def quit
-    if is_current_user_creator
+    if is_user_creator_of(@group,@current_user)
       assign_new_creator
       if @group.creator.nil?
         if @group.destroy
@@ -91,6 +94,11 @@ class Api::GroupsController < Api::GroupsAuthorizationController
     else
       respond_bad_json(error_message,400)
     end
+  end
+
+  private
+  def set_group
+    @group = Group.find(params[:id])
   end
 
 end

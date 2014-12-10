@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Locality.create(name: "Olivos")
+Locality.create(name: "Martinez", unsecure: true)
 
 creator = User.new(name: "creator", email: "creator@email.com", password: "123456", password_confirmation: "123456")
 creator.devices << Device.new(registration_id: "creator_123")

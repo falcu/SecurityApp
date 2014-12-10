@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208183948) do
+ActiveRecord::Schema.define(version: 20141209183226) do
 
   create_table "devices", force: true do |t|
     t.integer  "user_id"
@@ -36,9 +36,10 @@ ActiveRecord::Schema.define(version: 20141208183948) do
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
 
   create_table "localities", force: true do |t|
-    t.string   "name",       null: false
+    t.string   "name",                       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "unsecure",   default: false
   end
 
   create_table "rpush_apps", force: true do |t|
