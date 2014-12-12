@@ -9,11 +9,8 @@ class Api::NotificationsController < ApiController
 
   def send_notification
     reg_ids = registration_ids(@group,@current_user)
-    notification = Rpush::Gcm::Notification.new
-    notification.app = Rpush::Gcm::App.find_by_name("android_app")
-    notification.registration_ids = ["token", reg_ids]
-    notification.data = { message: params[:alarm], location: location_url(params) }
-    notification.save!
+    notifier = Notifier.new
+    notifier.notify(app_name: "android_app", reg_ids: reg_ids, message: params[:alarm], location_url: location_url(params))
 
     respond_to do |format|
       format.json {render json: {message: 'Done'}, status: 200}

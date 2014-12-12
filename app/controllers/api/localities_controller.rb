@@ -43,11 +43,8 @@ class Api::LocalitiesController <  ApiController
   def notify_current_locality
     reg_ids = registration_ids(@group,@current_user)
     message = @current_user.name << " entered " << @locality.name <<  " which is considered unsecured"
-    notification = Rpush::Gcm::Notification.new
-    notification.app = Rpush::Gcm::App.find_by_name("android_app")
-    notification.registration_ids = ["token", reg_ids]
-    notification.data = { message: message, location: location_url(params) }
-    notification.save!
+    notifier = Notifier.new
+    notifier.notify(app_name: "android_app", reg_ids: reg_ids, message: message, location_url: location_url(params))
   end
 
   private
