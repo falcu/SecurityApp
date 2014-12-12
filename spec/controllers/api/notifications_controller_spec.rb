@@ -6,6 +6,7 @@ describe Api::NotificationsController do
 
   before do
     load Rails.root + "db/seeds.rb"
+    create_group_with_users
     create_app_for_push_notification
   end
 

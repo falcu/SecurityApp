@@ -10,6 +10,7 @@ describe Api::LocalitiesController do
 
   before do
     load Rails.root + "db/seeds.rb"
+    create_group_with_users
     FactoryGirl.create(:user)
     create_app_for_push_notification
   end
