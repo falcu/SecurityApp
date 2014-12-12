@@ -1,4 +1,4 @@
-class Api::LocalitiesController <  Api::GroupsAuthorizationController
+class Api::LocalitiesController <  ApiController
   include ApiHelper
   include Api::LocalitiesHelper
   include Api::GroupsHelper
