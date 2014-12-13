@@ -94,12 +94,12 @@ describe Api::LocalitiesController do
     user = User.find_by_email("user1@email.com")
     group = Group.find_by_name("group1")
 
-    double = double("Rpush::Gcm::Notification")
-    expect(double).to receive(:data=).with(message: "user1 entered Martinez which is considered unsecured", location: "https://www.google.com.ar/maps/@-34.494271,-58.498217,20z")
-    expect(double).to receive(:registration_ids=).with(["token","creator_123,user2_123"])
-    expect(double).to receive(:app=).with(instance_of(Rpush::Gcm::App))
-    allow(double).to receive(:save!)
-    Rpush::Gcm::Notification.stub(:new).and_return(double)
+    expected_args = {reg_ids: "creator_123,user2_123", :data=>{message: "user1 entered Martinez which is considered unsecured",
+                                                               location: "https://www.google.com.ar/maps/@-34.494271,-58.498217,20z"}}
+    double = double("Notifier")
+    expect(double).to receive(:notify).with(expected_args)
+    allow(double).to receive(:app_name=)
+    Notifier.stub(:new).and_return(double)
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
     put :notify_locality, {latitude: "-34.494271", longitude: "-58.498217", group_id: group.id, :format => "json"}

@@ -10,7 +10,7 @@ class Api::NotificationsController < ApiController
 
   def send_notification
     reg_ids = registration_ids(@group,@current_user)
-    @builder.notifier.notify(reg_ids: reg_ids, message: params[:alarm], location_url: location_url(params))
+    @builder.notifier.notify(reg_ids: reg_ids,:data => {message: params[:alarm], location: location_url(params)})
 
     respond_to do |format|
       format.json {render json: {message: 'Done'}, status: 200}
