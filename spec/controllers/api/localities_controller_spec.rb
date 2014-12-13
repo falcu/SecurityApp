@@ -6,13 +6,11 @@ describe Api::LocalitiesController do
   let(:olivos_path) { Rails.root + "spec/fixtures/olivos.json" }
   let(:martinez_path) { Rails.root + "spec/fixtures/martinez.json" }
   let(:invalid_path) { Rails.root + "spec/fixtures/invalid_coordinates.json" }
-  let(:app) { Rpush::Gcm::App.find_by_name("android_app") }
 
   before do
     load Rails.root + "db/seeds.rb"
     create_group_with_users
     FactoryGirl.create(:user)
-    create_app_for_push_notification
   end
 
   it "User notifies Olivos location, no previous record, freq with value 1" do
@@ -99,15 +97,13 @@ describe Api::LocalitiesController do
     double = double("Rpush::Gcm::Notification")
     expect(double).to receive(:data=).with(message: "user1 entered Martinez which is considered unsecured", location: "https://www.google.com.ar/maps/@-34.494271,-58.498217,20z")
     expect(double).to receive(:registration_ids=).with(["token","creator_123,user2_123"])
-    expect(double).to receive(:app=).with(app)
+    expect(double).to receive(:app=).with(instance_of(Rpush::Gcm::App))
     allow(double).to receive(:save!)
     Rpush::Gcm::Notification.stub(:new).and_return(double)
 
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
     put :notify_locality, {latitude: "-34.494271", longitude: "-58.498217", group_id: group.id, :format => "json"}
   end
-
-
 
 
 end

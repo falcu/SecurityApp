@@ -5,6 +5,7 @@ class Api::LocalitiesController <  ApiController
 
   before_action :set_locality
   before_action :set_group
+  before_action :set_notifier_builder
 
   def notify_locality
       frequency = @current_user.frequencies.select{|s| s.locality_id == @locality.id}.first
@@ -30,6 +31,13 @@ class Api::LocalitiesController <  ApiController
   end
 
   private
+  def set_group
+    if params[:group_id]
+      @group = Group.find(params[:group_id])
+    end
+  end
+
+  private
   def set_locality
     locality_name = find_locality(params[:latitude],params[:longitude])
     if locality_name
@@ -40,18 +48,15 @@ class Api::LocalitiesController <  ApiController
   end
 
   private
-  def notify_current_locality
-    reg_ids = registration_ids(@group,@current_user)
-    message = @current_user.name << " entered " << @locality.name <<  " which is considered unsecured"
-    notifier = Notifier.new
-    notifier.notify(app_name: "android_app", reg_ids: reg_ids, message: message, location_url: location_url(params))
+  def set_notifier_builder
+    @builder = NotifierBuilder.new
   end
 
   private
-  def set_group
-    if params[:group_id]
-    @group = Group.find(params[:group_id])
-    end
+  def notify_current_locality
+    reg_ids = registration_ids(@group,@current_user)
+    message = @current_user.name << " entered " << @locality.name <<  " which is considered unsecured"
+    @builder.notifier.notify(reg_ids: reg_ids, message: message, location_url: location_url(params))
   end
 
 
