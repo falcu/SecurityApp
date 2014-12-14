@@ -109,7 +109,7 @@ describe Api::LocalitiesController do
 
   end
 
-  context "Set custom secure locality with correct credentials" do
+  context "Set custom secure/unsecure locality with correct credentials" do
 
     it "User with correct credentials set custom secure locality, locality added to list" do
       user = FactoryGirl.create(:user, :name => "user", :email => "user@someemail.com", :password => "123456")
@@ -153,6 +153,70 @@ describe Api::LocalitiesController do
 
       expect(response.status).to eq(400)
       expect(user.custom_secure_localities.count).to eq(0)
+    end
+
+    it "User with correct credentials, set custom insecure locality, locality added to list" do
+      user = FactoryGirl.create(:user, :name => "user", :email => "user@someemail.com", :password => "123456")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_insecure_locality, {locality_name: "Martinez", :format => "json"}
+      user = User.find_by_name("user")
+
+      expect(response.status).to eq(200)
+      expect(user.custom_insecure_localities.count).to eq(1)
+      expect(user.custom_insecure_localities.first.name).to eq("Martinez")
+    end
+
+    it "User with correct credentials set same custom insecure locality twice, locality added to list once" do
+      user = FactoryGirl.create(:user, :name => "user", :email => "user@someemail.com", :password => "123456")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_insecure_locality, {locality_name: "Martinez", :format => "json"}
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_insecure_locality, {locality_name: "Martinez", :format => "json"}
+      user = User.find_by_name("user")
+
+      expect(response.status).to eq(200)
+      expect(user.custom_insecure_localities.count).to eq(1)
+      expect(user.custom_insecure_localities.first.name).to eq("Martinez")
+    end
+
+    it "User with incorrect credentials, set custom insecure locality, access denied" do
+      user = FactoryGirl.create(:user, :name => "user", :email => "user@someemail.com", :password => "123456")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials("faketoken")
+      put :set_insecure_locality, {locality_name: "Martinez", :format => "json"}
+      user = User.find_by_name("user")
+
+      expect(response.status).to eq(401)
+      expect(user.custom_insecure_localities.count).to eq(0)
+    end
+
+    it "User adds Martinez as insecure and then adds Martinez as secure, Martinez should only be in the secure list" do
+      user = FactoryGirl.create(:user, :name => "user", :email => "user@someemail.com", :password => "123456")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_insecure_locality, {locality_name: "Martinez", :format => "json"}
+
+      expect(user.custom_insecure_localities.count). to eq(1)
+      expect(user.custom_secure_localities.count). to eq(0)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_secure_locality, {locality_name: "Martinez", :format => "json"}
+
+      expect(user.custom_insecure_localities.count). to eq(0)
+      expect(user.custom_secure_localities.count). to eq(1)
+    end
+
+    it "User adds Martinez as secure and then adds Martinez as insecure, Martinez should only be in the insecure list" do
+      user = FactoryGirl.create(:user, :name => "user", :email => "user@someemail.com", :password => "123456")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_secure_locality, {locality_name: "Martinez", :format => "json"}
+
+      expect(user.custom_secure_localities.count). to eq(1)
+      expect(user.custom_insecure_localities.count). to eq(0)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_insecure_locality, {locality_name: "Martinez", :format => "json"}
+
+      expect(user.custom_secure_localities.count). to eq(0)
+      expect(user.custom_insecure_localities.count). to eq(1)
     end
 
   end

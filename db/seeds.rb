@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Locality.create(name: "Olivos")
-Locality.create(name: "Martinez", unsecure: true)
+Locality.create(name: "Martinez", insecure: true)
 
 app = Rpush::Gcm::App.new
 app.name = "android_app"

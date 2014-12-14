@@ -17,7 +17,7 @@ class Api::LocalitiesController < ApiController
       frequency = @current_user.frequencies.build(locality_id: @locality.id, value: 1)
     end
 
-    if @locality.unsecure && @group
+    if @locality.insecure && @group
       notify_current_locality
     end
 
@@ -31,12 +31,33 @@ class Api::LocalitiesController < ApiController
   end
 
   def set_secure_locality
-    @current_user.custom_secure_localities << @locality unless @current_user.custom_secure_localities.include?(@locality)
+    add_locality(@current_user.custom_secure_localities)
+    remove_locality(@current_user.custom_insecure_localities)
     if @current_user.save
       respond_to do |format|
         format.json { render json: {message: 'Done'}, status: 200 }
       end
     end
+  end
+
+  def set_insecure_locality
+    add_locality(@current_user.custom_insecure_localities)
+    remove_locality(@current_user.custom_secure_localities)
+    if @current_user.save
+      respond_to do |format|
+        format.json { render json: {message: 'Done'}, status: 200 }
+      end
+    end
+  end
+
+  private
+  def add_locality(localities)
+    localities << @locality unless localities.include?(@locality)
+  end
+
+  private
+  def remove_locality(localities)
+    localities.delete(@locality) if localities.include?(@locality)
   end
 
   private

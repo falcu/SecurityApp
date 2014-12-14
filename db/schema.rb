@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141213225109) do
+ActiveRecord::Schema.define(version: 20141214175813) do
+
+  create_table "custom_insecure_localities", force: true do |t|
+    t.integer "user_id"
+    t.integer "locality_id"
+  end
 
   create_table "custom_secure_localities", force: true do |t|
     t.integer "user_id"
@@ -44,7 +49,7 @@ ActiveRecord::Schema.define(version: 20141213225109) do
     t.string   "name",                       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "unsecure",   default: false
+    t.boolean  "insecure",   default: false
   end
 
   create_table "rpush_apps", force: true do |t|
