@@ -17,7 +17,7 @@ class Api::LocalitiesController < ApiController
       frequency = @current_user.frequencies.build(locality_id: @locality.id, value: 1)
     end
 
-    if @locality.insecure && @group
+    if is_insecure && @group
       notify_current_locality
     end
 
@@ -99,6 +99,11 @@ class Api::LocalitiesController < ApiController
     if @locality.nil?
       respond_bad_json("Unknown locality",400)
     end
+  end
+
+  private
+  def is_insecure
+    (@locality.insecure && !@current_user.custom_secure_localities.include?(@locality)) || @current_user.custom_insecure_localities.include?(@locality)
   end
 
 end

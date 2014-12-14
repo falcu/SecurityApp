@@ -4,11 +4,6 @@
     <list default="true" id="f40ad96a-b286-4a09-b1d9-1e6a9010a8a1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/api/localities_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/localities_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/api/localities_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/api/localities_controller_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SecurityApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,8 +46,8 @@
       <file leaf-file-name="localities_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/api/localities_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27906978" vertical-offset="272" max-vertical-offset="1870">
-              <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.8760446" vertical-offset="1224" max-vertical-offset="1955">
+              <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -111,9 +106,11 @@
       <file leaf-file-name="localities_controller_spec.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/controllers/api/localities_controller_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3145" max-vertical-offset="3927">
-              <caret line="194" column="80" selection-start-line="194" selection-start-column="80" selection-end-line="194" selection-end-column="80" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1904" max-vertical-offset="2703">
+              <caret line="119" column="33" selection-start-line="119" selection-start-column="33" selection-end-line="119" selection-end-column="33" />
+              <folding>
+                <element signature="e#7118#13537#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -808,7 +805,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/spec/controllers/api/localities_controller_spec.rb</url>
-          <line>111</line>
+          <line>149</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -1207,16 +1204,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/controllers/api/localities_controller_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3145" max-vertical-offset="3927">
-          <caret line="194" column="80" selection-start-line="194" selection-start-column="80" selection-end-line="194" selection-end-column="80" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1904" max-vertical-offset="2703">
+          <caret line="119" column="33" selection-start-line="119" selection-start-column="33" selection-end-line="119" selection-end-column="33" />
+          <folding>
+            <element signature="e#7118#13537#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/api/localities_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27906978" vertical-offset="272" max-vertical-offset="1870">
-          <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.8760446" vertical-offset="1224" max-vertical-offset="1955">
+          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
           <folding />
         </state>
       </provider>

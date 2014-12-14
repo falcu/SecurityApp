@@ -7,13 +7,13 @@ describe Api::LocalitiesController do
   let(:martinez_path) { Rails.root + "spec/fixtures/martinez.json" }
   let(:invalid_path) { Rails.root + "spec/fixtures/invalid_coordinates.json" }
 
-  before do
-    load Rails.root + "db/seeds.rb"
-    create_group_with_users
-    FactoryGirl.create(:user)
-  end
-
   context "Notify Locality" do
+
+    before do
+      load Rails.root + "db/seeds.rb"
+      create_group_with_users
+      FactoryGirl.create(:user)
+    end
 
     it "User notifies Olivos location, no previous record, freq with value 1" do
       expected_locality = "Olivos"
@@ -90,7 +90,7 @@ describe Api::LocalitiesController do
       expect(response.status).to eq(400)
     end
 
-    it "User notifies unsecure location, a push notification is sent to all the members of the group" do
+    it "User notifies unsecure location which is not custom secure, a push notification is sent to all the members of the group" do
       martinez = File.read(martinez_path)
       Net::HTTP.stub(:get).and_return(martinez)
       user = User.find_by_email("user1@email.com")
@@ -107,9 +107,51 @@ describe Api::LocalitiesController do
       put :notify_locality, {latitude: "-34.494271", longitude: "-58.498217", group_id: group.id, :format => "json"}
     end
 
+    it "User notifies unsecure location but it's custom secure, nothing is sent" do
+      martinez = File.read(martinez_path)
+      Net::HTTP.stub(:get).and_return(martinez)
+      user = User.find_by_email("user1@email.com")
+      group = Group.find_by_name("group1")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_secure_locality, {locality_name: "Martinez", :format => "json"}
+
+      not_expected_args = {reg_ids: "creator_123,user2_123", :data => {message: "user1 entered Martinez which is considered unsecured",
+                                                                   location: "https://www.google.com.ar/maps/@-34.494271,-58.498217,20z"}}
+      double = double("Notifier")
+      expect(double).not_to receive(:notify).with(not_expected_args)
+      expect(double).not_to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :notify_locality, {latitude: "-34.494271", longitude: "-58.498217", group_id: group.id, :format => "json"}
+    end
+
+    it "User notifies secure location but it's custom insecure, notification is sent to the group" do
+      olivos = File.read(olivos_path)
+      Net::HTTP.stub(:get).and_return(olivos)
+      user = User.find_by_email("user1@email.com")
+      group = Group.find_by_name("group1")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_insecure_locality, {locality_name: "Olivos", :format => "json"}
+
+      expected_args = {reg_ids: "creator_123,user2_123", :data => {message: "user1 entered Olivos which is considered unsecured",
+                                                                   location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,20z"}}
+      double = double("Notifier")
+      expect(double).to receive(:notify).with(expected_args)
+      expect(double).to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
+    end
+
   end
 
   context "Set custom secure/unsecure locality with correct credentials" do
+
+    before do
+      load Rails.root + "db/seeds.rb"
+    end
 
     it "User with correct credentials set custom secure locality, locality added to list" do
       user = FactoryGirl.create(:user, :name => "user", :email => "user@someemail.com", :password => "123456")
