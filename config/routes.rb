@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
     resources :localities
     put "localities", to: "localities#notify_locality", as: "notify_locality"
+    put "set_secure_locality", to: "localities#set_secure_locality", as: "set_secure_locality"
 
     resources :notifications
     post "notifications", to: "notifications#send_notification", as: "send_notification"
