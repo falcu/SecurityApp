@@ -29,7 +29,7 @@ describe Api::GroupsController do
       create_group(group)
 
       expect(response.status).to eq(200)
-      expect(json["name"]).to eq(group.name)
+      expect(json["group"]["name"]).to eq(group.name)
     end
 
     it "Create group, wrong token, access denied" do
@@ -248,12 +248,35 @@ describe Api::GroupsController do
       create_group(group)
       saved_group = Group.first
       expected_name = "new name"
+      double = double("Notifier")
+      allow(double).to receive(:app_name=)
+      allow(double).to receive(:notify)
+      Notifier.stub(:new).and_return(double)
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
       rename_group(saved_group, expected_name)
 
       expect(response.status).to eq(200)
       expect(Group.first.name).to eq(expected_name)
+    end
+
+    it "Creator renames group , json with group info returned" do
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      saved_group = Group.first
+      expected_name = "new name"
+      double = double("Notifier")
+      allow(double).to receive(:app_name=)
+      allow(double).to receive(:notify)
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      rename_group(saved_group, expected_name)
+      saved_group.reload
+
+      expect(response.status).to eq(200)
+      expect(json["group"]["name"]).to eq(saved_group.name)
     end
 
     it "Fake user tries to change name, access denied and name unchanged" do
@@ -268,6 +291,22 @@ describe Api::GroupsController do
 
       expect(response.status).to eq(401)
       expect(Group.first.name).to eq(saved_group.name)
+    end
+
+    it "Creator renames group , all of the other users are notified" do
+      create_group_with_users
+      user = User.find_by_name("creator")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      group = Group.find_by_name("group1")
+      expected_name = "new name"
+      double = double("Notifier")
+      expected_args = {reg_ids: "user1_123,user2_123", :data => {message: "Group name changed", group: group }}
+      expect(double).to receive(:notify).with(expected_args)
+      expect(double).to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      rename_group(group, expected_name)
     end
 
   end
