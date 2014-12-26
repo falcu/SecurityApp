@@ -5,11 +5,9 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
     add_device(@user)
     if @user.save
-      respond_to do |format|
-        format.json { render json: @user }
-      end
+      render_json(@user,200)
     else
-      respond_bad_json('Unable to save user',400)
+      render_json({error: "Unable to save user"},400)
     end
   end
 
@@ -18,11 +16,9 @@ class Api::UsersController < ApplicationController
     if user && user.authenticate(params[:user][:password])
       add_device(user)
       user.save
-      respond_to do |format|
-        format.json { render json: user}
-      end
+      render_json(user,200)
     else
-      respond_bad_json('Unable to sign in user',401)
+      render_json({error: "Unable to sign in user"},401)
     end
   end
 

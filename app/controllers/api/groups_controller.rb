@@ -14,7 +14,7 @@ class Api::GroupsController < ApiController
   def create
     @group = Group.new(group_params)
     @group.creator = @current_user
-    try_to_save_group('Unable to create group')
+    try_to_save_group({group: @group},{error: "Unable to create group"})
   end
 
   def add
@@ -24,7 +24,10 @@ class Api::GroupsController < ApiController
         @group.members << new_member
       end
     end
-    try_to_save_group('Unable to add members')
+    members = (Array.new(@group.members) << @group.creator).collect { |user| user.as_json(:only => [:name,:email]) }
+    try_to_save_group({:group_info =>{group: @group,members: members}},{error: "Unable to add members"})
+    reg_ids = registration_ids(@group,[@group.creator])
+    @builder.notifier.notify(reg_ids: reg_ids, :data => {message: "New member added", :group_info => {group: @group, members: members}, type: "member_added"})
   end
 
   def remove_members
@@ -35,7 +38,7 @@ class Api::GroupsController < ApiController
       end
     end
 
-    try_to_save_group('Unable to add members')
+    try_to_save_group({group: @group},{error: "Unable to remove members"})
   end
 
   def quit
@@ -43,11 +46,9 @@ class Api::GroupsController < ApiController
       assign_new_creator
       if @group.creator.nil?
         if @group.destroy
-          respond_to do |format|
-            format.json { render json: {message: 'Group deleted'}, status: 200 }
-          end
+          render_json({message: "Group deleted"},200)
         else
-          respond_bad_json('Unable to remove member', 400)
+          render_json({error: "Unable to remove member"}, 400)
         end
         return
       end
@@ -55,14 +56,14 @@ class Api::GroupsController < ApiController
       @group.members -= [@current_user]
     end
 
-    try_to_save_group('Unable to remove member')
+    try_to_save_group({group: @group},{error: "Unable to remove member"})
   end
 
   def rename
     @group.name = params[:name]
-    if try_to_save_group('Unable to change name')
+    if try_to_save_group({group: @group},{error: "Unable to change name"})
       reg_ids = registration_ids(@group, [@current_user])
-      @builder.notifier.notify(reg_ids: reg_ids, :data => {message: "Group name changed", group: @group})
+      @builder.notifier.notify(reg_ids: reg_ids, :data => {message: "Group name changed", group: @group, type: "name_changed"})
     end
   end
 
@@ -70,9 +71,7 @@ class Api::GroupsController < ApiController
     member_of = Group.joins("INNER JOIN users_groups ON users_groups.group_id = groups.id").where("users_groups.user_id = ?", @current_user.id)
     creator_of = Group.where("user_id = ?", @current_user.id)
     groups = creator_of + member_of
-    respond_to do |format|
-      format.json { render json: {groups: groups} }
-    end
+    render_json({groups: groups},200)
   end
 
   private
@@ -90,14 +89,12 @@ class Api::GroupsController < ApiController
   end
 
   private
-  def try_to_save_group(error_message)
+  def try_to_save_group(json_args,error_message)
     if @group.save
-      respond_to do |format|
-        format.json { render json: {group: @group }}
-      end
+      render_json(json_args,200)
       true
     else
-      respond_bad_json(error_message, 400)
+      render_json(error_message, 400)
       false
     end
   end

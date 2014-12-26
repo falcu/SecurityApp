@@ -44,10 +44,14 @@ describe Api::GroupsController do
 
   context "Add a member to group" do
 
-    it "Add member to group, is creator and email exists, add correctly" do
+    it "Is creator and email exists, add correctly" do
       user = User.first
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
       create_group(group)
+      double = double("Notifier")
+      allow(double).to receive(:app_name=)
+      allow(double).to receive(:notify)
+      Notifier.stub(:new).and_return(double)
 
       expect(Group.first.members.count).to be(0)
       new_member = FactoryGirl.create(:user, :name => "new_user", :email => "new_user@someemail.com", :password => "123456")
@@ -79,6 +83,10 @@ describe Api::GroupsController do
       user = User.first
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
       create_group(group)
+      double = double("Notifier")
+      allow(double).to receive(:app_name=)
+      allow(double).to receive(:notify)
+      Notifier.stub(:new).and_return(double)
 
       expect(Group.first.members.count).to eq(0)
       new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
@@ -90,6 +98,69 @@ describe Api::GroupsController do
       expect(response.status).to eq(200)
       expect(Group.first.members.count).to eq(2)
     end
+
+    it "Is creator and email exists, json with group info returned" do
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      double = double("Notifier")
+      allow(double).to receive(:app_name=)
+      allow(double).to receive(:notify)
+      Notifier.stub(:new).and_return(double)
+
+      expect(Group.first.members.count).to be(0)
+      new_member = FactoryGirl.create(:user, :name => "new_user", :email => "new_user@someemail.com", :password => "123456")
+      members = [new_member]
+      saved_group = Group.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      add_members(saved_group, members)
+      saved_group.reload
+      new_member.reload
+
+      expect(response.status).to eq(200)
+      expect(json["group_info"]["group"]["name"]).to eq(saved_group.name)
+      expect(json["group_info"]["members"]).to eq([new_member , user].collect { |user| user.as_json(:only=>[:name,:email]) })
+    end
+
+    it "Add member to group, all other members are notified" do
+      create_group_with_users
+      creator = User.find_by_name("creator")
+      new_member = FactoryGirl.create(:user, :name => "new_user", :email => "new_user@someemail.com", :password => "123456")
+      new_member.devices << Device.new(registration_id: "new_user_123")
+      new_member.save
+      saved_group = Group.first
+      double = double("Notifier")
+      members_args = (Array.new(saved_group.members) << new_member << creator).collect { |user| user.as_json(:only => [:name,:email]) }
+      expected_args = {reg_ids: "user1_123,user2_123,new_user_123", :data => {message: "New member added", :group_info=>{group: saved_group, members: members_args}, type: "member_added" }}
+      expect(double).to receive(:notify).with(expected_args)
+      expect(double).to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+
+      members = [new_member]
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
+      add_members(saved_group, members)
+
+    end
+
+    it "Not creator, access denied and members are not notified" do
+      create_group_with_users
+      creator = User.find_by_name("creator")
+      new_member = FactoryGirl.create(:user, :name => "new_user", :email => "new_user@someemail.com", :password => "123456")
+      new_member.devices << Device.new(registration_id: "new_user_123")
+      new_member.save
+      saved_group = Group.first
+      double = double("Notifier")
+      members_args = (Array.new(saved_group.members) << new_member << creator).collect { |user| user.as_json(:only => [:name,:email]) }
+      expected_args = {reg_ids: "user1_123,user2_123,new_user_123", :data => {message: "New member added", :group_info=>{group: saved_group, members: members_args}, type: "member_added" }}
+      expect(double).not_to receive(:notify).with(expected_args)
+      expect(double).not_to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+
+      members = [new_member]
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials("fake_token")
+      add_members(saved_group, members)
+    end
+
 
   end
 
@@ -300,7 +371,7 @@ describe Api::GroupsController do
       group = Group.find_by_name("group1")
       expected_name = "new name"
       double = double("Notifier")
-      expected_args = {reg_ids: "user1_123,user2_123", :data => {message: "Group name changed", group: group }}
+      expected_args = {reg_ids: "user1_123,user2_123", :data => {message: "Group name changed", group: group, type: "name_changed" }}
       expect(double).to receive(:notify).with(expected_args)
       expect(double).to receive(:app_name=)
       Notifier.stub(:new).and_return(double)
@@ -344,7 +415,11 @@ describe Api::GroupsController do
       expect(json["groups"][1]["name"]).to eq(group2.name)
     end
 
-    it "A user that creates 1 groups and its member of other group, gets his groups information" do
+    it "A user that creates 1 groups and is member of other group, gets his groups information" do
+      double = double("Notifier")
+      allow(double).to receive(:app_name=)
+      allow(double).to receive(:notify)
+      Notifier.stub(:new).and_return(double)
       user = User.first
       other_user = FactoryGirl.create(:user, name: "other_user", email: "other_user@email.com", password: "123")
       group1 = FactoryGirl.build(:group, :name => "group1")

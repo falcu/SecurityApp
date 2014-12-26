@@ -1,8 +1,8 @@
 module ApiHelper
 
-  def respond_bad_json(message,status)
+  def render_json(json_args,status)
     respond_to do |format|
-      format.json {render json: {error: message}, status: status}
+      format.json {render json: json_args, status: status}
     end
   end
 

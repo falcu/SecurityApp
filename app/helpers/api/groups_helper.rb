@@ -20,13 +20,13 @@ module Api::GroupsHelper
 
   def authorize_creator(group,user)
     if is_user_not_creator_of(group,user)
-      respond_bad_json('You are not the creator',401)
+      render_json('You are not the creator',401)
     end
   end
 
   def authorize_member(group,user)
     if is_user_not_creator_of(group,user) &&  is_user_not_member_of(group,user)
-      respond_bad_json('You are not a member of this group!',401)
+      render_json('You are not a member of this group!',401)
     end
   end
 

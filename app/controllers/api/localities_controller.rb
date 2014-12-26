@@ -22,11 +22,9 @@ class Api::LocalitiesController < ApiController
     end
 
     if frequency.save
-      respond_to do |format|
-        format.json { render json: {message: 'Done'}, status: 200 }
-      end
+      render_json({message: "Done"},200)
     else
-      respond_bad_json('Unable to save frequency', 400)
+      render_json({error: "Unable to save frequency"}, 400)
     end
   end
 
@@ -34,9 +32,7 @@ class Api::LocalitiesController < ApiController
     add_locality(@current_user.custom_secure_localities)
     remove_locality(@current_user.custom_insecure_localities)
     if @current_user.save
-      respond_to do |format|
-        format.json { render json: {message: 'Done'}, status: 200 }
-      end
+      render_json({message: "Done"},200)
     end
   end
 
@@ -44,9 +40,7 @@ class Api::LocalitiesController < ApiController
     add_locality(@current_user.custom_insecure_localities)
     remove_locality(@current_user.custom_secure_localities)
     if @current_user.save
-      respond_to do |format|
-        format.json { render json: {message: 'Done'}, status: 200 }
-      end
+      render_json({message: "Done"},200)
     end
   end
 
@@ -73,7 +67,7 @@ class Api::LocalitiesController < ApiController
     if locality_name
       @locality = Locality.find_by_name(locality_name)
     else
-      respond_bad_json("Invalid coordinates", 400)
+      render_json({error: "Invalid coordinates"}, 400)
     end
   end
 
@@ -97,7 +91,7 @@ class Api::LocalitiesController < ApiController
   private
   def check_locality
     if @locality.nil?
-      respond_bad_json("Unknown locality",400)
+      render_json({error: "Unknown locality"},400)
     end
   end
 
