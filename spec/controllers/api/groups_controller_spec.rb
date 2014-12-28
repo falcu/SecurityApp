@@ -161,6 +161,45 @@ describe Api::GroupsController do
       add_members(saved_group, members)
     end
 
+    it "Attempt to add non existent user" do
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      double = double("Notifier")
+      expect(double).not_to receive(:app_name=)
+      expect(double).not_to receive(:notify)
+      Notifier.stub(:new).and_return(double)
+
+      new_member1 = FactoryGirl.build(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+      members = [new_member1]
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      add_members(Group.first, members)
+
+      expect(response.status).to eq(400)
+    end
+
+    it "Attempt to add 2 users, 1 does not exist, none is added" do
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      double = double("Notifier")
+      expect(double).not_to receive(:app_name=)
+      expect(double).not_to receive(:notify)
+      Notifier.stub(:new).and_return(double)
+
+      group = Group.first
+      expect(group.members.count).to eq(0)
+      new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+      new_member2 = FactoryGirl.build(:user, :name => "new_member2", :email => "new_member2@someemail.com", :password => "123456")
+      members = [new_member1, new_member2]
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      add_members(Group.first, members)
+
+      group.reload
+      expect(response.status).to eq(400)
+      expect(group.members.count).to eq(0)
+    end
+
 
   end
 
