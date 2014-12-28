@@ -5,7 +5,7 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
     add_device(@user)
     if @user.save
-      render_json(@user,200)
+      render_json(user_to_json,200)
     else
       render_json({error: "Unable to save user"},400)
     end
@@ -38,5 +38,10 @@ class Api::UsersController < ApplicationController
     if params[:device] && Device.where("user_id = ? AND registration_id = ?", user.id,params[:device][:registration_id]).first.nil?
       user.devices << Device.new(device_params)
     end
+  end
+
+  private
+  def user_to_json
+    {:user => {id: @user.id,name: @user.name,email: @user.email,token: @user.token}}
   end
 end

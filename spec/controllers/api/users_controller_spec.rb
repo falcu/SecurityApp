@@ -18,9 +18,9 @@ describe Api::UsersController do
     it "Succesfully create a user, json returned with token" do
       create_user(user)
       expect(response.status).to eq(200)
-      expect(json["name"]).to eq(user.name)
-      expect(json["email"]).to eq(user.email)
-      expect(json["token"]).not_to be_nil
+      expect(json["user"]["name"]).to eq(user.name)
+      expect(json["user"]["email"]).to eq(user.email)
+      expect(json["user"]["token"]).not_to be_nil
     end
 
     it "Try to create bad user with no email, error returned" do
@@ -87,6 +87,11 @@ describe Api::UsersController do
 
     end
 
+    it "Create user, json returned but password_digest is not included" do
+      create_user(user)
+      expect(response.status).to eq(200)
+      expect(json["password_digest"]).to be_nil
+    end
 
   end
 
