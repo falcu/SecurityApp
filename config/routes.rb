@@ -1,23 +1,22 @@
 Rails.application.routes.draw do
 
   namespace :api do
-    resources :users
-    post "users", to: "users#sign_in", as: "sign_in"
 
-    resources :groups
-    put "groups/:id", to: "groups#add", as: "add_member"
-    put "groups/:id", to: "groups#quit", as: "quit_member"
-    put "groups/:id", to: "groups#rename", as: "rename_group"
+    post "users", to: "users#create"
+    get "users/sign_in", to: "users#sign_in", as: "sign_in"
+
+    post "groups", to: "groups#create"
+    put "groups/:id/add", to: "groups#add", as: "add_member"
+    put "groups/:id/quit", to: "groups#quit", as: "quit_member"
+    put "groups/:id/rename", to: "groups#rename", as: "rename_group"
     delete "groups/:id", to: "groups#remove_members", as: "remove_members"
     get "groups", to: "groups#user_information", as: "user_information"
 
-    resources :localities
-    put "localities", to: "localities#notify_locality", as: "notify_locality"
-    put "set_secure_locality", to: "localities#set_secure_locality", as: "set_secure_locality"
-    put "set_insecure_locality", to: "localities#set_insecure_locality", as: "set_insecure_locality"
+    put "localities/notify", to: "localities#notify_locality", as: "notify_locality"
+    put "localities/set_secure", to: "localities#set_secure_locality", as: "set_secure_locality"
+    put "localities/set_insecure", to: "localities#set_insecure_locality", as: "set_insecure_locality"
 
-    resources :notifications
-    post "notifications", to: "notifications#send_notification", as: "send_notification"
+    post "notifications/send", to: "notifications#send_notification", as: "send_notification"
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
