@@ -102,7 +102,7 @@ describe Api::UsersController do
       post :sign_in, {:user => {:email => user.email, :password => user.password},
                       :format => "json"}
       expect(response.status).to eq(200)
-      expect(json["token"]).to eq(new_user.token)
+      expect(json["user"]["token"]).to eq(new_user.token)
     end
 
     it "Sign in with bad credentials, access denied" do
@@ -110,7 +110,7 @@ describe Api::UsersController do
       post :sign_in, {:user => {:email => user.email, :password => "badpassword"},
                       :format => "json"}
       expect(response.status).to eq(401)
-      expect(json["token"]).to be_nil
+      expect(json["user"]).to be_nil
     end
 
     it "Sign in with nonexistent email, access denied" do
@@ -118,7 +118,7 @@ describe Api::UsersController do
       post :sign_in, {:user => {:email => "fakeemail", :password => new_user.password},
                       :format => "json"}
       expect(response.status).to eq(401)
-      expect(json["token"]).to be_nil
+      expect(json["user"]).to be_nil
     end
 
     it "Sign in specifying a register_id, it should be saved" do
@@ -137,6 +137,48 @@ describe Api::UsersController do
 
     end
 
+  end
+
+  context "Sign_in or create" do
+
+    it "Succesfuly create user" do
+      post :create_or_sign_in , {:user => {:name => user.name, :email => user.email, :password => user.password, :password_confirmation => user.password },
+                      :format => "json"}
+      expect(response.status).to eq(200)
+      expect(User.first.name).to eq(user.name)
+      expect(User.first.email).to eq(user.email)
+    end
+
+    it "Sign in existing user" do
+      post :create_or_sign_in , {:user => {:name => user.name, :email => user.email, :password => user.password, :password_confirmation => user.password },
+                                 :format => "json"}
+      post :create_or_sign_in , {:user => {:name => user.name, :email => user.email, :password => user.password, :password_confirmation => user.password },
+                                 :format => "json"}
+      expect(response.status).to eq(200)
+      expect(User.count).to eq(1)
+      expect(User.first.name).to eq(user.name)
+      expect(User.first.email).to eq(user.email)
+    end
+
+    it "Succesfuly create user, json with token returned" do
+      post :create_or_sign_in , {:user => {:name => user.name, :email => user.email, :password => user.password, :password_confirmation => user.password },
+                                 :format => "json"}
+      expect(response.status).to eq(200)
+      expect(json["user"]["name"]).to eq(user.name)
+      expect(json["user"]["email"]).to eq(user.email)
+      expect(json["user"]["token"]).not_to be_nil
+    end
+
+    it "Succesfuly sign_in user, json with token returned" do
+      post :create_or_sign_in , {:user => {:name => user.name, :email => user.email, :password => user.password, :password_confirmation => user.password },
+                                 :format => "json"}
+      post :create_or_sign_in , {:user => {:name => user.name, :email => user.email, :password => user.password, :password_confirmation => user.password },
+                                 :format => "json"}
+      expect(response.status).to eq(200)
+      expect(json["user"]["name"]).to eq(user.name)
+      expect(json["user"]["email"]).to eq(user.email)
+      expect(json["user"]["token"]).not_to be_nil
+    end
   end
 
 

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
     post "users", to: "users#create"
     get "users/sign_in", to: "users#sign_in", as: "sign_in"
+    post "users/create_or_sign_in", to: "users#create_or_sign_in", as: "create_or_sign_in"
 
     post "groups", to: "groups#create"
     put "groups/:id/add", to: "groups#add", as: "add_member"
