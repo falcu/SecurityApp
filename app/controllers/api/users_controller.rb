@@ -40,12 +40,12 @@ class Api::UsersController < ApplicationController
 
   private
   def device_params
-    params.require(:device).permit(:registration_id)
+    params.require(:user).require(:device).permit(:registration_id)
   end
 
   private
   def add_device
-    if params[:device] && Device.where("user_id = ? AND registration_id = ?", @user.id, params[:device][:registration_id]).first.nil?
+    if params[:user][:device] && Device.where("user_id = ? AND registration_id = ?", @user.id, params[:user][:device][:registration_id]).first.nil?
       @user.devices << Device.new(device_params)
       @user.save
     end

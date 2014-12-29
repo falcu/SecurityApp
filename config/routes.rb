@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     post "users/create_or_sign_in", to: "users#create_or_sign_in", as: "create_or_sign_in"
 
     post "groups", to: "groups#create"
-    put "groups/:id/add", to: "groups#add", as: "add_member"
+    put "groups/add", to: "groups#add", as: "add_member"
     put "groups/:id/quit", to: "groups#quit", as: "quit_member"
     put "groups/:id/rename", to: "groups#rename", as: "rename_group"
     delete "groups/:id", to: "groups#remove_members", as: "remove_members"

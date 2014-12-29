@@ -38,8 +38,8 @@ describe Api::UsersController do
 
     it "succesfully create a user, specifying a register_id" do
       expected_device_id = "device_id"
-      post :create, {:user => {:name => user.name, :email => user.email, :password => user.password, :password_confirmation => user.password},
-                     :device => {:registration_id => expected_device_id},
+      post :create, {:user =>
+                         {:name => user.name, :email => user.email, :password => user.password, :password_confirmation => user.password,:device => {:registration_id => expected_device_id}},
                      :format => "json"}
       saved_user = User.first
       expect(response.status).to eq(200)
@@ -57,8 +57,8 @@ describe Api::UsersController do
 
       expect(new_user.devices.count).to eq(1)
 
-      post :sign_in, {:user => {:email => user.email, :password => user.password},
-                      :device => {:registration_id => registration_id},
+      post :sign_in, {:user => {:email => user.email, :password => user.password,
+                      :device => {:registration_id => registration_id}},
                       :format => "json"}
       new_user.reload
 
@@ -77,8 +77,8 @@ describe Api::UsersController do
 
       expect(new_user.devices.count).to eq(1)
 
-      post :sign_in, {:user => {:email => user.email, :password => user.password},
-                      :device => {:registration_id => registration_id2},
+      post :sign_in, {:user => {:email => user.email, :password => user.password,
+                      :device => {:registration_id => registration_id2}},
                       :format => "json"}
       new_user.reload
 
@@ -126,8 +126,8 @@ describe Api::UsersController do
       expected_device_id = "device_id"
       expect(new_user.devices.count).to eq(0)
 
-      post :sign_in, {:user => {:email => user.email, :password => user.password},
-                      :device => {:registration_id => expected_device_id},
+      post :sign_in, {:user => {:email => user.email, :password => user.password,
+                      :device => {:registration_id => expected_device_id}},
                       :format => "json"}
       new_user.reload
 
