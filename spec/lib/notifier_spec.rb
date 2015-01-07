@@ -48,9 +48,22 @@ describe "Notifier" do
     Rpush::Gcm::Notification.stub(:new).and_return(double)
 
     allow(double).to receive(:app=)
-    expect(double).to receive(:registration_ids=).with(["token","123"])
+    expect(double).to receive(:registration_ids=).with(["123"])
     allow(double).to receive(:data=)
     allow(double).to receive(:save!)
-    notifier.notify(app_name: "app_name", reg_ids: "123", data: "data")
+    notifier.notify(app_name: "app_name", reg_ids: ["123"], data: "data")
   end
+
+  it 'Given a notifier, notify with correct args, registration_ids array with 2 elements is set' do
+    notifier.app_name = "app_name"
+    double = double("Rpush::Gcm::Notification")
+    Rpush::Gcm::Notification.stub(:new).and_return(double)
+
+    allow(double).to receive(:app=)
+    expect(double).to receive(:registration_ids=).with(["123","321"])
+    allow(double).to receive(:data=)
+    allow(double).to receive(:save!)
+    notifier.notify(app_name: "app_name", reg_ids:["123","321"] , data: "data")
+  end
+
 end

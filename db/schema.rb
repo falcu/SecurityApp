@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20141214175813) do
     t.string   "category"
   end
 
+  add_index "rpush_notifications", ["app_id", "delivered", "failed", "deliver_after"], name: "index_rapns_notifications_multi", using: :btree
   add_index "rpush_notifications", ["delivered", "failed"], name: "index_rpush_notifications_multi", using: :btree
 
   create_table "users", force: true do |t|

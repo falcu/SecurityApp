@@ -11,7 +11,7 @@ describe Api::NotificationsController do
   it "Creator of a group sends alarm, the other members are notified with custom message and the current location" do
     group = Group.find_by_name("group1")
     creator = User.find_by_email("creator@email.com")
-    expected_args = {reg_ids: "user1_123,user2_123",:data=>{message: "I'm in danger",                                                           location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,20z"}}
+    expected_args = {reg_ids: ["user1_123","user2_123"],:data=>{message: "I'm in danger",                                                           location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,20z"}}
     double = double("Notifier")
     expect(double).to receive(:notify).with(expected_args)
     allow(double).to receive(:app_name=)
@@ -28,7 +28,7 @@ describe Api::NotificationsController do
     group = Group.find_by_name("group1")
     member = User.find_by_email("user1@email.com")
     double = double("Notifier")
-    expected_args = {reg_ids: "creator_123,user2_123", :data => {message: "I'm in danger",
+    expected_args = {reg_ids: ["creator_123","user2_123"], :data => {message: "I'm in danger",
                                                                  location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,20z"}}
     expect(double).to receive(:notify).with(expected_args)
     allow(double). to receive(:app_name=)
@@ -61,7 +61,7 @@ describe Api::NotificationsController do
     group = Group.find_by_name("group1")
     creator = User.find_by_email("creator@email.com")
     double = double("Notifier")
-    expected_args = {reg_ids: "user1_123,user2_123", :data => {message: "I'm in danger",
+    expected_args = {reg_ids: ["user1_123","user2_123"], :data => {message: "I'm in danger",
                                                                location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,15z"} }
     expect(double).to receive(:notify).with(expected_args)
     expect(double).to receive(:app_name=)

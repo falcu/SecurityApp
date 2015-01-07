@@ -5,26 +5,19 @@
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/SecurityApp_development</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>df9bdf9bdf98df99df9fdf92df9bdf99</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails SecurityApp: test" uuid="ae78762a-e38f-4937-94c4-b728fd4eed8e">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/SecurityApp_test</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>df9bdf9bdf98df99df9fdf92df9bdf99</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails SecurityApp: production" uuid="284917f6-2deb-4a2a-a9cd-16b7e5a172b4">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/SecurityApp_production</jdbc-url>
-      <user-name>SecurityApp</user-name>
-      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddff9dfefdfe9dfffdff8dfe3dffedff3dfebdffadffadff5dfeedfebdffedfebdfe8dfebdff9dfefdff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
       <libraries />
     </data-source>
   </component>
 </project>
-

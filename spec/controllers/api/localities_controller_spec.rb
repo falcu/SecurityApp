@@ -96,7 +96,7 @@ describe Api::LocalitiesController do
       user = User.find_by_email("user1@email.com")
       group = Group.find_by_name("group1")
 
-      expected_args = {reg_ids: "creator_123,user2_123", :data => {message: "user1 entered Martinez which is considered unsecured",
+      expected_args = {reg_ids: ["creator_123","user2_123"], :data => {message: "user1 entered Martinez which is considered unsecured",
                                                                    location: "https://www.google.com.ar/maps/@-34.494271,-58.498217,20z"}}
       double = double("Notifier")
       expect(double).to receive(:notify).with(expected_args)
@@ -134,7 +134,7 @@ describe Api::LocalitiesController do
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
       put :set_insecure_locality, {locality_name: "Olivos", :format => "json"}
 
-      expected_args = {reg_ids: "creator_123,user2_123", :data => {message: "user1 entered Olivos which is considered unsecured",
+      expected_args = {reg_ids: ["creator_123","user2_123"], :data => {message: "user1 entered Olivos which is considered unsecured",
                                                                    location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,20z"}}
       double = double("Notifier")
       expect(double).to receive(:notify).with(expected_args)

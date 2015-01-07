@@ -13,7 +13,7 @@ class Notifier
     notification = Rpush::Gcm::Notification.new
     appliaction_name = args[:app_name] || app_name
     notification.app = Rpush::Gcm::App.find_by_name(appliaction_name)
-    notification.registration_ids = ["token", args[:reg_ids]]
+    notification.registration_ids = args[:reg_ids]
     notification.data = args[:data]
     notification.save!
   end

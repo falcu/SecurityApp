@@ -11,6 +11,6 @@ Locality.create(name: "Martinez", insecure: true)
 
 app = Rpush::Gcm::App.new
 app.name = "android_app"
-app.auth_key = "123"
+app.auth_key = "AIzaSyAzvDbjBqR65YEVc21goUpVsm8jpH3aRIE"
 app.connections = 1
 app.save!
