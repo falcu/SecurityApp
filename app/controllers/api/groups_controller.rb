@@ -31,10 +31,13 @@ class Api::GroupsController < ApiController
     end
     if user_exists
       new_members.each { |new_member| @group.members<<new_member }
-      members = (Array.new(@group.members) << @group.creator).collect { |user| user.as_json(:only => [:name, :email]) }
+      creator = @group.creator.as_json(:only => [:name, :email])
+      members = (Array.new(@group.members)).collect { |user| user.as_json(:only => [:name, :email]) }
       try_to_save_group({:group_info => {group: @group, members: members}}, {error: "Unable to add members"})
-      reg_ids = registration_ids_of_group_excluding(@group, [@group.creator])
-      @builder.notifier.notify(reg_ids: reg_ids, :data => {message: "New member added", :group_info => {group: @group, members: members}, type: "member_added"})
+      reg_ids_old_members = registration_ids_of(@group.members - new_members)
+      @builder.notifier.notify(reg_ids: reg_ids_old_members, :data => {message: "New member/s added", :group_info => {group: @group, members: members, creator: creator}, type: "member_added"})
+      reg_ids_new_members = registration_ids_of(new_members)
+      @builder.notifier.notify(reg_ids: reg_ids_new_members, :data => {message: "You were added to a group", :group_info => {group: @group, members: members, creator: creator}, type: "added"})
     else
       render_json({error: "At least one user does not exist"},400)
     end

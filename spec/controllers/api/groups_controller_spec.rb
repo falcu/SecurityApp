@@ -119,10 +119,10 @@ describe Api::GroupsController do
 
       expect(response.status).to eq(200)
       expect(json["group_info"]["group"]["name"]).to eq(saved_group.name)
-      expect(json["group_info"]["members"]).to eq([new_member , user].collect { |user| user.as_json(:only=>[:name,:email]) })
+      expect(json["group_info"]["members"]).to eq([new_member].collect { |user| user.as_json(:only=>[:name,:email]) })
     end
 
-    it "Add 1 member to new group" do
+    it "Add 1 member to new group, new member receives push notification" do
       creator = User.first
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
       create_group(group)
@@ -131,11 +131,18 @@ describe Api::GroupsController do
       new_member.save
       members = [new_member]
       saved_group = Group.first
-      members_args = (Array.new(saved_group.members) << new_member << creator).collect { |user| user.as_json(:only => [:name,:email]) }
-      expected_args = {reg_ids: ["123456"], :data => {message: "New member added", :group_info=>{group: saved_group, members: members_args}, type: "member_added" }}
+      members_args = (Array.new(saved_group.members)<<new_member).collect { |user| user.as_json(:only => [:name,:email]) }
+      creator_json = creator.as_json(:only => [:name,:email])
+      expected_args = {reg_ids: ["123456"], :data => {message: "You were added to a group", :group_info=>{group: saved_group, members: members_args, creator: creator_json}, type: "added" }}
       double = double("Notifier")
-      expect(double).to receive(:notify).with(expected_args)
-      expect(double).to receive(:app_name=)
+      expect(double).to receive(:app_name=).twice
+      i = 1
+      expect(double).to receive(:notify).twice do |arg|
+        if i == 2
+          expect(arg).to eq(expected_args)
+        end
+        i+=1
+      end
       Notifier.stub(:new).and_return(double)
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
@@ -154,10 +161,17 @@ describe Api::GroupsController do
       new_member.save
       saved_group = Group.first
       double = double("Notifier")
-      members_args = (Array.new(saved_group.members) << new_member << creator).collect { |user| user.as_json(:only => [:name,:email]) }
-      expected_args = {reg_ids: ["user1_123","user2_123","new_user_123"], :data => {message: "New member added", :group_info=>{group: saved_group, members: members_args}, type: "member_added" }}
-      expect(double).to receive(:notify).with(expected_args)
-      expect(double).to receive(:app_name=)
+      members_args = (Array.new(saved_group.members) << new_member).collect { |user| user.as_json(:only => [:name,:email]) }
+      creator_arg = creator.as_json(:only => [:name,:email])
+      expected_args = {reg_ids: ["user1_123","user2_123"], :data => {message: "New member/s added", :group_info=>{group: saved_group, members: members_args, creator: creator_arg}, type: "member_added" }}
+      expect(double).to receive(:app_name=).twice
+      i = 1
+      expect(double).to receive(:notify).twice do |arg|
+        if i == 1
+          expect(arg).to eq(expected_args)
+        end
+        i+=1
+      end
       Notifier.stub(:new).and_return(double)
 
       members = [new_member]
@@ -224,6 +238,31 @@ describe Api::GroupsController do
       expect(group.members.count).to eq(0)
     end
 
+    it "Add 1 member to group with 2 members, push notification is sent to new member" do
+      create_group_with_users
+      creator = User.find_by_name("creator")
+      new_member = FactoryGirl.build(:user, :name => "new_user", :email => "new_user@someemail.com", :password => "123456")
+      new_member.devices << Device.new(registration_id: "new_user_123")
+      new_member.save
+      saved_group = Group.first
+      members_args = (Array.new(saved_group.members)<<new_member).collect { |user| user.as_json(:only => [:name,:email]) }
+      creator_json = creator.as_json(:only => [:name,:email])
+      expected_args = {reg_ids: ["new_user_123"], :data => {message: "You were added to a group", :group_info=>{group: saved_group, members: members_args, creator: creator_json}, type: "added" }}
+      double = double("Notifier")
+      expect(double).to receive(:app_name=).twice
+      i = 1
+      expect(double).to receive(:notify).twice do |arg|
+        if i == 2
+          expect(arg).to eq(expected_args)
+        end
+        i+=1
+      end
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
+      add_members(Group.first, [new_member])
+
+    end
 
   end
 
