@@ -9,7 +9,7 @@ class Api::NotificationsController < ApiController
   before_action :set_notifier_builder
 
   def send_notification
-    reg_ids = registration_ids(@group,[@current_user])
+    reg_ids = registration_ids_of_group_excluding(@group,[@current_user])
     @builder.notifier.notify(reg_ids: reg_ids,:data => {message: params[:alarm], location: location_url(params)})
     render_json({message: "Done"},200)
   end

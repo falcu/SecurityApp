@@ -238,6 +238,10 @@ describe Api::GroupsController do
       saved_group.members << new_member1
       saved_group.save
       saved_group.reload
+      double = double("Notifier")
+      allow(double).to receive(:app_name=)
+      allow(double).to receive(:notify)
+      Notifier.stub(:new).and_return(double)
       expect(saved_group.members.count).to eq(1)
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
@@ -280,6 +284,10 @@ describe Api::GroupsController do
       saved_group.members << new_member2
       saved_group.save
       saved_group.reload
+      double = double("Notifier")
+      allow(double).to receive(:app_name=)
+      allow(double).to receive(:notify)
+      Notifier.stub(:new).and_return(double)
       expect(saved_group.members.count).to eq(2)
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
@@ -289,6 +297,147 @@ describe Api::GroupsController do
 
       expect(response.status).to eq(200)
       expect(saved_group.members.count).to eq(0)
+    end
+
+    it "Delete the only member in the group, json with group info is returned" do
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      saved_group = Group.first
+      new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+      saved_group.members << new_member1
+      saved_group.save
+      saved_group.reload
+      double = double("Notifier")
+      allow(double).to receive(:app_name=)
+      allow(double).to receive(:notify)
+      Notifier.stub(:new).and_return(double)
+      expect(saved_group.members.count).to eq(1)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      members = [new_member1]
+      delete_members(saved_group, members)
+      saved_group.reload
+
+      expect(response.status).to eq(200)
+      expect(saved_group.members.count).to eq(0)
+      expect(json["group_info"]["group"]["name"]).to eq(saved_group.name)
+      expect(json["group_info"]["members"]).to eq([])
+    end
+
+    it "Delete 1 of 2 members, json with group info is returned" do
+      create_group_with_users
+      creator = User.find_by_email("creator@email.com")
+      member_to_delete = User.find_by_email("user1@email.com")
+      saved_group = Group.first
+      double = double("Notifier")
+      allow(double).to receive(:app_name=)
+      allow(double).to receive(:notify)
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
+      members = [member_to_delete]
+      delete_members(saved_group, members)
+      saved_group.reload
+      expected_members = saved_group.members.collect { |user| user.as_json(:only => [:name, :email]) }
+
+      expect(response.status).to eq(200)
+      expect(saved_group.members.count).to eq(1)
+      expect(json["group_info"]["group"]["name"]).to eq(saved_group.name)
+      expect(json["group_info"]["members"]).to eq(expected_members)
+    end
+
+    it "Attempt to delete non-member, json with error returned, nothing changed" do
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      saved_group = Group.first
+      new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+      saved_group.members << new_member1
+      saved_group.save
+      new_member2 = FactoryGirl.create(:user, :name => "new_member2", :email => "new_member2@someemail.com", :password => "123456")
+      saved_group.reload
+      expect(saved_group.members.count).to eq(1)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      members = [new_member2]
+      delete_members(saved_group, members)
+      saved_group.reload
+
+      expect(response.status).to eq(400)
+      expect(saved_group.members.count).to eq(1)
+    end
+
+    it "Attempt to delete 2 members, 1 is not a member, json with error returned, nothing changed" do
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      saved_group = Group.first
+      new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+      saved_group.members << new_member1
+      saved_group.save
+      new_member2 = FactoryGirl.create(:user, :name => "new_member2", :email => "new_member2@someemail.com", :password => "123456")
+      saved_group.reload
+      expect(saved_group.members.count).to eq(1)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      members = [new_member1,new_member2]
+      delete_members(saved_group, members)
+      saved_group.reload
+
+      expect(response.status).to eq(400)
+      expect(saved_group.members.count).to eq(1)
+    end
+
+    it "Delete 1 member, notification send to all other members with new group info" do
+      create_group_with_users
+      creator = User.find_by_email("creator@email.com")
+      member_to_delete = User.find_by_email("user1@email.com")
+      saved_group = Group.first
+      other_members = Array.new(saved_group.members)
+      other_members-= [member_to_delete]
+
+      double = double("Notifier")
+      members_args = other_members.collect { |user| user.as_json(:only => [:name,:email]) }
+      creator_json = creator.as_json(:only => [:name,:email])
+      expected_args = {reg_ids: ["user2_123"], :data => {message: "Member deleted", :group_info=>{group: saved_group, members: members_args, creator: creator_json}, type: "member_deleted" }}
+      i = 1
+      expect(double).to receive(:notify).twice do |arg|
+        if i ==1
+          expect(arg).to eq(expected_args)
+        end
+        i+=1
+      end
+      expect(double).to receive(:app_name=).twice
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
+      members = [member_to_delete]
+      delete_members(saved_group, members)
+
+    end
+
+    it "Delete 1 member, separate notification sent to deleted member" do
+      create_group_with_users
+      creator = User.find_by_email("creator@email.com")
+      member_to_delete = User.find_by_email("user1@email.com")
+      saved_group = Group.first
+      expected_args = {reg_ids: ["user1_123"], :data => {message: "You were deleted", :group_info=>{group: saved_group}, type: "deleted" }}
+
+      notifier = double("notifier")
+      expect(notifier).to receive(:app_name=).twice
+      i = 1
+      expect(notifier).to receive(:notify).twice do |arg|
+        if i == 2
+          expect(arg).to eq(expected_args)
+        end
+        i+=1
+      end
+      Notifier.stub(:new).and_return(notifier)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
+      members = [member_to_delete]
+      delete_members(saved_group, members)
     end
 
   end

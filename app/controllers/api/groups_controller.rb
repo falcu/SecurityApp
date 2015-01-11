@@ -10,6 +10,7 @@ class Api::GroupsController < ApiController
     authorize_member(@group, @current_user)
   end
   before_action :set_notifier_builder
+  before_action :validate_creator_not_adding_himself, only: [:add]
 
   def create
     @group = Group.new(group_params)
@@ -18,21 +19,21 @@ class Api::GroupsController < ApiController
   end
 
   def add
-    user_exist = true
+    user_exists = true
     new_members = []
     (params[:members_email]).each do |email|
       new_member = User.find_by_email(email)
       if new_member
         new_members << new_member
       else
-        user_exist = false
+        user_exists = false
       end
     end
-    if user_exist
+    if user_exists
       new_members.each { |new_member| @group.members<<new_member }
       members = (Array.new(@group.members) << @group.creator).collect { |user| user.as_json(:only => [:name, :email]) }
       try_to_save_group({:group_info => {group: @group, members: members}}, {error: "Unable to add members"})
-      reg_ids = registration_ids(@group, [@group.creator])
+      reg_ids = registration_ids_of_group_excluding(@group, [@group.creator])
       @builder.notifier.notify(reg_ids: reg_ids, :data => {message: "New member added", :group_info => {group: @group, members: members}, type: "member_added"})
     else
       render_json({error: "At least one user does not exist"},400)
@@ -40,14 +41,28 @@ class Api::GroupsController < ApiController
   end
 
   def remove_members
+    is_member = true
+    members_to_delete = []
     (params[:members_email]).each do |email|
       new_member = User.find_by_email(email)
-      if new_member
-        @group.members -= [new_member]
+      if new_member && @group.members.include?(new_member)
+        members_to_delete << new_member
+      else
+        is_member = false
       end
     end
-
-    try_to_save_group({group: @group}, {error: "Unable to remove members"})
+    if is_member
+      members_info = (Array.new(@group.members) - members_to_delete).collect { |user| user.as_json(:only => [:name, :email]) }
+      creator_json = @group.creator.as_json(:only => [:name,:email])
+      members_to_delete.each { |member| @group.members -= [member] }
+      try_to_save_group({:group_info => {group: @group, members: members_info}}, {error: "Unable to remove members"})
+      reg_ids_members = registration_ids_of_group_excluding(@group,[@group.creator])
+      @builder.notifier.notify(reg_ids: reg_ids_members, :data => {message: "Member deleted", :group_info => {group: @group, members: members_info, creator: creator_json}, type: "member_deleted"})
+      reg_ids_deleted_members = registration_ids_of(members_to_delete)
+      @builder.notifier.notify(reg_ids: reg_ids_deleted_members, :data => {message: "You were deleted", :group_info => {group: @group}, type: "deleted"})
+    else
+      render_json({error: "At least one member doest not exist or is not a member of the group"}, 400)
+    end
   end
 
   def quit
@@ -71,7 +86,7 @@ class Api::GroupsController < ApiController
   def rename
     @group.name = params[:name]
     if try_to_save_group({group: @group}, {error: "Unable to change name"})
-      reg_ids = registration_ids(@group, [@current_user])
+      reg_ids = registration_ids_of_group_excluding(@group, [@current_user])
       @builder.notifier.notify(reg_ids: reg_ids, :data => {message: "Group name changed", group: @group, type: "name_changed"})
     end
   end
@@ -116,6 +131,13 @@ class Api::GroupsController < ApiController
   private
   def set_notifier_builder
     @builder = NotifierBuilder.new
+  end
+
+  private
+  def validate_creator_not_adding_himself
+    if params[:members_email].include?(@current_user.email)
+      render_json({:error => "You are already a member of the group"},400)
+    end
   end
 
 end

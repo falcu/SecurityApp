@@ -30,9 +30,13 @@ module Api::GroupsHelper
     end
   end
 
-  def registration_ids(group,excluded_users)
+  def registration_ids_of_group_excluding(group,excluded_users)
     users = Array.new(group.members).insert(0,group.creator)
     excluded_users.each { |user| users.delete(user) }
+    users.collect { |user| user.devices.map(&:registration_id) }.flatten
+  end
+
+  def registration_ids_of(users)
     users.collect { |user| user.devices.map(&:registration_id) }.flatten
   end
 

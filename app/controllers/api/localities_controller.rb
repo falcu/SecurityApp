@@ -78,7 +78,7 @@ class Api::LocalitiesController < ApiController
 
   private
   def notify_current_locality
-    reg_ids = registration_ids(@group, [@current_user])
+    reg_ids = registration_ids_of_group_excluding(@group, [@current_user])
     message = @current_user.name << " entered " << @locality.name << " which is considered unsecured"
     @builder.notifier.notify(reg_ids: reg_ids, :data => {message: message, location: location_url(params)})
   end
