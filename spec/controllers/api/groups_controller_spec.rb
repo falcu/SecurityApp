@@ -440,6 +440,20 @@ describe Api::GroupsController do
       delete_members(saved_group, members)
     end
 
+    it "Creator tries to delete himself, json with error returned, nothing is changed" do
+      create_group_with_users
+      creator = User.find_by_email("creator@email.com")
+      saved_group = Group.first
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
+      members = [creator]
+      delete_members(saved_group, members)
+
+      expect(response.status).to eq(400)
+      expect(saved_group.members.count).to eq(2)
+      expect(json["error"]).to eq("You are the creator, you cannot add or remove yourself!")
+    end
+
   end
 
   context "Member quits group" do

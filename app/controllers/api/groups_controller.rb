@@ -10,7 +10,7 @@ class Api::GroupsController < ApiController
     authorize_member(@group, @current_user)
   end
   before_action :set_notifier_builder
-  before_action :validate_creator_not_adding_himself, only: [:add]
+  before_action :validate_creator_not_adding_himself, only: [:add, :remove_members]
 
   def create
     @group = Group.new(group_params)
@@ -136,7 +136,7 @@ class Api::GroupsController < ApiController
   private
   def validate_creator_not_adding_himself
     if params[:members_email].include?(@current_user.email)
-      render_json({:error => "You are already a member of the group"},400)
+      render_json({:error => "You are the creator, you cannot add or remove yourself!"},400)
     end
   end
 
