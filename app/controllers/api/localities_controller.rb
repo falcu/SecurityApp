@@ -32,7 +32,8 @@ class Api::LocalitiesController < ApiController
     add_locality(@current_user.custom_secure_localities)
     remove_locality(@current_user.custom_insecure_localities)
     if @current_user.save
-      render_json({message: "Done"},200)
+      message = "You set " + @locality.name + " as a secure locality"
+      render_json({message: message, type: "set_secure_locality"},200)
     end
   end
 
@@ -40,7 +41,8 @@ class Api::LocalitiesController < ApiController
     add_locality(@current_user.custom_insecure_localities)
     remove_locality(@current_user.custom_secure_localities)
     if @current_user.save
-      render_json({message: "Done"},200)
+      message = "You set " + @locality.name + " as an insecure locality"
+      render_json({message: message, type: "set_insecure_locality"},200)
     end
   end
 
@@ -80,7 +82,7 @@ class Api::LocalitiesController < ApiController
   def notify_current_locality
     reg_ids = registration_ids_of_group_excluding(@group, [@current_user])
     message = @current_user.name << " entered " << @locality.name << " which is considered unsecured"
-    @builder.notifier.notify(reg_ids: reg_ids, :data => {message: message, location: location_url(params)})
+    @builder.notifier.notify(reg_ids: reg_ids, :data => {message: message, location: location_url(params), type: "notify_unsecure_location"})
   end
 
   private
