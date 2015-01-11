@@ -683,7 +683,7 @@ describe Api::GroupsController do
       create_group(group)
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-      get :user_information, {:format => "json"}
+      get_group_information
 
       expect(response.status).to eq(200)
       expect(json["group_info"].count).to eq(1)
@@ -703,7 +703,7 @@ describe Api::GroupsController do
       create_group(group2)
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-      get :user_information, {:format => "json"}
+      get_group_information
 
       expect(response.status).to eq(200)
       expect(json["group_info"].count).to eq(2)
@@ -741,7 +741,7 @@ describe Api::GroupsController do
 
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-      get :user_information, {:format => "json"}
+      get_group_information
 
       expect(response.status).to eq(200)
       expect(json["group_info"].count).to eq(2)
@@ -761,7 +761,7 @@ describe Api::GroupsController do
       group_creator_json = group.creator.as_json(:only => [:name,:email])
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
-      get :user_information, {:format => "json"}
+      get_group_information
 
       expect(response.status).to eq(200)
       expect(json["group_info"].count).to eq(1)
@@ -778,7 +778,7 @@ describe Api::GroupsController do
       group_creator_json = group.creator.as_json(:only => [:name,:email])
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(member.token)
-      get :user_information, {:format => "json"}
+      get_group_information
 
       expect(response.status).to eq(200)
       expect(json["group_info"].count).to eq(1)

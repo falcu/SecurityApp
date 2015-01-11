@@ -22,6 +22,10 @@ module GroupsHelpers
     put :rename, {id: group.id,:name => name ,:format => "json"}
   end
 
+  def get_group_information
+    get :group_information, {:format => "json"}
+  end
+
 end
 RSpec.configure do |c|
   c.include GroupsHelpers, type: :controller

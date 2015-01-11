@@ -3,7 +3,7 @@ class Api::GroupsController < ApiController
   include Api::GroupsHelper
   include Api::UsersHelper
 
-  before_action :set_group, except: [:create, :user_information]
+  before_action :set_group, except: [:create, :group_information]
   before_action only: [:add, :remove_members, :rename] do
     authorize_creator(@group, @current_user)
   end
@@ -100,7 +100,7 @@ class Api::GroupsController < ApiController
     end
   end
 
-  def user_information
+  def group_information
     member_of = Group.joins("INNER JOIN users_groups ON users_groups.group_id = groups.id").where("users_groups.user_id = ?", @current_user.id)
     creator_of = Group.where("user_id = ?", @current_user.id)
     groups = creator_of + member_of
