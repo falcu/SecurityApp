@@ -501,6 +501,10 @@ describe Api::GroupsController do
       user = User.first
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
       create_group(group)
+      notifier = double("notifier")
+      Notifier.stub(:new).and_return(notifier)
+      allow(notifier).to receive(:app_name=)
+      allow(notifier).to receive(:notify)
       saved_group = Group.first
       new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
       new_member2 = FactoryGirl.create(:user, :name => "new_member2", :email => "new_member2@someemail.com", :password => "123456")
@@ -542,6 +546,10 @@ describe Api::GroupsController do
       user = User.first
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
       create_group(group)
+      notifier = double("notifier")
+      Notifier.stub(:new).and_return(notifier)
+      allow(notifier).to receive(:app_name=)
+      allow(notifier).to receive(:notify)
       saved_group = Group.first
       new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
       new_member2 = FactoryGirl.create(:user, :name => "new_member2", :email => "new_member2@someemail.com", :password => "123456")
@@ -572,6 +580,25 @@ describe Api::GroupsController do
 
       expect(response.status).to eq(200)
       expect { Group.find(saved_group.id) }.to raise_exception
+    end
+
+    it "Member quits group, all other members are notified with new group information" do
+      create_group_with_users
+      creator = User.find_by_email("creator@email.com")
+      member_to_quit = User.find_by_email("user1@email.com")
+      saved_group = Group.first
+      members_json = (saved_group.members - [member_to_quit]).collect { |user| user.as_json(:only => [:name, :email]) }
+      creator_json = creator.as_json(:only => [:name, :email])
+      expected_args = {reg_ids: ["creator_123","user2_123"], :data => {message: "Member has quitted", :group_info=>{group: saved_group, members: members_json, creator: creator_json}, type: "member_quitted" }}
+      notifier = double("notifier")
+      Notifier.stub(:new).and_return(notifier)
+
+      expect(notifier).to receive(:app_name=)
+      expect(notifier).to receive(:notify).with(expected_args)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(member_to_quit.token)
+      quit_group(saved_group)
+
     end
 
   end
@@ -612,7 +639,8 @@ describe Api::GroupsController do
       saved_group.reload
 
       expect(response.status).to eq(200)
-      expect(json["group"]["name"]).to eq(saved_group.name)
+      expect(json["group_info"]["group"]["name"]).to eq(saved_group.name)
+      expect(json["type"]).to eq("name_changed")
     end
 
     it "Fake user tries to change name, access denied and name unchanged" do
@@ -636,7 +664,7 @@ describe Api::GroupsController do
       group = Group.find_by_name("group1")
       expected_name = "new name"
       double = double("Notifier")
-      expected_args = {reg_ids: ["user1_123","user2_123"], :data => {message: "Group name changed", group: group, type: "name_changed" }}
+      expected_args = {reg_ids: ["user1_123","user2_123"], :data => {message: "Group name changed", :group_info => {group: group}, type: "name_changed" }}
       expect(double).to receive(:notify).with(expected_args)
       expect(double).to receive(:app_name=)
       Notifier.stub(:new).and_return(double)
@@ -647,7 +675,7 @@ describe Api::GroupsController do
 
   end
 
-  context "Get user information" do
+  context "User gets groups info" do
 
     it "A user that creates 1 groups, gets his groups information" do
       user = User.first
@@ -658,12 +686,15 @@ describe Api::GroupsController do
       get :user_information, {:format => "json"}
 
       expect(response.status).to eq(200)
-      expect(json["groups"].count).to eq(1)
-      expect(json["groups"][0]["name"]).to eq(group.name)
+      expect(json["group_info"].count).to eq(1)
+      expect(json["group_info"][0]["group"]["name"]).to eq(group.name)
+      expect(json["group_info"][0]["members"]).to eq([])
+      expect(json["group_info"][0]["creator"]).to eq(user.as_json(:only => [:name,:email]))
     end
 
     it "A user that creates 2 groups, gets his groups information" do
       user = User.first
+      expected_creator_json = user.as_json(:only => [:name,:email])
       group1 = FactoryGirl.build(:group, :name => "group1")
       group2 = FactoryGirl.build(:group, :name => "group2")
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
@@ -675,9 +706,13 @@ describe Api::GroupsController do
       get :user_information, {:format => "json"}
 
       expect(response.status).to eq(200)
-      expect(json["groups"].count).to eq(2)
-      expect(json["groups"][0]["name"]).to eq(group1.name)
-      expect(json["groups"][1]["name"]).to eq(group2.name)
+      expect(json["group_info"].count).to eq(2)
+      expect(json["group_info"][0]["group"]["name"]).to eq(group1.name)
+      expect(json["group_info"][0]["members"]).to eq([])
+      expect(json["group_info"][0]["creator"]).to eq(expected_creator_json)
+      expect(json["group_info"][1]["group"]["name"]).to eq(group2.name)
+      expect(json["group_info"][1]["members"]).to eq([])
+      expect(json["group_info"][1]["creator"]).to eq(expected_creator_json)
     end
 
     it "A user that creates 1 groups and is member of other group, gets his groups information" do
@@ -697,14 +732,59 @@ describe Api::GroupsController do
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(other_user.token)
       group2 = Group.find_by_name("group2")
       add_members(group2, members)
+      group1 = Group.find_by_name("group1")
+      group2 = Group.find_by_name("group2")
+      group1_creator_json = group1.creator.as_json(:only => [:name,:email])
+      group1_members_json = []
+      group2_creator_json = group2.creator.as_json(:only => [:name,:email])
+      group2_members_json = group2.members.collect { |member| member.as_json(:only => [:name,:email]) }
+
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
       get :user_information, {:format => "json"}
 
       expect(response.status).to eq(200)
-      expect(json["groups"].count).to eq(2)
-      expect(json["groups"][0]["name"]).to eq(group1.name)
-      expect(json["groups"][1]["name"]).to eq(group2.name)
+      expect(json["group_info"].count).to eq(2)
+      expect(json["group_info"][0]["group"]["name"]).to eq(group1.name)
+      expect(json["group_info"][0]["members"]).to eq(group1_members_json)
+      expect(json["group_info"][0]["creator"]).to eq(group1_creator_json)
+      expect(json["group_info"][1]["group"]["name"]).to eq(group2.name)
+      expect(json["group_info"][1]["members"]).to eq(group2_members_json)
+      expect(json["group_info"][1]["creator"]).to eq(group2_creator_json)
+    end
+
+    it "Creator of group with 2 members, requests information" do
+      create_group_with_users
+      creator = User.find_by_email("creator@email.com")
+      group = Group.first
+      group_members_json = group.members.collect { |member| member.as_json(:only => [:name,:email]) }
+      group_creator_json = group.creator.as_json(:only => [:name,:email])
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
+      get :user_information, {:format => "json"}
+
+      expect(response.status).to eq(200)
+      expect(json["group_info"].count).to eq(1)
+      expect(json["group_info"][0]["group"]["name"]).to eq(group.name)
+      expect(json["group_info"][0]["members"]).to eq(group_members_json)
+      expect(json["group_info"][0]["creator"]).to eq(group_creator_json)
+    end
+
+    it "Member of group with 2 members, requests information" do
+      create_group_with_users
+      member = User.find_by_email("user1@email.com")
+      group = Group.first
+      group_members_json = group.members.collect { |member| member.as_json(:only => [:name,:email]) }
+      group_creator_json = group.creator.as_json(:only => [:name,:email])
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(member.token)
+      get :user_information, {:format => "json"}
+
+      expect(response.status).to eq(200)
+      expect(json["group_info"].count).to eq(1)
+      expect(json["group_info"][0]["group"]["name"]).to eq(group.name)
+      expect(json["group_info"][0]["members"]).to eq(group_members_json)
+      expect(json["group_info"][0]["creator"]).to eq(group_creator_json)
     end
 
   end
