@@ -36,11 +36,13 @@ class Api::GroupsController < ApiController
       members = users_to_json(@group.members)
       try_to_save_group({:group_info => {group: @group, members: members}}, {error: "Unable to add members"})
       reg_ids_old_members = registration_ids_of(@group.members - new_members)
-      @builder.notifier.notify(reg_ids: reg_ids_old_members, :data => {message: "New member/s added", :group_info => {group: @group, members: members, creator: creator_json}, type: "member_added"})
+      if reg_ids_old_members.any?
+        @builder.notifier.notify(reg_ids: reg_ids_old_members, :data => {message: "New member/s added", :group_info => {group: @group, members: members, creator: creator_json}, type: "member_added"})
+      end
       reg_ids_new_members = registration_ids_of(new_members)
       @builder.notifier.notify(reg_ids: reg_ids_new_members, :data => {message: "You were added to a group", :group_info => {group: @group, members: members, creator: creator_json}, type: "added"})
     else
-      render_json({error: "At least one user does not exist"},400)
+      render_json({error: "At least one user does not exist"}, 400)
     end
   end
 
@@ -60,8 +62,10 @@ class Api::GroupsController < ApiController
       creator_json = creator_to_json
       members_to_delete.each { |member| @group.members -= [member] }
       try_to_save_group({:group_info => {group: @group, members: actual_members}}, {error: "Unable to remove members"})
-      reg_ids_members = registration_ids_of_group_excluding(@group,[@group.creator])
-      @builder.notifier.notify(reg_ids: reg_ids_members, :data => {message: "Member deleted", :group_info => {group: @group, members: actual_members, creator: creator_json}, type: "member_deleted"})
+      reg_ids_members = registration_ids_of_group_excluding(@group, [@group.creator])
+      if reg_ids_members.any?
+        @builder.notifier.notify(reg_ids: reg_ids_members, :data => {message: "Member deleted", :group_info => {group: @group, members: actual_members, creator: creator_json}, type: "member_deleted"})
+      end
       reg_ids_deleted_members = registration_ids_of(members_to_delete)
       @builder.notifier.notify(reg_ids: reg_ids_deleted_members, :data => {message: "You were deleted", :group_info => {group: @group}, type: "deleted"})
     else
@@ -146,13 +150,13 @@ class Api::GroupsController < ApiController
   private
   def validate_creator_not_adding_himself
     if params[:members_email].include?(@current_user.email)
-      render_json({:error => "You are the creator, you cannot add or remove yourself!"},400)
+      render_json({:error => "You are the creator, you cannot add or remove yourself!"}, 400)
     end
   end
 
   private
   def creator_to_json
-    @group.creator.as_json(:only => [:name,:email])
+    @group.creator.as_json(:only => [:name, :email])
   end
 
 end

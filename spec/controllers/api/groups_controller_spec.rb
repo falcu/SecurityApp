@@ -122,7 +122,7 @@ describe Api::GroupsController do
       expect(json["group_info"]["members"]).to eq([new_member].collect { |user| user.as_json(:only=>[:name,:email]) })
     end
 
-    it "Add 1 member to new group, new member receives push notification" do
+    it "Add first member to new group, only new member receives push notification as there are no older members" do
       creator = User.first
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
       create_group(group)
@@ -135,14 +135,8 @@ describe Api::GroupsController do
       creator_json = creator.as_json(:only => [:name,:email])
       expected_args = {reg_ids: ["123456"], :data => {message: "You were added to a group", :group_info=>{group: saved_group, members: members_args, creator: creator_json}, type: "added" }}
       double = double("Notifier")
-      expect(double).to receive(:app_name=).twice
-      i = 1
-      expect(double).to receive(:notify).twice do |arg|
-        if i == 2
-          expect(arg).to eq(expected_args)
-        end
-        i+=1
-      end
+      expect(double).to receive(:app_name=).once
+      expect(double).to receive(:notify).with(expected_args).once
       Notifier.stub(:new).and_return(double)
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
@@ -261,7 +255,6 @@ describe Api::GroupsController do
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
       add_members(Group.first, [new_member])
-
     end
 
   end
@@ -456,7 +449,7 @@ describe Api::GroupsController do
 
     end
 
-    it "Delete 1 member, separate notification sent to deleted member" do
+    it "Delete 1 member of 2, separate notification sent to deleted member" do
       create_group_with_users
       creator = User.find_by_email("creator@email.com")
       member_to_delete = User.find_by_email("user1@email.com")
@@ -477,6 +470,27 @@ describe Api::GroupsController do
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
       members = [member_to_delete]
       delete_members(saved_group, members)
+    end
+
+    it "Delete the only member of the group, only one push notificaiton is sent separately to deleted member" do
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      saved_group = Group.first
+      new_member = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+      new_member.devices << Device.new(registration_id: "new_user_123")
+      saved_group.members << new_member
+      saved_group.save
+      expected_args = {reg_ids: ["new_user_123"], :data => {message: "You were deleted", :group_info=>{group: saved_group}, type: "deleted" }}
+      double = double("Notifier")
+      expect(double).to receive(:app_name=).once
+      expect(double).to receive(:notify).with(expected_args).once
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      delete_members(saved_group, [new_member])
+
+
     end
 
     it "Creator tries to delete himself, json with error returned, nothing is changed" do
