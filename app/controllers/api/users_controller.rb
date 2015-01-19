@@ -1,6 +1,8 @@
 class Api::UsersController < ApplicationController
   include ApiHelper
 
+  before_action :set_user, except: [:create]
+
   def create
     @user = User.new(user_params)
     add_device
@@ -12,8 +14,6 @@ class Api::UsersController < ApplicationController
   end
 
   def sign_in
-    @user = User.find_by_email(params[:user][:email])
-
     if authenticate_user
       add_device
       render_json(user_to_json, 200)
@@ -23,7 +23,6 @@ class Api::UsersController < ApplicationController
   end
 
   def create_or_sign_in
-      @user = User.find_by_email(params[:user][:email])
     if authenticate_user
       add_device
       render_json(user_to_json, 200)
@@ -59,6 +58,10 @@ class Api::UsersController < ApplicationController
   private
   def authenticate_user
     @user && @user.authenticate(params[:user][:password])
+  end
 
+  private
+  def set_user
+    @user = User.find_by_email(params[:user][:email])
   end
 end
