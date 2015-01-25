@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
 
     post "users/create", to: "users#create", as: "create"
-    get "users/sign_in", to: "users#sign_in", as: "sign_in"
+    put "users/sign_in", to: "users#sign_in", as: "sign_in"
     post "users/create_or_sign_in", to: "users#create_or_sign_in", as: "create_or_sign_in"
 
     post "groups", to: "groups#create"

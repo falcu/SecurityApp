@@ -99,7 +99,7 @@ describe Api::UsersController do
 
     it "Sign in with correct credentials" do
       new_user = FactoryGirl.create(:user)
-      post :sign_in, {:user => {:email => user.email, :password => user.password},
+      put :sign_in, {:user => {:email => user.email, :password => user.password},
                       :format => "json"}
       expect(response.status).to eq(200)
       expect(json["user"]["token"]).to eq(new_user.token)
@@ -107,18 +107,22 @@ describe Api::UsersController do
 
     it "Sign in with bad credentials, access denied" do
       FactoryGirl.create(:user)
-      post :sign_in, {:user => {:email => user.email, :password => "badpassword"},
+      put :sign_in, {:user => {:email => user.email, :password => "badpassword"},
                       :format => "json"}
       expect(response.status).to eq(401)
       expect(json["user"]).to be_nil
+      expect(json["error"]).to eq("Unable to authenticate the user")
+      expect(json["error_type"]).to eq("AUTHENTICATION")
     end
 
     it "Sign in with nonexistent email, access denied" do
       new_user = FactoryGirl.create(:user)
-      post :sign_in, {:user => {:email => "fakeemail", :password => new_user.password},
+      put :sign_in, {:user => {:email => "fakeemail", :password => new_user.password},
                       :format => "json"}
       expect(response.status).to eq(401)
       expect(json["user"]).to be_nil
+      expect(json["error"]).to eq("Unable to authenticate the user")
+      expect(json["error_type"]).to eq("AUTHENTICATION")
     end
 
     it "Sign in specifying a register_id, it should be saved" do
@@ -126,7 +130,7 @@ describe Api::UsersController do
       expected_device_id = "device_id"
       expect(new_user.devices.count).to eq(0)
 
-      post :sign_in, {:user => {:email => user.email, :password => user.password,
+      put :sign_in, {:user => {:email => user.email, :password => user.password,
                       :device => {:registration_id => expected_device_id}},
                       :format => "json"}
       new_user.reload

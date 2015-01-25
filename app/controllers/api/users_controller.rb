@@ -18,7 +18,7 @@ class Api::UsersController < ApplicationController
       add_device
       render_json(user_to_json, 200)
     else
-      render_json({error: "Unable to sign in user"}, 401)
+      render_json({error: "Unable to authenticate the user", error_type: "AUTHENTICATION"}, 401)
     end
   end
 
