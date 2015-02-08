@@ -6,12 +6,12 @@ Rails.application.routes.draw do
     put "users/sign_in", to: "users#sign_in", as: "sign_in"
     post "users/create_or_sign_in", to: "users#create_or_sign_in", as: "create_or_sign_in"
 
-    post "groups", to: "groups#create"
+    post "groups/create", to: "groups#create"
     put "groups/add", to: "groups#add", as: "add_member"
     put "groups/:id/quit", to: "groups#quit", as: "quit_member"
     put "groups/:id/rename", to: "groups#rename", as: "rename_group"
     delete "groups/:id", to: "groups#remove_members", as: "remove_members"
-    get "groups", to: "groups#group_information", as: "group_information"
+    get "groups/group_information", to: "groups#group_information", as: "group_information"
 
     put "localities/notify", to: "localities#notify_locality", as: "notify_locality"
     put "localities/set_secure", to: "localities#set_secure_locality", as: "set_secure_locality"
