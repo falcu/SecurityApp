@@ -4,14 +4,14 @@ class Api::GroupsController < ApiController
   include Api::UsersHelper
 
   before_action :set_group, except: [:create, :group_information]
-  before_action only: [:add, :remove_members, :rename] do
+  before_action only: [:add,:add_single_group, :remove_members, :rename] do
     authorize_creator(@group, @current_user)
   end
   before_action only: [:quit] do
     authorize_member(@group, @current_user)
   end
   before_action :set_notifier_builder
-  before_action :validate_creator_not_adding_himself, only: [:add, :remove_members]
+  before_action :validate_creator_not_adding_himself, only: [:add, :add_single_group , :remove_members]
 
   def create
     @group = Group.new(group_params)
@@ -43,6 +43,14 @@ class Api::GroupsController < ApiController
       @builder.notifier.notify(reg_ids: reg_ids_new_members, :data => {message: "You were added to a group", :group_info => {group: @group, members: members, creator: creator_json}, type: "added"})
     else
       render_json({error: "At least one user does not exist"}, 400)
+    end
+  end
+
+  def add_single_group
+    if do_users_already_belongs_to_group
+      render_json({error: "member already belongs to a group"},401)
+    else
+      add
     end
   end
 
@@ -157,6 +165,33 @@ class Api::GroupsController < ApiController
   private
   def creator_to_json
     @group.creator.as_json(:only => [:name, :email])
+  end
+
+  private
+  def do_users_already_belongs_to_group
+    user_exists = true
+    result = false
+    new_members = []
+    (params[:members_email]).each do |email|
+      new_member = User.find_by_email(email)
+      if new_member
+        new_members << new_member
+      else
+        user_exists = false
+      end
+    end
+
+    if user_exists
+      ids = new_members.collect { |user| user.id }
+      member_of = Group.joins("INNER JOIN users_groups ON users_groups.group_id = groups.id").where("users_groups.user_id IN (?)", ids).to_a
+      creator_of = Group.where("user_id IN (?)", ids).to_a
+      if member_of.any? || creator_of.any?
+        result = true
+      end
+    end
+
+    result
+
   end
 
 end

@@ -9,6 +9,11 @@ module GroupsHelpers
     put :add, {id: group.id, :members_email => members_emails, :format => "json"}
   end
 
+  def add_single_group_members(group,members)
+    members_emails = members.collect { |member| member.email }
+    put :add_single_group, {id: group.id, :members_email => members_emails, :format => "json"}
+  end
+
   def delete_members(group,members)
     members_emails = members.collect { |member| member.email }
     delete :remove_members, {id: group.id, :members_email => members_emails, :format => "json"}

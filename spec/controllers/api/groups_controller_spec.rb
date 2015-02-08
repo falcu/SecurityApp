@@ -259,6 +259,235 @@ describe Api::GroupsController do
 
   end
 
+  context "Add single member to group" do
+
+    it "Is creator and email exists, add correctly" do
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      double = double("Notifier")
+      allow(double).to receive(:app_name=)
+      allow(double).to receive(:notify)
+      Notifier.stub(:new).and_return(double)
+
+      expect(Group.first.members.count).to eq(0)
+      new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+      new_member2 = FactoryGirl.create(:user, :name => "new_member2", :email => "new_member2@someemail.com", :password => "123456")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      members = [new_member1, new_member2]
+      add_single_group_members(Group.first, members)
+
+      expect(response.status).to eq(200)
+      expect(Group.first.members.count).to eq(2)
+    end
+
+    it "if not creator, access denied" do
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+
+      new_member = FactoryGirl.create(:user, :name => "new_member", :email => "new_member@someemail.com", :password => "123456")
+      members = [new_member]
+      other_user = FactoryGirl.create(:user, :name => "new_user", :email => "new_user@someemail.com", :password => "123456")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(other_user.token)
+      add_single_group_members(Group.first, members)
+
+      expect(response.status).to eq(401)
+      expect(Group.first.members.count).to eq(0)
+    end
+
+    it "Add 2 members to group" do
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      double = double("Notifier")
+      allow(double).to receive(:app_name=)
+      allow(double).to receive(:notify)
+      Notifier.stub(:new).and_return(double)
+
+      expect(Group.first.members.count).to eq(0)
+      new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+      new_member2 = FactoryGirl.create(:user, :name => "new_member2", :email => "new_member2@someemail.com", :password => "123456")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      members = [new_member1, new_member2]
+      add_single_group_members(Group.first, members)
+
+      expect(response.status).to eq(200)
+      expect(Group.first.members.count).to eq(2)
+    end
+
+    it "Is creator and email exists, json with group info returned" do
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      double = double("Notifier")
+      allow(double).to receive(:app_name=)
+      allow(double).to receive(:notify)
+      Notifier.stub(:new).and_return(double)
+
+      expect(Group.first.members.count).to be(0)
+      new_member = FactoryGirl.create(:user, :name => "new_user", :email => "new_user@someemail.com", :password => "123456")
+      members = [new_member]
+      saved_group = Group.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      add_single_group_members(saved_group, members)
+      saved_group.reload
+      new_member.reload
+
+      expect(response.status).to eq(200)
+      expect(json["group_info"]["group"]["name"]).to eq(saved_group.name)
+      expect(json["group_info"]["members"]).to eq([new_member].collect { |user| user.as_json(:only=>[:name,:email]) })
+    end
+
+    it "Add first member to new group, only new member receives push notification as there are no older members" do
+      creator = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
+      create_group(group)
+      new_member = FactoryGirl.build(:user, :name => "new_user", :email => "new_user@someemail.com", :password => "123456")
+      new_member.devices << Device.new(registration_id: "123456")
+      new_member.save
+      members = [new_member]
+      saved_group = Group.first
+      members_args = (Array.new(saved_group.members)<<new_member).collect { |user| user.as_json(:only => [:name,:email]) }
+      creator_json = creator.as_json(:only => [:name,:email])
+      expected_args = {reg_ids: ["123456"], :data => {message: "You were added to a group", :group_info=>{group: saved_group, members: members_args, creator: creator_json}, type: "added" }}
+      double = double("Notifier")
+      expect(double).to receive(:app_name=).once
+      expect(double).to receive(:notify).with(expected_args).once
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
+      add_single_group_members(saved_group, members)
+
+    end
+
+    it "Add member to group, all other members are notified" do
+      create_group_with_users
+      creator = User.find_by_name("creator")
+      new_member = FactoryGirl.create(:user, :name => "new_user", :email => "new_user@someemail.com", :password => "123456")
+      new_member.devices << Device.new(registration_id: "new_user_123")
+      new_member.save
+      saved_group = Group.first
+      double = double("Notifier")
+      members_args = (Array.new(saved_group.members) << new_member).collect { |user| user.as_json(:only => [:name,:email]) }
+      creator_arg = creator.as_json(:only => [:name,:email])
+      expected_args = {reg_ids: ["user1_123","user2_123"], :data => {message: "New member/s added", :group_info=>{group: saved_group, members: members_args, creator: creator_arg}, type: "member_added" }}
+      expect(double).to receive(:app_name=).twice
+      i = 1
+      expect(double).to receive(:notify).twice do |arg|
+        if i == 1
+          expect(arg).to eq(expected_args)
+        end
+        i+=1
+      end
+      Notifier.stub(:new).and_return(double)
+
+      members = [new_member]
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
+      add_single_group_members(saved_group, members)
+
+    end
+
+    it "Not creator, access denied and members are not notified" do
+      create_group_with_users
+      creator = User.find_by_name("creator")
+      new_member = FactoryGirl.create(:user, :name => "new_user", :email => "new_user@someemail.com", :password => "123456")
+      new_member.devices << Device.new(registration_id: "new_user_123")
+      new_member.save
+      saved_group = Group.first
+      double = double("Notifier")
+      members_args = (Array.new(saved_group.members) << new_member << creator).collect { |user| user.as_json(:only => [:name,:email]) }
+      expected_args = {reg_ids: "user1_123,user2_123,new_user_123", :data => {message: "New member added", :group_info=>{group: saved_group, members: members_args}, type: "member_added" }}
+      expect(double).not_to receive(:notify).with(expected_args)
+      expect(double).not_to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+
+      members = [new_member]
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials("fake_token")
+      add_single_group_members(saved_group, members)
+    end
+
+    it "Attempt to add non existent user" do
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      double = double("Notifier")
+      expect(double).not_to receive(:app_name=)
+      expect(double).not_to receive(:notify)
+      Notifier.stub(:new).and_return(double)
+
+      new_member1 = FactoryGirl.build(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+      members = [new_member1]
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      add_single_group_members(Group.first, members)
+
+      expect(response.status).to eq(400)
+    end
+
+    it "Attempt to add 2 users, 1 does not exist, none is added" do
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      double = double("Notifier")
+      expect(double).not_to receive(:app_name=)
+      expect(double).not_to receive(:notify)
+      Notifier.stub(:new).and_return(double)
+
+      group = Group.first
+      expect(group.members.count).to eq(0)
+      new_member1 = FactoryGirl.create(:user, :name => "new_member1", :email => "new_member1@someemail.com", :password => "123456")
+      new_member2 = FactoryGirl.build(:user, :name => "new_member2", :email => "new_member2@someemail.com", :password => "123456")
+      members = [new_member1, new_member2]
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      add_single_group_members(Group.first, members)
+
+      group.reload
+      expect(response.status).to eq(400)
+      expect(group.members.count).to eq(0)
+    end
+
+    it "Add 1 member to group with 2 members, push notification is sent to new member" do
+      create_group_with_users
+      creator = User.find_by_name("creator")
+      new_member = FactoryGirl.build(:user, :name => "new_user", :email => "new_user@someemail.com", :password => "123456")
+      new_member.devices << Device.new(registration_id: "new_user_123")
+      new_member.save
+      saved_group = Group.first
+      members_args = (Array.new(saved_group.members)<<new_member).collect { |user| user.as_json(:only => [:name,:email]) }
+      creator_json = creator.as_json(:only => [:name,:email])
+      expected_args = {reg_ids: ["new_user_123"], :data => {message: "You were added to a group", :group_info=>{group: saved_group, members: members_args, creator: creator_json}, type: "added" }}
+      double = double("Notifier")
+      expect(double).to receive(:app_name=).twice
+      i = 1
+      expect(double).to receive(:notify).twice do |arg|
+        if i == 2
+          expect(arg).to eq(expected_args)
+        end
+        i+=1
+      end
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
+      add_single_group_members(Group.first, [new_member])
+    end
+
+    it "Add 1 user to a group, then try to add same user to another group, error obtained" do
+      create_group_with_users
+      user = User.first
+      member_to_add = User.find_by_name("user2")
+      extra_group = FactoryGirl.build(:group,:name => "extra_group")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      saved_extra_group = Group.find_by_name(group.name)
+
+      add_single_group_members(saved_extra_group,[member_to_add])
+
+      expect(json["error"]).to eq("member already belongs to a group")
+
+    end
+
+  end
+
   context "Delete member" do
 
     it "Delete 1 member, is creator, succeded" do

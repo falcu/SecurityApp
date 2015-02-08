@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     post "groups/create", to: "groups#create"
     put "groups/add", to: "groups#add", as: "add_member"
+    put "groups/add_single_group", to: "groups#add_single_group", as: "add_single_group_member"
     put "groups/:id/quit", to: "groups#quit", as: "quit_member"
     put "groups/:id/rename", to: "groups#rename", as: "rename_group"
     delete "groups/:id", to: "groups#remove_members", as: "remove_members"
