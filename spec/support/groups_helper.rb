@@ -1,4 +1,7 @@
 module GroupsHelpers
+  require 'json'
+
+
   def create_group(group)
     post :create , {:group => {:name => group.name },
                     :format => "json" }

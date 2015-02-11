@@ -34,7 +34,7 @@ class Api::GroupsController < ApiController
       new_members.each { |new_member| @group.members<<new_member }
       creator_json = creator_to_json
       members = users_to_json(@group.members)
-      try_to_save_group({:group_info => {group: @group, members: members}}, {error: "Unable to add members"})
+      try_to_save_group({:group_info => {group: @group, members: members, creator: creator_json}}, {error: "Unable to add members"})
       reg_ids_old_members = registration_ids_of(@group.members - new_members)
       if reg_ids_old_members.any?
         @builder.notifier.notify(reg_ids: reg_ids_old_members, :data => {message: "New member/s added", :group_info => {group: @group, members: members, creator: creator_json}, type: "member_added"})
@@ -192,6 +192,11 @@ class Api::GroupsController < ApiController
 
     result
 
+  end
+
+  private
+  def params_as_hash
+    JSON.parse(params[:result])
   end
 
 end
