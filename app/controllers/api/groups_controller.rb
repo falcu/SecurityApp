@@ -69,7 +69,7 @@ class Api::GroupsController < ApiController
       actual_members = users_to_json(@group.members - members_to_delete)
       creator_json = creator_to_json
       members_to_delete.each { |member| @group.members -= [member] }
-      try_to_save_group({:group_info => {group: @group, members: actual_members}}, {error: "Unable to remove members"})
+      try_to_save_group({:group_info => {group: @group, members: actual_members, creator: creator_json}}, {error: "Unable to remove members"})
       reg_ids_members = registration_ids_of_group_excluding(@group, [@group.creator])
       if reg_ids_members.any?
         @builder.notifier.notify(reg_ids: reg_ids_members, :data => {message: "Member deleted", :group_info => {group: @group, members: actual_members, creator: creator_json}, type: "member_deleted"})

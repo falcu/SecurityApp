@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     put "groups/add_single_group", to: "groups#add_single_group", as: "add_single_group_member"
     put "groups/:id/quit", to: "groups#quit", as: "quit_member"
     put "groups/:id/rename", to: "groups#rename", as: "rename_group"
-    delete "groups/:id", to: "groups#remove_members", as: "remove_members"
+    put "groups/remove_members", to: "groups#remove_members", as: "remove_members"
     get "groups/group_information", to: "groups#group_information", as: "group_information"
 
     put "localities/notify", to: "localities#notify_locality", as: "notify_locality"
