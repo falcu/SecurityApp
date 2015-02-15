@@ -916,6 +916,47 @@ describe Api::GroupsController do
       rename_group(group, expected_name)
     end
 
+    it "Creator renames group, group has no members, no push notification is sent" do
+      load Rails.root + "db/seeds.rb"
+      user = User.first
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      create_group(group)
+      group = Group.first
+      double = double("Notifier")
+      expect(double).not_to receive(:notify)
+      expect(double).not_to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      rename_group(group,"new_name")
+    end
+
+    it "Creator tries to rename group with same name, no push notification is sent" do
+      create_group_with_users
+      user = User.find_by_name("creator")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      group = Group.find_by_name("group1")
+      double = double("Notifier")
+      expect(double).not_to receive(:notify)
+      expect(double).not_to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      rename_group(group,group.name)
+    end
+
+    it "Creator tries to rename group with same name, error get" do
+      create_group_with_users
+      user = User.find_by_name("creator")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      group = Group.find_by_name("group1")
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      rename_group(group,group.name)
+
+      expect(json["error"]).not_to be_nil
+    end
+
   end
 
   context "User gets groups info" do

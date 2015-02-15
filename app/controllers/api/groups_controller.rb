@@ -16,7 +16,7 @@ class Api::GroupsController < ApiController
   def create
     @group = Group.new(group_params)
     @group.creator = @current_user
-    try_to_save_group({group: @group}, {error: "Unable to create group"})
+    try_to_save_group({group: @group,message: "Group was created!"}, {error: "Unable to create group"})
   end
 
   def add
@@ -105,10 +105,15 @@ class Api::GroupsController < ApiController
   end
 
   def rename
-    @group.name = params[:name]
-    if try_to_save_group({message: "Group name changed", :group_info => {group: @group}, type: "name_changed"}, {error: "Unable to change name"})
-      reg_ids = registration_ids_of_group_excluding(@group, [@current_user])
-      @builder.notifier.notify(reg_ids: reg_ids, :data => {message: "Group name changed", :group_info => {group: @group}, type: "name_changed"})
+    if validate_name
+      @group.name = params[:name]
+      members_json = users_to_json(@group.members)
+      if try_to_save_group({message: "Group name changed", :group_info => {group: @group, members: members_json,creator: creator_to_json}, type: "name_changed"}, {error: "Unable to change name"})
+        reg_ids = registration_ids_of_group_excluding(@group, [@current_user])
+        if(reg_ids.any?)
+          @builder.notifier.notify(reg_ids: reg_ids, :data => {message: "Group name changed", :group_info => {group: @group}, type: "name_changed"})
+        end
+      end
     end
   end
 
@@ -197,6 +202,16 @@ class Api::GroupsController < ApiController
   private
   def params_as_hash
     JSON.parse(params[:result])
+  end
+
+  private
+  def validate_name
+    if params[:name] == @group.name
+      render_json({error: "The group already has that name"},401)
+      false
+    else
+      true
+    end
   end
 
 end
