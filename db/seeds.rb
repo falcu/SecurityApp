@@ -14,3 +14,18 @@ app.name = "android_app"
 app.auth_key = "AIzaSyAzvDbjBqR65YEVc21goUpVsm8jpH3aRIE"
 app.connections = 1
 app.save!
+
+
+user_prefix = "user"
+i = 0
+n = 5
+
+until i > n do
+  name = user_prefix + (i+1).to_s
+  email = name + "@hotmail.com"
+  reg_id = name + "_" + (i+1).to_s
+  user = User.create(name: name, email: email, password: "123456")
+  user.devices << Device.new(registration_id: reg_id)
+  user.save
+  i=i+1
+end
