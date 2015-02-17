@@ -29,7 +29,7 @@ describe Api::GroupsController do
       create_group(group)
 
       expect(response.status).to eq(200)
-      expect(json["group"]["name"]).to eq(group.name)
+      expect(json["group_info"]["group"]["name"]).to eq(group.name)
     end
 
     it "Create group, wrong token, access denied" do

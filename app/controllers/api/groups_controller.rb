@@ -16,7 +16,7 @@ class Api::GroupsController < ApiController
   def create
     @group = Group.new(group_params)
     @group.creator = @current_user
-    try_to_save_group({group: @group,message: "Group was created!"}, {error: "Unable to create group"})
+    try_to_save_group({:group_info => {group: @group, members: @group.members, creator: creator_to_json},message: "Group was created!"}, {error: "Unable to create group"})
   end
 
   def add
