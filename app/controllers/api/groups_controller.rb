@@ -111,7 +111,7 @@ class Api::GroupsController < ApiController
       if try_to_save_group({message: "Group name changed", :group_info => {group: @group, members: members_json,creator: creator_to_json}, type: "name_changed"}, {error: "Unable to change name"})
         reg_ids = registration_ids_of_group_excluding(@group, [@current_user])
         if(reg_ids.any?)
-          @builder.notifier.notify(reg_ids: reg_ids, :data => {message: "Group name changed", :group_info => {group: @group}, type: "name_changed"})
+          @builder.notifier.notify(reg_ids: reg_ids, :data => {message: "Group name changed", :group_info => {group: @group, members: members_json,creator: creator_to_json}, type: "name_changed"})
         end
       end
     end

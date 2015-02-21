@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f40ad96a-b286-4a09-b1d9-1e6a9010a8a1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/SecurityApp.iml" afterPath="$PROJECT_DIR$/.idea/SecurityApp.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/api/groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/groups_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/api/groups_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/api/groups_controller_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/api/notifications_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/notifications_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/api/notifications_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/api/notifications_controller_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SecurityApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -17,17 +22,17 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Create_a_group__SecurityApp.coverage" NAME="Api::GroupsController Create a group: SecurityApp Coverage Results" MODIFIED="1420940056058" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Creator_renames_group__SecurityApp.coverage" NAME="Api::GroupsController Creator renames group: SecurityApp Coverage Results" MODIFIED="1420994212709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Create_a_group__SecurityApp.coverage" NAME="Api::GroupsController Create a group: SecurityApp Coverage Results" MODIFIED="1420940056058" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Run_spec__notifications_controller_spec___SecurityApp.coverage" NAME="Run spec 'notifications_controller_spec': SecurityApp Coverage Results" MODIFIED="1424549168726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info_Creator_of_group_with_2_members__requests_information__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info Creator of group with 2 members, requests information: SecurityApp Coverage Results" MODIFIED="1421003041917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@Run_spec__notifications_controller_spec___SecurityApp.coverage" NAME="Run spec 'notifications_controller_spec': SecurityApp Coverage Results" MODIFIED="1423957369106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Delete_member_Delete_1_member__notification_send_to_all_other_members_with_new_group_info__SecurityApp.coverage" NAME="Api::GroupsController Delete member Delete 1 member, notification send to all other members with new group info: SecurityApp Coverage Results" MODIFIED="1420940168066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Delete_member_Delete_1_member__separate_notification_sent_to_deleted_member__SecurityApp.coverage" NAME="Api::GroupsController Delete member Delete 1 member, separate notification sent to deleted member: SecurityApp Coverage Results" MODIFIED="1420940002665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Delete_member_Delete_1_member__is_creator__succeded__SecurityApp.coverage" NAME="Api::GroupsController Delete member Delete 1 member, is creator, succeded: SecurityApp Coverage Results" MODIFIED="1420919094216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Creator_renames_group_Creator_renames_group___all_of_the_other_users_are_notified__SecurityApp.coverage" NAME="Api::GroupsController Creator renames group Creator renames group , all of the other users are notified: SecurityApp Coverage Results" MODIFIED="1420994086728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info_A_user_that_creates_1_groups__gets_his_groups_information__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info A user that creates 1 groups, gets his groups information: SecurityApp Coverage Results" MODIFIED="1420995447889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info_Member_of_group_with_2_members__requests_information__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info Member of group with 2 members, requests information: SecurityApp Coverage Results" MODIFIED="1421003120186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Creator_renames_group_Creator_renames_group___all_of_the_other_users_are_notified__SecurityApp.coverage" NAME="Api::GroupsController Creator renames group Creator renames group , all of the other users are notified: SecurityApp Coverage Results" MODIFIED="1424308008341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__NotificationsController_Creator_of_a_group_sends_alarm_with_zoom__the_other_members_are_notified_with_custom_message_and_the_current_location_with_zoom__SecurityApp.coverage" NAME="Api::NotificationsController Creator of a group sends alarm with zoom, the other members are notified with custom message and the current location with zoom: SecurityApp Coverage Results" MODIFIED="1421007504428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info_Member_of_group_with_2_members__requests_information__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info Member of group with 2 members, requests information: SecurityApp Coverage Results" MODIFIED="1421003120186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Notify_Locality__SecurityApp.coverage" NAME="Api::LocalitiesController Notify Locality: SecurityApp Coverage Results" MODIFIED="1421005793853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Add_a_member_to_group_Add_first_member_to_new_group__only_new_member_receives_push_notification_as_there_are_no_older_members__SecurityApp.coverage" NAME="Api::GroupsController Add a member to group Add first member to new group, only new member receives push notification as there are no older members: SecurityApp Coverage Results" MODIFIED="1421021356053" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__NotificationsController_Creator_of_a_group_sends_alarm__the_other_members_are_notified_with_custom_message_and_the_current_location__SecurityApp.coverage" NAME="Api::NotificationsController Creator of a group sends alarm, the other members are notified with custom message and the current location: SecurityApp Coverage Results" MODIFIED="1421007341937" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
@@ -41,15 +46,16 @@
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials__set_custom_insecure_locality__json_returned__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials, set custom insecure locality, json returned: SecurityApp Coverage Results" MODIFIED="1421006879093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__NotificationsController__SecurityApp.coverage" NAME="Api::NotificationsController: SecurityApp Coverage Results" MODIFIED="1421007477014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Delete_member_Delete_member__json_with_group_info_is_returned__SecurityApp.coverage" NAME="Api::GroupsController Delete member Delete member, json with group info is returned: SecurityApp Coverage Results" MODIFIED="1420919145172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@Run_spec__users_controller_spec___SecurityApp.coverage" NAME="Run spec 'users_controller_spec': SecurityApp Coverage Results" MODIFIED="1420595376702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials__set_custom_secure_locality__json_returned__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials, set custom secure locality, json returned: SecurityApp Coverage Results" MODIFIED="1421006475367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@localities_helper.coverage" NAME="localities_helper Coverage Results" MODIFIED="1418047680102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spec/support" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Run_spec__users_controller_spec___SecurityApp.coverage" NAME="Run spec 'users_controller_spec': SecurityApp Coverage Results" MODIFIED="1420595376702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info_A_user_that_creates_1_groups_and_is_member_of_other_group__gets_his_groups_information__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info A user that creates 1 groups and is member of other group, gets his groups information: SecurityApp Coverage Results" MODIFIED="1420996419074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@localities_helper.coverage" NAME="localities_helper Coverage Results" MODIFIED="1418047680102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spec/support" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Add_a_member_to_group_Add_first_member_to_group__only_one_push_notification_should_be_sent__SecurityApp.coverage" NAME="Api::GroupsController Add a member to group Add first member to group, only one push notification should be sent: SecurityApp Coverage Results" MODIFIED="1421021107949" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@Run_spec__groups_controller_spec___SecurityApp.coverage" NAME="Run spec 'groups_controller_spec': SecurityApp Coverage Results" MODIFIED="1424135627684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info: SecurityApp Coverage Results" MODIFIED="1421003153449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info_A_user_that_creates_2_groups__gets_his_groups_information__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info A user that creates 2 groups, gets his groups information: SecurityApp Coverage Results" MODIFIED="1421003201592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials_set_same_custom_secure_locality_twice__locality_added_to_list_once__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials set same custom secure locality twice, locality added to list once: SecurityApp Coverage Results" MODIFIED="1421006536904" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info_A_user_that_creates_2_groups__gets_his_groups_information__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info A user that creates 2 groups, gets his groups information: SecurityApp Coverage Results" MODIFIED="1421003201592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info: SecurityApp Coverage Results" MODIFIED="1421003153449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Run_spec__groups_controller_spec___SecurityApp.coverage" NAME="Run spec 'groups_controller_spec': SecurityApp Coverage Results" MODIFIED="1424307586125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__NotificationsController_Member_of_a_group_sends_alarm__the_other_members_are_notified_with_the_current_location__SecurityApp.coverage" NAME="Api::NotificationsController Member of a group sends alarm, the other members are notified with the current location: SecurityApp Coverage Results" MODIFIED="1424549106529" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials_set_custom_secure_locality__locality_added_to_list__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials set custom secure locality, locality added to list: SecurityApp Coverage Results" MODIFIED="1421006496382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Add_a_member_to_group_Add_1_member_to_new_group__new_member_receives_notification__SecurityApp.coverage" NAME="Api::GroupsController Add a member to group Add 1 member to new group, new member receives notification: SecurityApp Coverage Results" MODIFIED="1420950002456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials__set_unknown_custom_secure_locality__json_with_error_returned__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials, set unknown custom secure locality, json with error returned: SecurityApp Coverage Results" MODIFIED="1421006616108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
@@ -76,18 +82,28 @@
       <file leaf-file-name="notifications_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/api/notifications_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="570">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
+              <caret line="14" column="129" selection-start-line="14" selection-start-column="129" selection-end-line="14" selection-end-column="129" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="notifications_controller_spec.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="notifications_controller_spec.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spec/controllers/api/notifications_controller_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1057" max-vertical-offset="1845">
-              <caret line="95" column="4" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="114" />
+            <state vertical-scroll-proportion="0.27104723" vertical-offset="918" max-vertical-offset="1875">
+              <caret line="70" column="63" selection-start-line="70" selection-start-column="63" selection-end-line="70" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="localities_helper.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/helpers/api/localities_helper.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
+              <caret line="33" column="6" selection-start-line="33" selection-start-column="6" selection-end-line="33" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -96,19 +112,29 @@
       <file leaf-file-name="groups_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/api/groups_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="945" max-vertical-offset="3255">
-              <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+            <state vertical-scroll-proportion="-6.6571426" vertical-offset="1612" max-vertical-offset="3255">
+              <caret line="123" column="79" selection-start-line="123" selection-start-column="66" selection-end-line="123" selection-end-column="79" />
               <folding>
-                <element signature="e#5537#5702#0" expanded="false" />
+                <element signature="e#5585#5750#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="users_helper.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/helpers/api/users_helper.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
+              <caret line="2" column="65" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.62827224" vertical-offset="0" max-vertical-offset="573">
+            <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="540">
               <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
               <folding />
             </state>
@@ -118,9 +144,10 @@
       <file leaf-file-name="groups_controller_spec.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/controllers/api/groups_controller_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.428572" vertical-offset="710" max-vertical-offset="4710">
-              <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2241" max-vertical-offset="4260">
+              <caret line="899" column="37" selection-start-line="899" selection-start-column="37" selection-end-line="899" selection-end-column="37" />
               <folding>
+                <element signature="e#221#1348#0" expanded="false" />
                 <element signature="e#2363#3078#0" expanded="false" />
                 <element signature="e#3112#4056#0" expanded="false" />
                 <element signature="e#4126#5142#0" expanded="false" />
@@ -130,7 +157,7 @@
                 <element signature="e#34346#39300#0" expanded="false" />
                 <element signature="e#34419#35512#0" expanded="false" />
                 <element signature="e#35571#36453#0" expanded="false" />
-                <element signature="e#44156#49823#0" expanded="false" />
+                <element signature="e#44359#50026#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -159,18 +186,8 @@
       <file leaf-file-name="groups_helper.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/helpers/api/groups_helper.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="276" max-vertical-offset="735">
-              <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="api_helper.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/support/api_helper.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="600">
-              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
+              <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -198,12 +215,12 @@
         <option value="$PROJECT_DIR$/spec/controllers/api/users_controller_spec.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/users_controller.rb" />
         <option value="$PROJECT_DIR$/spec/support/groups_helper.rb" />
-        <option value="$PROJECT_DIR$/spec/controllers/api/notifications_controller_spec.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/api/notifications_controller.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
+        <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/groups_controller.rb" />
         <option value="$PROJECT_DIR$/spec/controllers/api/groups_controller_spec.rb" />
-        <option value="$PROJECT_DIR$/db/seeds.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/notifications_controller.rb" />
+        <option value="$PROJECT_DIR$/spec/controllers/api/notifications_controller_spec.rb" />
       </list>
     </option>
   </component>
@@ -249,8 +266,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="RailsProjectView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -504,81 +521,7 @@
       <recent name="C:\Users\Guido\Rails\SecurityApp\app\controllers\api" />
     </key>
   </component>
-  <component name="RunManager" selected="RSpec.Run spec 'groups_controller_spec': SecurityApp">
-    <configuration default="false" name="Api::GroupsController Delete member Delete the only member of the group, only one push notificaiton is sent separately to deleted member: SecurityApp" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
-      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
-      <module name="SecurityApp" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs>
-        <env name="RAILS_ENV" value="test" />
-        <env name="JRUBY_OPTS" value="-X+O" />
-      </envs>
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/api/groups_controller_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::GroupsController Delete member Delete the only member of the group, only one push notificaiton is sent separately to deleted member" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
-      <RunnerSettings RunnerId="RubyRunner" />
-      <ConfigurationWrapper RunnerId="RubyRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Api::GroupsController Delete member: SecurityApp" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
-      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
-      <module name="SecurityApp" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs>
-        <env name="RAILS_ENV" value="test" />
-        <env name="JRUBY_OPTS" value="-X+O" />
-      </envs>
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/api/groups_controller_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::GroupsController Delete member" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
-      <RunnerSettings RunnerId="RubyRunner" />
-      <ConfigurationWrapper RunnerId="RubyRunner" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="RSpec.Run spec 'notifications_controller_spec': SecurityApp">
     <configuration default="false" name="Api::GroupsController Add single member to group Add 1 user to a group, then try to add same user to another group, error obtained: SecurityApp" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="SecurityApp" />
@@ -678,6 +621,80 @@
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <RunnerSettings RunnerId="RubyRunner" />
+      <ConfigurationWrapper RunnerId="RubyRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Api::GroupsController Creator renames group Creator renames group , all of the other users are notified: SecurityApp" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
+      <module name="SecurityApp" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/api/groups_controller_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::GroupsController Creator renames group Creator renames group , all of the other users are notified" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <RunnerSettings RunnerId="RubyRunner" />
+      <ConfigurationWrapper RunnerId="RubyRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Api::NotificationsController Member of a group sends alarm, the other members are notified with the current location: SecurityApp" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
+      <module name="SecurityApp" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/api/notifications_controller_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::NotificationsController Member of a group sends alarm, the other members are notified with the current location" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
@@ -838,19 +855,19 @@
       <item index="2" class="java.lang.String" itemvalue="Rake.spec: SecurityApp" />
       <item index="3" class="java.lang.String" itemvalue="Rails.Production: SecurityApp" />
       <item index="4" class="java.lang.String" itemvalue="Rails.Development: SecurityApp" />
-      <item index="5" class="java.lang.String" itemvalue="RSpec.Api::GroupsController Delete member Delete the only member of the group, only one push notificaiton is sent separately to deleted member: SecurityApp" />
-      <item index="6" class="java.lang.String" itemvalue="RSpec.Api::GroupsController Delete member: SecurityApp" />
-      <item index="7" class="java.lang.String" itemvalue="RSpec.Api::GroupsController Add single member to group Add 1 user to a group, then try to add same user to another group, error obtained: SecurityApp" />
-      <item index="8" class="java.lang.String" itemvalue="RSpec.Run spec 'notifications_controller_spec': SecurityApp" />
-      <item index="9" class="java.lang.String" itemvalue="RSpec.Run spec 'groups_controller_spec': SecurityApp" />
+      <item index="5" class="java.lang.String" itemvalue="RSpec.Api::GroupsController Add single member to group Add 1 user to a group, then try to add same user to another group, error obtained: SecurityApp" />
+      <item index="6" class="java.lang.String" itemvalue="RSpec.Run spec 'notifications_controller_spec': SecurityApp" />
+      <item index="7" class="java.lang.String" itemvalue="RSpec.Run spec 'groups_controller_spec': SecurityApp" />
+      <item index="8" class="java.lang.String" itemvalue="RSpec.Api::GroupsController Creator renames group Creator renames group , all of the other users are notified: SecurityApp" />
+      <item index="9" class="java.lang.String" itemvalue="RSpec.Api::NotificationsController Member of a group sends alarm, the other members are notified with the current location: SecurityApp" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="RSpec.Run spec 'groups_controller_spec': SecurityApp" />
-        <item index="1" class="java.lang.String" itemvalue="RSpec.Run spec 'notifications_controller_spec': SecurityApp" />
-        <item index="2" class="java.lang.String" itemvalue="RSpec.Api::GroupsController Add single member to group Add 1 user to a group, then try to add same user to another group, error obtained: SecurityApp" />
-        <item index="3" class="java.lang.String" itemvalue="RSpec.Api::GroupsController Delete member: SecurityApp" />
-        <item index="4" class="java.lang.String" itemvalue="RSpec.Api::GroupsController Delete member Delete the only member of the group, only one push notificaiton is sent separately to deleted member: SecurityApp" />
+        <item index="0" class="java.lang.String" itemvalue="RSpec.Run spec 'notifications_controller_spec': SecurityApp" />
+        <item index="1" class="java.lang.String" itemvalue="RSpec.Api::NotificationsController Member of a group sends alarm, the other members are notified with the current location: SecurityApp" />
+        <item index="2" class="java.lang.String" itemvalue="RSpec.Api::GroupsController Creator renames group Creator renames group , all of the other users are notified: SecurityApp" />
+        <item index="3" class="java.lang.String" itemvalue="RSpec.Run spec 'groups_controller_spec': SecurityApp" />
+        <item index="4" class="java.lang.String" itemvalue="RSpec.Api::GroupsController Add single member to group Add 1 user to a group, then try to add same user to another group, error obtained: SecurityApp" />
       </list>
     </recent_temporary>
   </component>
@@ -869,7 +886,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1375" height="904" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -877,20 +894,20 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28654546" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28654546" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24843945" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33957553" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32784638" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32784638" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35783133" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -910,9 +927,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24945454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -963,11 +980,6 @@
           <url>file://$PROJECT_DIR$/spec/controllers/api/users_controller_spec.rb</url>
           <line>97</line>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="ruby-line">
-          <url>file://$PROJECT_DIR$/spec/controllers/api/groups_controller_spec.rb</url>
-          <line>10</line>
-          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="11" />
@@ -1206,24 +1218,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/api/users_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10373444" vertical-offset="0" max-vertical-offset="723">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/api/localities_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1665">
           <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/api/localities_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
-          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -1259,7 +1257,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
           <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1267,31 +1264,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="294" max-vertical-offset="1095">
           <caret line="20" column="88" selection-start-line="20" selection-start-column="88" selection-end-line="20" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/api/groups_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="276" max-vertical-offset="735">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/notifications_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/controllers/api/notifications_controller_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1057" max-vertical-offset="1845">
-          <caret line="95" column="4" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="114" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1323,25 +1295,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="573">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/groups_controller.rb">
+    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3255">
-          <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-          <folding>
-            <element signature="e#5537#5702#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/controllers/api/groups_controller_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.428572" vertical-offset="710" max-vertical-offset="4710">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2241" max-vertical-offset="4260">
+          <caret line="899" column="37" selection-start-line="899" selection-start-column="37" selection-end-line="899" selection-end-column="37" />
           <folding>
+            <element signature="e#221#1348#0" expanded="false" />
             <element signature="e#2363#3078#0" expanded="false" />
             <element signature="e#3112#4056#0" expanded="false" />
             <element signature="e#4126#5142#0" expanded="false" />
@@ -1351,15 +1321,57 @@
             <element signature="e#34346#39300#0" expanded="false" />
             <element signature="e#34419#35512#0" expanded="false" />
             <element signature="e#35571#36453#0" expanded="false" />
-            <element signature="e#44156#49823#0" expanded="false" />
+            <element signature="e#44359#50026#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
+    <entry file="file://$PROJECT_DIR$/app/helpers/api/groups_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62827224" vertical-offset="0" max-vertical-offset="573">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
+          <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/api/localities_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
+          <caret line="33" column="6" selection-start-line="33" selection-start-column="6" selection-end-line="33" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/groups_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.6571426" vertical-offset="1612" max-vertical-offset="3255">
+          <caret line="123" column="79" selection-start-line="123" selection-start-column="66" selection-end-line="123" selection-end-column="79" />
+          <folding>
+            <element signature="e#5585#5750#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/notifications_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
+          <caret line="14" column="129" selection-start-line="14" selection-start-column="129" selection-end-line="14" selection-end-column="129" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/api/users_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
+          <caret line="2" column="65" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/controllers/api/notifications_controller_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27104723" vertical-offset="918" max-vertical-offset="1875">
+          <caret line="70" column="63" selection-start-line="70" selection-start-column="63" selection-end-line="70" selection-end-column="63" />
           <folding />
         </state>
       </provider>

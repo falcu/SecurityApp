@@ -902,17 +902,19 @@ describe Api::GroupsController do
 
     it "Creator renames group , all of the other users are notified" do
       create_group_with_users
-      user = User.find_by_name("creator")
-      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      creator = User.find_by_name("creator")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
       group = Group.find_by_name("group1")
       expected_name = "new name"
       double = double("Notifier")
-      expected_args = {reg_ids: ["user1_123","user2_123"], :data => {message: "Group name changed", :group_info => {group: group}, type: "name_changed" }}
+      members_json = group.members.collect { |m| m.as_json(:only => [:name,:email]) }
+      creator_json = creator.as_json(:only => [:name,:email])
+      expected_args = {reg_ids: ["user1_123","user2_123"], :data => {message: "Group name changed", :group_info => {group: group, members: members_json, creator: creator_json}, type: "name_changed" }}
       expect(double).to receive(:notify).with(expected_args)
       expect(double).to receive(:app_name=)
       Notifier.stub(:new).and_return(double)
 
-      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(creator.token)
       rename_group(group, expected_name)
     end
 
