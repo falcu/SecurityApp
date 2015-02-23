@@ -3,10 +3,10 @@ class Api::LocalitiesController < ApiController
   include Api::LocalitiesHelper
   include Api::GroupsHelper
 
-  before_action :set_locality
-  before_action :set_group
-  before_action :set_notifier_builder
-  before_action :check_locality
+  before_action :set_locality, except: [:get_localities, :get_secure_localities, :get_insecure_localities]
+  before_action :set_group, only: [:notify_locality]
+  before_action :set_notifier_builder, only: [:notify_locality]
+  before_action :check_locality, except: [:get_localities, :get_secure_localities, :get_insecure_localities]
 
   def notify_locality
     frequency = @current_user.frequencies.select { |s| s.locality_id == @locality.id }.first
@@ -46,6 +46,21 @@ class Api::LocalitiesController < ApiController
     end
   end
 
+  def get_localities
+    localities_json = localities_to_json(Locality.all)
+    render_json({message: "Localities list", type: "localities", localities_info: localities_json },200)
+  end
+
+  def get_secure_localities
+    localities_json = localities_to_json(@current_user.custom_secure_localities)
+    render_json({message: "Secured localities list", type: "secured_localities", localities_info: localities_json },200)
+  end
+
+  def get_insecure_localities
+    localities_json = localities_to_json(@current_user.custom_insecure_localities)
+    render_json({message: "Secured localities list", type: "secured_localities", localities_info: localities_json },200)
+  end
+
   private
   def add_locality(localities)
     localities << @locality unless localities.include?(@locality)
@@ -65,10 +80,8 @@ class Api::LocalitiesController < ApiController
 
   private
   def set_locality
-    locality_name = get_locality_name
-    if locality_name
-      @locality = Locality.find_by_name(locality_name)
-    else
+    @locality = get_locality
+      if @locality.nil?
       render_json({error: "Invalid coordinates"}, 400)
     end
   end
@@ -91,6 +104,19 @@ class Api::LocalitiesController < ApiController
   end
 
   private
+  def get_locality
+    if params[:id]
+      locality = Locality.find(params[:id])
+    else
+      locality_name = get_locality_name
+      if locality_name
+        locality = Locality.find_by_name(locality_name)
+      end
+    end
+    locality
+  end
+
+  private
   def check_locality
     if @locality.nil?
       render_json({error: "Unknown locality"},400)
@@ -100,6 +126,11 @@ class Api::LocalitiesController < ApiController
   private
   def is_insecure
     (@locality.insecure && !@current_user.custom_secure_localities.include?(@locality)) || @current_user.custom_insecure_localities.include?(@locality)
+  end
+
+  private
+  def localities_to_json(localities)
+    localities.collect { |locality| locality.as_json(:only => [:id, :name]) }
   end
 
 end

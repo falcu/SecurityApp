@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     put "localities/notify", to: "localities#notify_locality", as: "notify_locality"
     put "localities/set_secure", to: "localities#set_secure_locality", as: "set_secure_locality"
     put "localities/set_insecure", to: "localities#set_insecure_locality", as: "set_insecure_locality"
+    get "localities/get_localities", to: "localities#get_localities", as: "get_localities"
+    get "localities/get_secure_localities", to: "localities#get_secure_localities", as: "get_secure_localities"
+    get "localities/get_insecure_localities", to: "localities#get_insecure_localities", as: "get_insecure_localities"
 
     post "notifications/send", to: "notifications#send_notification", as: "send_notification"
   end
