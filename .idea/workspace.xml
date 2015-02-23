@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f40ad96a-b286-4a09-b1d9-1e6a9010a8a1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/SecurityApp.iml" afterPath="$PROJECT_DIR$/.idea/SecurityApp.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/api/groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/groups_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/api/groups_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/api/groups_controller_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/api/notifications_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/notifications_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/api/notifications_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/api/notifications_controller_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SecurityApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,7 +20,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Creator_renames_group__SecurityApp.coverage" NAME="Api::GroupsController Creator renames group: SecurityApp Coverage Results" MODIFIED="1420994212709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Create_a_group__SecurityApp.coverage" NAME="Api::GroupsController Create a group: SecurityApp Coverage Results" MODIFIED="1420940056058" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@Run_spec__notifications_controller_spec___SecurityApp.coverage" NAME="Run spec 'notifications_controller_spec': SecurityApp Coverage Results" MODIFIED="1424549168726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Run_spec__notifications_controller_spec___SecurityApp.coverage" NAME="Run spec 'notifications_controller_spec': SecurityApp Coverage Results" MODIFIED="1424578883819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info_Creator_of_group_with_2_members__requests_information__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info Creator of group with 2 members, requests information: SecurityApp Coverage Results" MODIFIED="1421003041917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Delete_member_Delete_1_member__notification_send_to_all_other_members_with_new_group_info__SecurityApp.coverage" NAME="Api::GroupsController Delete member Delete 1 member, notification send to all other members with new group info: SecurityApp Coverage Results" MODIFIED="1420940168066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Delete_member_Delete_1_member__separate_notification_sent_to_deleted_member__SecurityApp.coverage" NAME="Api::GroupsController Delete member Delete 1 member, separate notification sent to deleted member: SecurityApp Coverage Results" MODIFIED="1420940002665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
@@ -55,7 +51,7 @@
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info_A_user_that_creates_2_groups__gets_his_groups_information__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info A user that creates 2 groups, gets his groups information: SecurityApp Coverage Results" MODIFIED="1421003201592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info: SecurityApp Coverage Results" MODIFIED="1421003153449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Run_spec__groups_controller_spec___SecurityApp.coverage" NAME="Run spec 'groups_controller_spec': SecurityApp Coverage Results" MODIFIED="1424307586125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@Api__NotificationsController_Member_of_a_group_sends_alarm__the_other_members_are_notified_with_the_current_location__SecurityApp.coverage" NAME="Api::NotificationsController Member of a group sends alarm, the other members are notified with the current location: SecurityApp Coverage Results" MODIFIED="1424549106529" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__NotificationsController_Member_of_a_group_sends_alarm__the_other_members_are_notified_with_the_current_location__SecurityApp.coverage" NAME="Api::NotificationsController Member of a group sends alarm, the other members are notified with the current location: SecurityApp Coverage Results" MODIFIED="1424578833604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials_set_custom_secure_locality__locality_added_to_list__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials set custom secure locality, locality added to list: SecurityApp Coverage Results" MODIFIED="1421006496382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Add_a_member_to_group_Add_1_member_to_new_group__new_member_receives_notification__SecurityApp.coverage" NAME="Api::GroupsController Add a member to group Add 1 member to new group, new member receives notification: SecurityApp Coverage Results" MODIFIED="1420950002456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials__set_unknown_custom_secure_locality__json_with_error_returned__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials, set unknown custom secure locality, json with error returned: SecurityApp Coverage Results" MODIFIED="1421006616108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
@@ -83,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/api/notifications_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
-              <caret line="14" column="129" selection-start-line="14" selection-start-column="129" selection-end-line="14" selection-end-column="129" />
+              <caret line="14" column="93" selection-start-line="14" selection-start-column="93" selection-end-line="14" selection-end-column="93" />
               <folding />
             </state>
           </provider>
@@ -92,8 +88,18 @@
       <file leaf-file-name="notifications_controller_spec.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spec/controllers/api/notifications_controller_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27104723" vertical-offset="918" max-vertical-offset="1875">
-              <caret line="70" column="63" selection-start-line="70" selection-start-column="63" selection-end-line="70" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.27104723" vertical-offset="888" max-vertical-offset="1875">
+              <caret line="68" column="103" selection-start-line="68" selection-start-column="103" selection-end-line="68" selection-end-column="103" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dynamic_matchers.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.4/gems/activerecord-4.1.6/lib/active_record/dynamic_matchers.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="104" max-vertical-offset="2190">
+              <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -112,7 +118,7 @@
       <file leaf-file-name="groups_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/api/groups_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.6571426" vertical-offset="1612" max-vertical-offset="3255">
+            <state vertical-scroll-proportion="-46.285713" vertical-offset="225" max-vertical-offset="3255">
               <caret line="123" column="79" selection-start-line="123" selection-start-column="66" selection-end-line="123" selection-end-column="79" />
               <folding>
                 <element signature="e#5585#5750#0" expanded="false" />
@@ -163,21 +169,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="groups_helper.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/support/groups_helper.rb">
+      <file leaf-file-name="api_helper.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/support/api_helper.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="705">
-              <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/routes.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1245">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -885,7 +881,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1375" height="904" extended-state="6" />
+    <frame x="65" y="-4" width="1375" height="904" extended-state="7" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -987,13 +983,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/spec/controllers/api_controller_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="730">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/rubystubs21/basic_object.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="5508">
@@ -1267,14 +1256,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/support/api_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/support/groups_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="705">
@@ -1342,9 +1323,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/api/users_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
+          <caret line="2" column="65" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/api/groups_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6571426" vertical-offset="1612" max-vertical-offset="3255">
+        <state vertical-scroll-proportion="-46.285713" vertical-offset="225" max-vertical-offset="3255">
           <caret line="123" column="79" selection-start-line="123" selection-start-column="66" selection-end-line="123" selection-end-column="79" />
           <folding>
             <element signature="e#5585#5750#0" expanded="false" />
@@ -1355,23 +1344,31 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/api/notifications_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
-          <caret line="14" column="129" selection-start-line="14" selection-start-column="129" selection-end-line="14" selection-end-column="129" />
+          <caret line="14" column="93" selection-start-line="14" selection-start-column="93" selection-end-line="14" selection-end-column="93" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/api/users_helper.rb">
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.4/gems/activerecord-4.1.6/lib/active_record/dynamic_matchers.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
-          <caret line="2" column="65" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="65" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="104" max-vertical-offset="2190">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/support/api_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/controllers/api/notifications_controller_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27104723" vertical-offset="918" max-vertical-offset="1875">
-          <caret line="70" column="63" selection-start-line="70" selection-start-column="63" selection-end-line="70" selection-end-column="63" />
+        <state vertical-scroll-proportion="0.27104723" vertical-offset="888" max-vertical-offset="1875">
+          <caret line="68" column="103" selection-start-line="68" selection-start-column="103" selection-end-line="68" selection-end-column="103" />
           <folding />
         </state>
       </provider>

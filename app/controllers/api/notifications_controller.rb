@@ -12,7 +12,7 @@ class Api::NotificationsController < ApiController
   def send_notification
     reg_ids = registration_ids_of_group_excluding(@group,[@current_user])
     if(reg_ids.any?)
-       @builder.notifier.notify(reg_ids: reg_ids,:data => {message: params[:alarm], location: location_url(params),sender: users_to_json([@current_user]).first, type: "notification_alarm"})
+       @builder.notifier.notify(reg_ids: reg_ids,:data => {message: @current_user.name+" has sent an alarm!", :alarm_info =>{message: params[:alarm], location: location_url(params),sender: users_to_json([@current_user]).first}, type: "notification_alarm"})
       render_json({message: "The notification was delivered"},200)
     else
       render_json({message: "The group has no members"},200)
