@@ -462,6 +462,73 @@ describe Api::LocalitiesController do
         expect(json["localities_info"]).to eq(expected_response)
       end
 
+      it "A user with incorrect token requests the classified localities, access denied" do
+        request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials("fake")
+        get :get_classified_localities, {:format => "json"}
+
+        expect(response.status).to eq(401)
+      end
+
+      it "A legitimate user requests his/her classified localities, there is no classification" do
+        FactoryGirl.create(:locality, :name => "Martinez")
+        FactoryGirl.create(:locality, :name => "Olivos")
+        FactoryGirl.create(:locality, :name => "La Lucila")
+
+        request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+        get :get_classified_localities, {:format => "json"}
+
+        expected_response = Locality.all.collect { |l| l.as_json(:only => [:id, :name]) }
+
+        expect(json["localities_info"]["unclassified"]). to eq(expected_response)
+        expect(json["localities_info"]["secure"]).to eq([])
+        expect(json["localities_info"]["insecure"]).to eq([])
+      end
+
+      it "A legitimate user requests his/her classified localities, 1 secure, 1 insecure, 1 unclassified" do
+        martinez = FactoryGirl.create(:locality, :name => "Martinez")
+        olivos = FactoryGirl.create(:locality, :name => "Olivos")
+        la_lucila = FactoryGirl.create(:locality, :name => "La Lucila")
+
+        request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+        put :set_secure_locality, {id: martinez.id, :format => "json"}
+
+        request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+        put :set_insecure_locality, {id: la_lucila.id, :format => "json"}
+
+        request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+        get :get_classified_localities, {:format => "json"}
+
+        expected_unclassified = [olivos].collect { |l| l.as_json(:only => [:id, :name]) }
+        expected_secure = [martinez].collect { |l| l.as_json(:only => [:id, :name]) }
+        expected_insecure = [la_lucila].collect { |l| l.as_json(:only => [:id, :name]) }
+
+        expect(json["localities_info"]["unclassified"]). to eq(expected_unclassified)
+        expect(json["localities_info"]["secure"]).to eq(expected_secure)
+        expect(json["localities_info"]["insecure"]).to eq(expected_insecure)
+      end
+
+      it "A legitimate user requests his/her classified localities, 2 secure, 0 insecure, 1 unclassified" do
+        martinez = FactoryGirl.create(:locality, :name => "Martinez")
+        olivos = FactoryGirl.create(:locality, :name => "Olivos")
+        la_lucila = FactoryGirl.create(:locality, :name => "La Lucila")
+
+        request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+        put :set_secure_locality, {id: martinez.id, :format => "json"}
+
+        request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+        put :set_secure_locality, {id: la_lucila.id, :format => "json"}
+
+        request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+        get :get_classified_localities, {:format => "json"}
+
+        expected_unclassified = [olivos].collect { |l| l.as_json(:only => [:id, :name]) }
+        expected_secure = [martinez,la_lucila].collect { |l| l.as_json(:only => [:id, :name]) }
+
+        expect(json["localities_info"]["unclassified"]). to eq(expected_unclassified)
+        expect(json["localities_info"]["secure"]).to eq(expected_secure)
+        expect(json["localities_info"]["insecure"]).to eq([])
+      end
+
 
   end
 

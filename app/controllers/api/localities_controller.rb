@@ -3,10 +3,10 @@ class Api::LocalitiesController < ApiController
   include Api::LocalitiesHelper
   include Api::GroupsHelper
 
-  before_action :set_locality, except: [:get_localities, :get_secure_localities, :get_insecure_localities]
+  before_action :set_locality, only: [:notify_locality, :set_secure_locality, :set_insecure_locality]
   before_action :set_group, only: [:notify_locality]
   before_action :set_notifier_builder, only: [:notify_locality]
-  before_action :check_locality, except: [:get_localities, :get_secure_localities, :get_insecure_localities]
+  before_action :check_locality, only: [:notify_locality, :set_secure_locality, :set_insecure_locality]
 
   def notify_locality
     frequency = @current_user.frequencies.select { |s| s.locality_id == @locality.id }.first
@@ -59,6 +59,14 @@ class Api::LocalitiesController < ApiController
   def get_insecure_localities
     localities_json = localities_to_json(@current_user.custom_insecure_localities)
     render_json({message: "Secured localities list", type: "secured_localities", localities_info: localities_json },200)
+  end
+
+  def get_classified_localities
+    unclassified_json = localities_to_json(Locality.all - @current_user.custom_secure_localities - @current_user.custom_insecure_localities)
+    secure_json = localities_to_json(@current_user.custom_secure_localities)
+    insecure_json = localities_to_json(@current_user.custom_insecure_localities)
+    render_json({message: "classified localities list", type: "classified_localities",
+                 :localities_info=>{unclassified: unclassified_json, secure: secure_json, insecure: insecure_json}},200)
   end
 
   private

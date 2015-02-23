@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get "localities/get_localities", to: "localities#get_localities", as: "get_localities"
     get "localities/get_secure_localities", to: "localities#get_secure_localities", as: "get_secure_localities"
     get "localities/get_insecure_localities", to: "localities#get_insecure_localities", as: "get_insecure_localities"
+    get "localities/get_classified_localities", to: "localities#get_classified_localities", as: "get_classified_localities"
 
     post "notifications/send", to: "notifications#send_notification", as: "send_notification"
   end
