@@ -33,7 +33,7 @@ class Api::LocalitiesController < ApiController
       set_secure_locality
     elsif locality_classification.eql?("insecure")
       set_insecure_locality
-    elsif locality_classification.eql?("none")
+    elsif locality_classification.eql?("unclassified")
       set_locality_with_no_custom_classification
     else
       render_json({error: locality_classification + " is not a valid classification for a locality"},401)
@@ -128,7 +128,7 @@ class Api::LocalitiesController < ApiController
     remove_locality(@current_user.custom_secure_localities)
     if @current_user.save
       message = "The application will decide if " + @locality.name + " is secure or insecure"
-      render_json({locality: localities_to_json([@locality]).first,message: message, type: "set_none_locality"},200)
+      render_json({locality: localities_to_json([@locality]).first,message: message, type: "set_unclassified_locality"},200)
     end
   end
 

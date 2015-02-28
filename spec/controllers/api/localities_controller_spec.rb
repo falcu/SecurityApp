@@ -145,7 +145,7 @@ describe Api::LocalitiesController do
 
   end
 
-  context "Set custom secure/insecure/none locality" do
+  context "Set custom secure/insecure/unclassified locality" do
 
     before do
       load Rails.root + "db/seeds.rb"
@@ -348,7 +348,7 @@ describe Api::LocalitiesController do
     it "User sets Martinez to have no classification, Martinez is neither custom secure nor custom insecure" do
       user = FactoryGirl.create(:user, :name => "user", :email => "user@someemail.com", :password => "123456")
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-      put :set_locality_classification, {locality_name: "Martinez",locality_classification: "none" ,:format => "json"}
+      put :set_locality_classification, {locality_name: "Martinez",locality_classification: "unclassified" ,:format => "json"}
 
       expect(user.custom_secure_localities.count). to eq(0)
       expect(user.custom_insecure_localities.count). to eq(0)
@@ -360,7 +360,7 @@ describe Api::LocalitiesController do
       put :set_locality_classification, {locality_name: "Martinez",locality_classification: "secure" ,:format => "json"}
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-      put :set_locality_classification, {locality_name: "Martinez",locality_classification: "none" ,:format => "json"}
+      put :set_locality_classification, {locality_name: "Martinez",locality_classification: "unclassified" ,:format => "json"}
 
       expect(user.custom_secure_localities.count). to eq(0)
       expect(user.custom_insecure_localities.count). to eq(0)
@@ -372,7 +372,7 @@ describe Api::LocalitiesController do
       put :set_locality_classification, {locality_name: "Martinez",locality_classification: "insecure" ,:format => "json"}
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-      put :set_locality_classification, {locality_name: "Martinez",locality_classification: "none" ,:format => "json"}
+      put :set_locality_classification, {locality_name: "Martinez",locality_classification: "unclassified" ,:format => "json"}
 
       expect(user.custom_secure_localities.count). to eq(0)
       expect(user.custom_insecure_localities.count). to eq(0)
@@ -385,7 +385,7 @@ describe Api::LocalitiesController do
       put :set_locality_classification, {id: locality.id,locality_classification: "insecure" ,:format => "json"}
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-      put :set_locality_classification, {id: locality.id,locality_classification: "none" ,:format => "json"}
+      put :set_locality_classification, {id: locality.id,locality_classification: "unclassified" ,:format => "json"}
 
       expect(user.custom_secure_localities.count). to eq(0)
       expect(user.custom_insecure_localities.count). to eq(0)
@@ -396,11 +396,11 @@ describe Api::LocalitiesController do
       locality = Locality.find_by_name("Martinez")
 
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
-      put :set_locality_classification, {locality_name: "Martinez",locality_classification: "none" ,:format => "json"}
+      put :set_locality_classification, {locality_name: "Martinez",locality_classification: "unclassified" ,:format => "json"}
 
       expect(response.status).to eq(200)
       expect(json["message"]).to eq("The application will decide if Martinez is secure or insecure")
-      expect(json["type"]).to eq("set_none_locality")
+      expect(json["type"]).to eq("set_unclassified_locality")
       expect(json["locality"]).to eq(locality.as_json(:only => [:id, :name]))
     end
 
