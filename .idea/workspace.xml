@@ -6,6 +6,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/api/localities_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/localities_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/api/localities_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/api/localities_controller_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SecurityApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,22 +27,24 @@
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Delete_member_Delete_1_member__is_creator__succeded__SecurityApp.coverage" NAME="Api::GroupsController Delete member Delete 1 member, is creator, succeded: SecurityApp Coverage Results" MODIFIED="1420919094216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Get_localities__SecurityApp.coverage" NAME="Api::LocalitiesController Get localities: SecurityApp Coverage Results" MODIFIED="1424656252805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info_A_user_that_creates_1_groups__gets_his_groups_information__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info A user that creates 1 groups, gets his groups information: SecurityApp Coverage Results" MODIFIED="1420995447889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_sets_Martinez_to_be_insecure_and_then_with_no_classification_using_id__Martinez_is_neither_custom_secure_nor_custom_insecure__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to be insecure and then with no classification using id, Martinez is neither custom secure nor custom insecure: SecurityApp Coverage Results" MODIFIED="1425164611141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info_Member_of_group_with_2_members__requests_information__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info Member of group with 2 members, requests information: SecurityApp Coverage Results" MODIFIED="1421003120186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Get_localities_A_user_with_incorrect_token_requests_his_her_insecured_localities__access_denied__SecurityApp.coverage" NAME="Api::LocalitiesController Get localities A user with incorrect token requests his/her insecured localities, access denied: SecurityApp Coverage Results" MODIFIED="1424655896382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Get_localities_A_legitimate_user_requests_his_her_classified_localities__there_is_no_classification__SecurityApp.coverage" NAME="Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, there is no classification: SecurityApp Coverage Results" MODIFIED="1424658891775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Notify_Locality__SecurityApp.coverage" NAME="Api::LocalitiesController Notify Locality: SecurityApp Coverage Results" MODIFIED="1421005793853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Add_a_member_to_group_Add_first_member_to_new_group__only_new_member_receives_push_notification_as_there_are_no_older_members__SecurityApp.coverage" NAME="Api::GroupsController Add a member to group Add first member to new group, only new member receives push notification as there are no older members: SecurityApp Coverage Results" MODIFIED="1421021356053" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials__set_custom_insecure_locality_using_id__json_returned__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials, set custom insecure locality using id, json returned: SecurityApp Coverage Results" MODIFIED="1424657304446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials__set_custom_insecure_locality_using_id__json_returned__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials, set custom insecure locality using id, json returned: SecurityApp Coverage Results" MODIFIED="1425164489425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Add_a_member_to_group_Add_1_member_to_group_with_2_members__push_notification_is_sent_to_new_member__SecurityApp.coverage" NAME="Api::GroupsController Add a member to group Add 1 member to group with 2 members, push notification is sent to new member: SecurityApp Coverage Results" MODIFIED="1420951309767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@Run_spec__localities_controller_spec___SecurityApp.coverage" NAME="Run spec 'localities_controller_spec': SecurityApp Coverage Results" MODIFIED="1424658024379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Run_spec__localities_controller_spec___SecurityApp.coverage" NAME="Run spec 'localities_controller_spec': SecurityApp Coverage Results" MODIFIED="1425165083776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Add_a_member_to_group_Add_1_member_to_new_group__new_member_receives_push_notification__SecurityApp.coverage" NAME="Api::GroupsController Add a member to group Add 1 member to new group, new member receives push notification: SecurityApp Coverage Results" MODIFIED="1420951343633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Add_a_member_to_group__SecurityApp.coverage" NAME="Api::GroupsController Add a member to group: SecurityApp Coverage Results" MODIFIED="1421021042066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials__set_custom_secure_locality__json_returned__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials, set custom secure locality, json returned: SecurityApp Coverage Results" MODIFIED="1425164460381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Get_localities_A_legitimate_user_requests_his_her_classified_localities__2_secure__0_insecure__1_unclassified__SecurityApp.coverage" NAME="Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, 2 secure, 0 insecure, 1 unclassified: SecurityApp Coverage Results" MODIFIED="1424659280468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Run_spec__users_controller_spec___SecurityApp.coverage" NAME="Run spec 'users_controller_spec': SecurityApp Coverage Results" MODIFIED="1420595376702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials__set_custom_secure_locality__json_returned__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials, set custom secure locality, json returned: SecurityApp Coverage Results" MODIFIED="1421006475367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Add_a_member_to_group_Add_first_member_to_group__only_one_push_notification_should_be_sent__SecurityApp.coverage" NAME="Api::GroupsController Add a member to group Add first member to group, only one push notification should be sent: SecurityApp Coverage Results" MODIFIED="1421021107949" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_User_gets_groups_info__SecurityApp.coverage" NAME="Api::GroupsController User gets groups info: SecurityApp Coverage Results" MODIFIED="1421003153449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Get_localities_A_user_with_incorrect_token_requests_the_localities__access_denied__SecurityApp.coverage" NAME="Api::LocalitiesController Get localities A user with incorrect token requests the localities, access denied: SecurityApp Coverage Results" MODIFIED="1424650721354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_sets_Martinez_to_be_secure_and_then_with_no_classification__Martinez_is_neither_custom_secure_nor_custom_insecure__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to be secure and then with no classification, Martinez is neither custom secure nor custom insecure: SecurityApp Coverage Results" MODIFIED="1425163784996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Get_localities_A_legitimate_user_request_localities_and_there_are_2__SecurityApp.coverage" NAME="Api::LocalitiesController Get localities A legitimate user request localities and there are 2: SecurityApp Coverage Results" MODIFIED="1424651335686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Add_a_member_to_group_Add_1_member_to_new_group__new_member_receives_notification__SecurityApp.coverage" NAME="Api::GroupsController Add a member to group Add 1 member to new group, new member receives notification: SecurityApp Coverage Results" MODIFIED="1420950002456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials__set_custom_insecure_locality_using_id__locality_added_to_list__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials, set custom insecure locality using id, locality added to list: SecurityApp Coverage Results" MODIFIED="1424657263177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
@@ -49,20 +52,25 @@
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_incorrect_credentials__set_custom_secure_locality__access_denied__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with incorrect credentials, set custom secure locality, access denied: SecurityApp Coverage Results" MODIFIED="1421006585693" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Add_a_member_to_group_Add_member_to_group__all_other_members_are_notified__SecurityApp.coverage" NAME="Api::GroupsController Add a member to group Add member to group, all other members are notified: SecurityApp Coverage Results" MODIFIED="1420951198093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Add_a_member_to_group_Add_1_member_to_new_group__SecurityApp.coverage" NAME="Api::GroupsController Add a member to group Add 1 member to new group: SecurityApp Coverage Results" MODIFIED="1420595147718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_sets_Martinez_to_have_no_unexistent_classification__json_with_error_returned__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to have no unexistent classification, json with error returned: SecurityApp Coverage Results" MODIFIED="1425165260854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Create_a_group__SecurityApp.coverage" NAME="Api::GroupsController Create a group: SecurityApp Coverage Results" MODIFIED="1420940056058" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Creator_renames_group__SecurityApp.coverage" NAME="Api::GroupsController Creator renames group: SecurityApp Coverage Results" MODIFIED="1420994212709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Delete_member_Delete_1_member__notification_send_to_all_other_members_with_new_group_info__SecurityApp.coverage" NAME="Api::GroupsController Delete member Delete 1 member, notification send to all other members with new group info: SecurityApp Coverage Results" MODIFIED="1420940168066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Delete_member_Delete_1_member__separate_notification_sent_to_deleted_member__SecurityApp.coverage" NAME="Api::GroupsController Delete member Delete 1 member, separate notification sent to deleted member: SecurityApp Coverage Results" MODIFIED="1420940002665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Get_localities_A_legitimate_user_request_localities__SecurityApp.coverage" NAME="Api::LocalitiesController Get localities A legitimate user request localities: SecurityApp Coverage Results" MODIFIED="1424651257526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Creator_renames_group_Creator_renames_group___all_of_the_other_users_are_notified__SecurityApp.coverage" NAME="Api::GroupsController Creator renames group Creator renames group , all of the other users are notified: SecurityApp Coverage Results" MODIFIED="1424308008341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_sets_Martinez_to_have_no_classification__Martinez_is_neither_custom_secure_nor_custom_insecure__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to have no classification, Martinez is neither custom secure nor custom insecure: SecurityApp Coverage Results" MODIFIED="1425163519120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__NotificationsController_Creator_of_a_group_sends_alarm_with_zoom__the_other_members_are_notified_with_custom_message_and_the_current_location_with_zoom__SecurityApp.coverage" NAME="Api::NotificationsController Creator of a group sends alarm with zoom, the other members are notified with custom message and the current location with zoom: SecurityApp Coverage Results" MODIFIED="1421007504428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials: SecurityApp Coverage Results" MODIFIED="1425165310122" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_sets_Martinez_to_have_no_classification_using_id__json_returned__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to have no classification using id, json returned: SecurityApp Coverage Results" MODIFIED="1425164996863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Delete_member_Delete_2_members__SecurityApp.coverage" NAME="Api::GroupsController Delete member Delete 2 members: SecurityApp Coverage Results" MODIFIED="1420919122015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__NotificationsController_Creator_of_a_group_sends_alarm__the_other_members_are_notified_with_custom_message_and_the_current_location__SecurityApp.coverage" NAME="Api::NotificationsController Creator of a group sends alarm, the other members are notified with custom message and the current location: SecurityApp Coverage Results" MODIFIED="1421007341937" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials__set_custom_secure_locality_using_id__json_returned__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials, set custom secure locality using id, json returned: SecurityApp Coverage Results" MODIFIED="1424657136586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials__set_custom_secure_locality_using_id__json_returned__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials, set custom secure locality using id, json returned: SecurityApp Coverage Results" MODIFIED="1425164342391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Delete_member_Delete_the_only_member_of_the_group__only_one_push_notificaiton_is_sent_separately_to_deleted_member__SecurityApp.coverage" NAME="Api::GroupsController Delete member Delete the only member of the group, only one push notificaiton is sent separately to deleted member: SecurityApp Coverage Results" MODIFIED="1421025846579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials__set_custom_secure_locality_using_id__locality_added_to_list__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials, set custom secure locality using id, locality added to list: SecurityApp Coverage Results" MODIFIED="1424657008431" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_sets_Martinez_to_be_insecure_and_then_with_no_classification__Martinez_is_neither_custom_secure_nor_custom_insecure__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to be insecure and then with no classification, Martinez is neither custom secure nor custom insecure: SecurityApp Coverage Results" MODIFIED="1425163826109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Delete_member__SecurityApp.coverage" NAME="Api::GroupsController Delete member: SecurityApp Coverage Results" MODIFIED="1421025932418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
-    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials__set_custom_insecure_locality__json_returned__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials, set custom insecure locality, json returned: SecurityApp Coverage Results" MODIFIED="1421006879093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
+    <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Set_custom_secure_unsecure_locality_with_correct_credentials_User_with_correct_credentials__set_custom_insecure_locality__json_returned__SecurityApp.coverage" NAME="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User with correct credentials, set custom insecure locality, json returned: SecurityApp Coverage Results" MODIFIED="1425164474572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__NotificationsController__SecurityApp.coverage" NAME="Api::NotificationsController: SecurityApp Coverage Results" MODIFIED="1421007477014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__GroupsController_Delete_member_Delete_member__json_with_group_info_is_returned__SecurityApp.coverage" NAME="Api::GroupsController Delete member Delete member, json with group info is returned: SecurityApp Coverage Results" MODIFIED="1420919145172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
     <SUITE FILE_PATH="coverage/SecurityApp@Api__LocalitiesController_Get_localities_A_legitimate_user_requests_his_her_classified_localities__1_secure__1_insecure__1_unclassified__SecurityApp.coverage" NAME="Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, 1 secure, 1 insecure, 1 unclassified: SecurityApp Coverage Results" MODIFIED="1424659169802" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="SecurityApp" />
@@ -94,87 +102,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="notifications_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/api/notifications_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="585">
-              <caret line="14" column="93" selection-start-line="14" selection-start-column="93" selection-end-line="14" selection-end-column="93" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="localities_controller_spec.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spec/controllers/api/localities_controller_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2857143" vertical-offset="5463" max-vertical-offset="6090">
-              <caret line="509" column="58" selection-start-line="509" selection-start-column="58" selection-end-line="509" selection-end-column="58" />
+            <state vertical-scroll-proportion="0.17401393" vertical-offset="90" max-vertical-offset="4395">
+              <caret line="147" column="55" selection-start-line="147" selection-start-column="55" selection-end-line="147" selection-end-column="55" />
               <folding>
-                <element signature="e#365#6820#0" expanded="false" />
+                <element signature="e#365#6904#0" expanded="false" />
+                <element signature="e#22995#33047#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+      <file leaf-file-name="notifier_builder.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/notifier_builder.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="localities_helper.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/helpers/api/localities_helper.rb">
+        <entry file="file://$PROJECT_DIR$/spec/support/localities_helper.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
+              <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="groups_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/api/groups_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.0571427" vertical-offset="938" max-vertical-offset="3255">
-              <caret line="72" column="52" selection-start-line="72" selection-start-column="50" selection-end-line="72" selection-end-column="52" />
-              <folding>
-                <element signature="e#5585#5750#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="locality_factory.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/factories/locality_factory.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
-              <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="groups_controller_spec.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/controllers/api/groups_controller_spec.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.0571427" vertical-offset="5513" max-vertical-offset="7665">
-              <caret line="484" column="9" selection-start-line="484" selection-start-column="6" selection-end-line="484" selection-end-column="9" />
-              <folding>
-                <element signature="e#221#1348#0" expanded="false" />
-                <element signature="e#2363#3078#0" expanded="false" />
-                <element signature="e#3112#4056#0" expanded="false" />
-                <element signature="e#4126#5142#0" expanded="false" />
-                <element signature="e#5257#6472#0" expanded="false" />
-                <element signature="e#23328#34313#0" expanded="false" />
-                <element signature="e#34346#39300#0" expanded="false" />
-                <element signature="e#34419#35512#0" expanded="false" />
-                <element signature="e#35571#36453#0" expanded="false" />
-                <element signature="e#44359#50026#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -182,8 +138,8 @@
       <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/routes.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1305">
-              <caret line="22" column="111" selection-start-line="22" selection-start-column="111" selection-end-line="22" selection-end-column="111" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="1290">
+              <caret line="16" column="84" selection-start-line="16" selection-start-column="84" selection-end-line="16" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -192,18 +148,8 @@
       <file leaf-file-name="localities_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/api/localities_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="2250">
-              <caret line="64" column="122" selection-start-line="64" selection-start-column="122" selection-end-line="64" selection-end-column="122" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dynamic_matchers.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.4/gems/activerecord-4.1.6/lib/active_record/dynamic_matchers.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="112" max-vertical-offset="2190">
-              <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="2730">
+              <caret line="38" column="104" selection-start-line="38" selection-start-column="104" selection-end-line="38" selection-end-column="104" />
               <folding />
             </state>
           </provider>
@@ -253,9 +199,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="-4" />
+    <option name="y" value="24" />
     <option name="width" value="1375" />
-    <option name="height" value="904" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -283,8 +229,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="RailsProjectView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -417,6 +361,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SecurityApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SecurityApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -535,6 +497,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="RailsProjectView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -556,7 +520,81 @@
       <recent name="C:\Users\Guido\Rails\SecurityApp\app\controllers\api" />
     </key>
   </component>
-  <component name="RunManager" selected="RSpec.Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, 2 secure, 0 insecure, 1 unclassified: SecurityApp">
+  <component name="RunManager" selected="RSpec.Api::LocalitiesController Set custom secure/unsecure locality with correct credentials: SecurityApp">
+    <configuration default="false" name="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to be insecure and then with no classification using id, Martinez is neither custom secure nor custom insecure: SecurityApp" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
+      <module name="SecurityApp" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/api/localities_controller_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to be insecure and then with no classification using id, Martinez is neither custom secure nor custom insecure" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <RunnerSettings RunnerId="RubyRunner" />
+      <ConfigurationWrapper RunnerId="RubyRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to have no classification using id, json returned: SecurityApp" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
+      <module name="SecurityApp" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/api/localities_controller_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to have no classification using id, json returned" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <RunnerSettings RunnerId="RubyRunner" />
+      <ConfigurationWrapper RunnerId="RubyRunner" />
+      <method />
+    </configuration>
     <configuration default="false" name="Run spec 'localities_controller_spec': SecurityApp" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="SecurityApp" />
@@ -594,7 +632,7 @@
       <ConfigurationWrapper RunnerId="RubyRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Api::LocalitiesController Get localities A user with incorrect token requests the classified localities, access denied: SecurityApp" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+    <configuration default="false" name="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to have no unexistent classification, json with error returned: SecurityApp" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="SecurityApp" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
@@ -618,7 +656,7 @@
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/api/localities_controller_spec.rb" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::LocalitiesController Get localities A user with incorrect token requests the classified localities, access denied" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to have no unexistent classification, json with error returned" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
@@ -631,7 +669,7 @@
       <ConfigurationWrapper RunnerId="RubyRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, there is no classification: SecurityApp" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+    <configuration default="false" name="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials: SecurityApp" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="SecurityApp" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
@@ -655,81 +693,7 @@
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/api/localities_controller_spec.rb" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, there is no classification" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
-      <RunnerSettings RunnerId="RubyRunner" />
-      <ConfigurationWrapper RunnerId="RubyRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, 1 secure, 1 insecure, 1 unclassified: SecurityApp" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
-      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
-      <module name="SecurityApp" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs>
-        <env name="RAILS_ENV" value="test" />
-        <env name="JRUBY_OPTS" value="-X+O" />
-      </envs>
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/api/localities_controller_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, 1 secure, 1 insecure, 1 unclassified" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
-      <RunnerSettings RunnerId="RubyRunner" />
-      <ConfigurationWrapper RunnerId="RubyRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, 2 secure, 0 insecure, 1 unclassified: SecurityApp" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
-      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
-      <module name="SecurityApp" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs>
-        <env name="RAILS_ENV" value="test" />
-        <env name="JRUBY_OPTS" value="-X+O" />
-      </envs>
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/api/localities_controller_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, 2 secure, 0 insecure, 1 unclassified" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::LocalitiesController Set custom secure/unsecure locality with correct credentials" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
@@ -890,19 +854,19 @@
       <item index="2" class="java.lang.String" itemvalue="Rake.spec: SecurityApp" />
       <item index="3" class="java.lang.String" itemvalue="Rails.Production: SecurityApp" />
       <item index="4" class="java.lang.String" itemvalue="Rails.Development: SecurityApp" />
-      <item index="5" class="java.lang.String" itemvalue="RSpec.Run spec 'localities_controller_spec': SecurityApp" />
-      <item index="6" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Get localities A user with incorrect token requests the classified localities, access denied: SecurityApp" />
-      <item index="7" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, there is no classification: SecurityApp" />
-      <item index="8" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, 1 secure, 1 insecure, 1 unclassified: SecurityApp" />
-      <item index="9" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, 2 secure, 0 insecure, 1 unclassified: SecurityApp" />
+      <item index="5" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to be insecure and then with no classification using id, Martinez is neither custom secure nor custom insecure: SecurityApp" />
+      <item index="6" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to have no classification using id, json returned: SecurityApp" />
+      <item index="7" class="java.lang.String" itemvalue="RSpec.Run spec 'localities_controller_spec': SecurityApp" />
+      <item index="8" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to have no unexistent classification, json with error returned: SecurityApp" />
+      <item index="9" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Set custom secure/unsecure locality with correct credentials: SecurityApp" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, 2 secure, 0 insecure, 1 unclassified: SecurityApp" />
-        <item index="1" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, 1 secure, 1 insecure, 1 unclassified: SecurityApp" />
-        <item index="2" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Get localities A legitimate user requests his/her classified localities, there is no classification: SecurityApp" />
-        <item index="3" class="java.lang.String" itemvalue="RSpec.Run spec 'localities_controller_spec': SecurityApp" />
-        <item index="4" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Get localities A user with incorrect token requests the classified localities, access denied: SecurityApp" />
+        <item index="0" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Set custom secure/unsecure locality with correct credentials: SecurityApp" />
+        <item index="1" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to have no unexistent classification, json with error returned: SecurityApp" />
+        <item index="2" class="java.lang.String" itemvalue="RSpec.Run spec 'localities_controller_spec': SecurityApp" />
+        <item index="3" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to have no classification using id, json returned: SecurityApp" />
+        <item index="4" class="java.lang.String" itemvalue="RSpec.Api::LocalitiesController Set custom secure/unsecure locality with correct credentials User sets Martinez to be insecure and then with no classification using id, Martinez is neither custom secure nor custom insecure: SecurityApp" />
       </list>
     </recent_temporary>
   </component>
@@ -920,25 +884,25 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1375" height="904" extended-state="6" />
+    <frame x="65" y="24" width="1375" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277849" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28654546" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35051546" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34955186" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32784638" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35783133" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -987,11 +951,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="ruby-line">
-          <url>file://$PROJECT_DIR$/spec/controllers/api/localities_controller_spec.rb</url>
-          <line>147</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/spec/controllers/api/groups_controller_spec.rb</url>
           <line>888</line>
           <option name="timeStamp" value="3" />
@@ -1018,7 +977,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/spec/controllers/api/localities_controller_spec.rb</url>
-          <line>343</line>
+          <line>419</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
@@ -1027,13 +986,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/frequency.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20141206210253_create_frequencies.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="689">
@@ -1122,13 +1074,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.4456928" vertical-offset="1959" max-vertical-offset="2760">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/notifier_builder.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -1223,14 +1168,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/support/localities_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
-          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/api/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="294" max-vertical-offset="1095">
@@ -1242,15 +1179,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="705">
           <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1274,7 +1202,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
           <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1282,7 +1209,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="753" max-vertical-offset="1875">
           <caret line="68" column="103" selection-start-line="68" selection-start-column="103" selection-end-line="68" selection-end-column="103" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1290,7 +1216,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="500">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1298,7 +1223,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="500">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1317,7 +1241,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="573">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1325,7 +1248,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1333,7 +1255,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
           <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1341,7 +1262,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1369,35 +1289,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1305">
-          <caret line="22" column="111" selection-start-line="22" selection-start-column="111" selection-end-line="22" selection-end-column="111" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/localities_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="2250">
-          <caret line="64" column="122" selection-start-line="64" selection-start-column="122" selection-end-line="64" selection-end-column="122" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/groups_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.0571427" vertical-offset="938" max-vertical-offset="3255">
-          <caret line="72" column="52" selection-start-line="72" selection-start-column="50" selection-end-line="72" selection-end-column="52" />
-          <folding>
-            <element signature="e#5585#5750#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/controllers/api/groups_controller_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.0571427" vertical-offset="5513" max-vertical-offset="7665">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5513" max-vertical-offset="7665">
           <caret line="484" column="9" selection-start-line="484" selection-start-column="6" selection-end-line="484" selection-end-column="9" />
           <folding>
             <element signature="e#221#1348#0" expanded="false" />
@@ -1414,12 +1308,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20141206193155_create_localities.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="747">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/groups_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1035" max-vertical-offset="3255">
+          <caret line="102" column="176" selection-start-line="102" selection-start-column="176" selection-end-line="102" selection-end-column="192" />
+          <folding>
+            <element signature="e#5585#5750#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/support/localities_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="1290">
+          <caret line="16" column="84" selection-start-line="16" selection-start-column="84" selection-end-line="16" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/notifier_builder.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/localities_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="2730">
+          <caret line="38" column="104" selection-start-line="38" selection-start-column="104" selection-end-line="38" selection-end-column="104" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/spec/controllers/api/localities_controller_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2857143" vertical-offset="5463" max-vertical-offset="6090">
-          <caret line="509" column="58" selection-start-line="509" selection-start-column="58" selection-end-line="509" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.17401393" vertical-offset="90" max-vertical-offset="4395">
+          <caret line="147" column="55" selection-start-line="147" selection-start-column="55" selection-end-line="147" selection-end-column="55" />
           <folding>
-            <element signature="e#365#6820#0" expanded="false" />
+            <element signature="e#365#6904#0" expanded="false" />
+            <element signature="e#22995#33047#0" expanded="false" />
           </folding>
         </state>
       </provider>

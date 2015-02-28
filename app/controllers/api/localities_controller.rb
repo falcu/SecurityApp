@@ -3,10 +3,10 @@ class Api::LocalitiesController < ApiController
   include Api::LocalitiesHelper
   include Api::GroupsHelper
 
-  before_action :set_locality, only: [:notify_locality, :set_secure_locality, :set_insecure_locality]
+  before_action :set_current_locality, only: [:notify_locality, :set_locality_classification]
   before_action :set_group, only: [:notify_locality]
   before_action :set_notifier_builder, only: [:notify_locality]
-  before_action :check_locality, only: [:notify_locality, :set_secure_locality, :set_insecure_locality]
+  before_action :check_locality, only: [:notify_locality, :set_locality_classification]
 
   def notify_locality
     frequency = @current_user.frequencies.select { |s| s.locality_id == @locality.id }.first
@@ -28,23 +28,19 @@ class Api::LocalitiesController < ApiController
     end
   end
 
-  def set_secure_locality
-    add_locality(@current_user.custom_secure_localities)
-    remove_locality(@current_user.custom_insecure_localities)
-    if @current_user.save
-      message = "You set " + @locality.name + " as a secure locality"
-      render_json({message: message, type: "set_secure_locality"},200)
+  def set_locality_classification
+    if locality_classification.eql?("secure")
+      set_secure_locality
+    elsif locality_classification.eql?("insecure")
+      set_insecure_locality
+    elsif locality_classification.eql?("none")
+      set_locality_with_no_custom_classification
+    else
+      render_json({error: locality_classification + " is not a valid classification for a locality"},401)
     end
   end
 
-  def set_insecure_locality
-    add_locality(@current_user.custom_insecure_localities)
-    remove_locality(@current_user.custom_secure_localities)
-    if @current_user.save
-      message = "You set " + @locality.name + " as an insecure locality"
-      render_json({message: message, type: "set_insecure_locality"},200)
-    end
-  end
+
 
   def get_localities
     localities_json = localities_to_json(Locality.all)
@@ -87,7 +83,7 @@ class Api::LocalitiesController < ApiController
   end
 
   private
-  def set_locality
+  def set_current_locality
     @locality = get_locality
       if @locality.nil?
       render_json({error: "Invalid coordinates"}, 400)
@@ -105,6 +101,42 @@ class Api::LocalitiesController < ApiController
     message = @current_user.name << " entered " << @locality.name << " which is considered unsecured"
     @builder.notifier.notify(reg_ids: reg_ids, :data => {message: message, location: location_url(params), type: "notify_unsecure_location"})
   end
+
+  private
+  def set_secure_locality
+    add_locality(@current_user.custom_secure_localities)
+    remove_locality(@current_user.custom_insecure_localities)
+    if @current_user.save
+      message = "You set " + @locality.name + " as a secure locality"
+      render_json({locality: localities_to_json([@locality]).first,message: message, type: "set_secure_locality"},200)
+    end
+  end
+
+  private
+  def set_insecure_locality
+    add_locality(@current_user.custom_insecure_localities)
+    remove_locality(@current_user.custom_secure_localities)
+    if @current_user.save
+      message = "You set " + @locality.name + " as an insecure locality"
+      render_json({locality: localities_to_json([@locality]).first,message: message, type: "set_insecure_locality"},200)
+    end
+  end
+
+  private
+  def set_locality_with_no_custom_classification
+    remove_locality(@current_user.custom_insecure_localities)
+    remove_locality(@current_user.custom_secure_localities)
+    if @current_user.save
+      message = "The application will decide if " + @locality.name + " is secure or insecure"
+      render_json({locality: localities_to_json([@locality]).first,message: message, type: "set_none_locality"},200)
+    end
+  end
+
+  private
+  def locality_classification
+    params[:locality_classification]
+  end
+
 
   private
   def get_locality_name
