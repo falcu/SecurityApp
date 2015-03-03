@@ -7,6 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Locality.create(name: "Olivos")
+Locality.create(name: "Acassuso")
+Locality.create(name: "Florida")
+Locality.create(name: "San isidro")
 Locality.create(name: "Martinez", insecure: true)
 
 app = Rpush::Gcm::App.new

@@ -143,6 +143,26 @@ describe Api::LocalitiesController do
       put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
     end
 
+    it "User notifies location with custom message, notification is sent to group with that message" do
+      expected_message = "My custom message"
+      olivos = File.read(olivos_path)
+      Net::HTTP.stub(:get).and_return(olivos)
+      user = User.find_by_email("user1@email.com")
+      group = Group.find_by_name("group1")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_locality_classification, {locality_name: "Olivos",locality_classification: "insecure" ,:format => "json"}
+
+      expected_args = {reg_ids: ["creator_123","user2_123"], :data => {message: "My custom message",
+                                                                       location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,20z", type: "notify_unsecure_location"}}
+      double = double("Notifier")
+      expect(double).to receive(:notify).with(expected_args)
+      expect(double).to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :notify_locality, {message: expected_message,latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
+    end
+
   end
 
   context "Set custom secure/insecure/unclassified locality" do
