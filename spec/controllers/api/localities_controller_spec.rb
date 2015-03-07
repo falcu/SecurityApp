@@ -163,6 +163,23 @@ describe Api::LocalitiesController do
       put :notify_locality, {message: expected_message,latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
     end
 
+    it "User notifies location that it's custom insecure but there are no members in the group, no notification is sent" do
+      olivos = File.read(olivos_path)
+      Net::HTTP.stub(:get).and_return(olivos)
+      user = User.find_by_email("creator2@email.com")
+      group = Group.find_by_name("group2")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_locality_classification, {locality_name: "Olivos",locality_classification: "insecure" ,:format => "json"}
+
+      double = double("Notifier")
+      expect(double).not_to receive(:notify)
+      expect(double).not_to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
+    end
+
   end
 
   context "Set custom secure/insecure/unclassified locality" do

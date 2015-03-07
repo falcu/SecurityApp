@@ -17,7 +17,7 @@ class Api::LocalitiesController < ApiController
       frequency = @current_user.frequencies.build(locality_id: @locality.id, value: 1)
     end
 
-    if is_insecure && @group
+    if is_insecure && @group && @group.members.any?
       notify_current_locality
     end
 

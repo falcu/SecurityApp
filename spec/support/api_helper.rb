@@ -25,6 +25,14 @@ module ApiHelpers
     group.members << user1
     group.members << user2
     group.save
+
+    creator2 = User.new(name: "creator2", email: "creator2@email.com", password: "123456", password_confirmation: "123456")
+    creator2.devices << Device.new(registration_id: "creator2_123")
+    creator2.save
+
+    group = Group.new(name: "group2")
+    group.creator = creator2
+    group.save
   end
 
 end
