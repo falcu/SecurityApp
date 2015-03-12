@@ -2,6 +2,7 @@ class Api::LocalitiesController < ApiController
   include ApiHelper
   include Api::LocalitiesHelper
   include Api::GroupsHelper
+  include Api::UsersHelper
 
   before_action :set_current_locality, only: [:notify_locality, :set_locality_classification]
   before_action :set_group, only: [:notify_locality]
@@ -98,9 +99,13 @@ class Api::LocalitiesController < ApiController
   private
   def notify_current_locality
     reg_ids = registration_ids_of_group_excluding(@group, [@current_user])
-    default_message = @current_user.name << " entered " << @locality.name << " which is considered unsecured"
-    message = params[:message] || default_message
-    @builder.notifier.notify(reg_ids: reg_ids, :data => {message: message, location: location_url(params), type: "notify_unsecure_location"})
+    default_message = @current_user.name + " entered " + @locality.name + " which is considered insecure"
+    user_message = params[:message] || default_message
+    notification_message = @current_user.name + " has sent a notification"
+    @builder.notifier.notify(reg_ids: reg_ids, :data =>
+                                                 {message: notification_message,
+                                                  :locality_notification_info=>{message: user_message, location: location_url(params), sender: users_to_json([@current_user]).first },
+                                                  type: "notification_insecure_location"})
   end
 
   private

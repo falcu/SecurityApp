@@ -90,14 +90,16 @@ describe Api::LocalitiesController do
       expect(response.status).to eq(400)
     end
 
-    it "User notifies unsecure location which is not custom secure, a push notification is sent to all the members of the group" do
+    it "User notifies insecure location which is not custom secure, a push notification is sent to all the members of the group" do
       martinez = File.read(martinez_path)
       Net::HTTP.stub(:get).and_return(martinez)
       user = User.find_by_email("user1@email.com")
       group = Group.find_by_name("group1")
 
-      expected_args = {reg_ids: ["creator_123","user2_123"], :data => {message: "user1 entered Martinez which is considered unsecured",
-                                                                   location: "https://www.google.com.ar/maps/@-34.494271,-58.498217,20z", type: "notify_unsecure_location"}}
+      user_json =  user.as_json(:only => [:name, :email])
+      expected_args = {reg_ids: ["creator_123","user2_123"], :data => {message: "user1 has sent a notification",
+                                                                       :locality_notification_info=>{message: "user1 entered Martinez which is considered insecure",
+                                                                                                     location: "https://www.google.com.ar/maps/@-34.494271,-58.498217,20z", sender: user_json }, type: "notification_insecure_location"}}
       double = double("Notifier")
       expect(double).to receive(:notify).with(expected_args)
       allow(double).to receive(:app_name=)
@@ -131,9 +133,10 @@ describe Api::LocalitiesController do
       group = Group.find_by_name("group1")
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
       put :set_locality_classification, {locality_name: "Olivos",locality_classification: "insecure" ,:format => "json"}
-
-      expected_args = {reg_ids: ["creator_123","user2_123"], :data => {message: "user1 entered Olivos which is considered unsecured",
-                                                                   location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,20z", type: "notify_unsecure_location"}}
+      user_json =  user.as_json(:only => [:name, :email])
+      expected_args = {reg_ids: ["creator_123","user2_123"], :data => {message: "user1 has sent a notification",
+                                                                       :locality_notification_info=>{message: "user1 entered Olivos which is considered insecure",
+                                                                   location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,20z", sender: user_json }, type: "notification_insecure_location"}}
       double = double("Notifier")
       expect(double).to receive(:notify).with(expected_args)
       expect(double).to receive(:app_name=)
@@ -151,9 +154,10 @@ describe Api::LocalitiesController do
       group = Group.find_by_name("group1")
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
       put :set_locality_classification, {locality_name: "Olivos",locality_classification: "insecure" ,:format => "json"}
-
-      expected_args = {reg_ids: ["creator_123","user2_123"], :data => {message: "My custom message",
-                                                                       location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,20z", type: "notify_unsecure_location"}}
+      user_json =  user.as_json(:only => [:name, :email])
+      expected_args = {reg_ids: ["creator_123","user2_123"], :data => {message: "user1 has sent a notification",
+                                                                       :locality_notification_info=>{message: "My custom message",
+                                                                                                     location: "https://www.google.com.ar/maps/@-34.510462,-58.496691,20z", sender: user_json }, type: "notification_insecure_location"}}
       double = double("Notifier")
       expect(double).to receive(:notify).with(expected_args)
       expect(double).to receive(:app_name=)

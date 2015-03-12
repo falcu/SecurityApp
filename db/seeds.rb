@@ -11,6 +11,7 @@ Locality.create(name: "Acassuso")
 Locality.create(name: "Florida")
 Locality.create(name: "San isidro")
 Locality.create(name: "Martinez", insecure: true)
+Locality.create(name: "Vicente López Partido")
 
 app = Rpush::Gcm::App.new
 app.name = "android_app"
