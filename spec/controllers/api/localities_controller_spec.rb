@@ -184,7 +184,7 @@ describe Api::LocalitiesController do
       put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
     end
 
-    it "User notifies insecure location, and 5 seconds later notifies again, the second one is ignored to avoid flooding the server" do
+    it "User notifies olivos(insecure), and 25 minutes later notifies the same, the second one is ignored" do
       olivos = File.read(olivos_path)
       Net::HTTP.stub(:get).and_return(olivos)
       user = User.find_by_email("user1@email.com")
@@ -197,7 +197,7 @@ describe Api::LocalitiesController do
       expect(double).to receive(:app_name=).once
       Notifier.stub(:new).and_return(double)
       timeNow = Time.utc(2000,"jan",1,20,15,1)
-        timeThen = timeNow + 5.seconds
+        timeThen = timeNow + 25.minutes
 
       Time.stub(:now).and_return(timeNow)
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
@@ -208,7 +208,7 @@ describe Api::LocalitiesController do
       put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
     end
 
-    it "User notifies insecure location, and 20 seconds later notifies again, 2 notifications are sent" do
+    it "User notifies insecure location, and 35 minutes later notifies again, 2 notifications are sent" do
       olivos = File.read(olivos_path)
       Net::HTTP.stub(:get).and_return(olivos)
       user = User.find_by_email("user1@email.com")
@@ -221,7 +221,7 @@ describe Api::LocalitiesController do
       expect(double).to receive(:app_name=).twice
       Notifier.stub(:new).and_return(double)
       timeNow = Time.utc(2000,"jan",1,20,15,0)
-      timeThen = timeNow + 20.seconds
+      timeThen = timeNow + 35.minutes
 
 
       Time.stub(:now).and_return(timeNow)
@@ -231,6 +231,86 @@ describe Api::LocalitiesController do
       Time.stub(:now).and_return(timeThen)
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
       put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
+    end
+
+    it "User notifies olivos(insecure), and 1 minute later notifies martinez(insecure), 2 notifications are sent" do
+      olivos = File.read(olivos_path)
+      martinez = File.read(martinez_path)
+      user = User.find_by_email("user1@email.com")
+      group = Group.find_by_name("group1")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_locality_classification, {locality_name: "Olivos",locality_classification: "insecure" ,:format => "json"}
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_locality_classification, {locality_name: "Martinez",locality_classification: "insecure" ,:format => "json"}
+
+      double = double("Notifier")
+      expect(double).to receive(:notify).twice
+      expect(double).to receive(:app_name=).twice
+      Notifier.stub(:new).and_return(double)
+      timeNow = Time.utc(2000,"jan",1,20,15,0)
+      timeThen = timeNow + 1.minute
+
+      Net::HTTP.stub(:get).and_return(olivos)
+      Time.stub(:now).and_return(timeNow)
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
+
+      Net::HTTP.stub(:get).and_return(martinez)
+      Time.stub(:now).and_return(timeThen)
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
+    end
+
+    it "User notifies olivos(insecure), last locality is olivos" do
+      olivos = File.read(olivos_path)
+      user = User.find_by_email("user1@email.com")
+      group = Group.find_by_name("group1")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_locality_classification, {locality_name: "Olivos",locality_classification: "insecure" ,:format => "json"}
+
+
+      double = double("Notifier")
+      allow(double).to receive(:notify)
+      allow(double).to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+      timeNow = Time.utc(2000,"jan",1,20,15,0)
+
+      Net::HTTP.stub(:get).and_return(olivos)
+      Time.stub(:now).and_return(timeNow)
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
+      user.reload
+
+      expect(user.last_locality.name).to eq("Olivos")
+    end
+
+    it "User notifies olivos(insecure) and then Martinez(insecure), last locality is Martinez" do
+      olivos = File.read(olivos_path)
+      martinez = File.read(martinez_path)
+      user = User.find_by_email("user1@email.com")
+      group = Group.find_by_name("group1")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_locality_classification, {locality_name: "Olivos",locality_classification: "insecure" ,:format => "json"}
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_locality_classification, {locality_name: "Martinez",locality_classification: "insecure" ,:format => "json"}
+
+
+      double = double("Notifier")
+      allow(double).to receive(:notify)
+      allow(double).to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+      timeNow = Time.utc(2000,"jan",1,20,15,0)
+      Time.stub(:now).and_return(timeNow)
+
+      Net::HTTP.stub(:get).and_return(olivos)
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
+      Net::HTTP.stub(:get).and_return(martinez)
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
+      user.reload
+
+      expect(user.last_locality.name).to eq("Martinez")
     end
 
   end

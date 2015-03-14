@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314192715) do
+ActiveRecord::Schema.define(version: 20150314210132) do
 
   create_table "custom_insecure_localities", force: true do |t|
     t.integer "user_id"
@@ -120,7 +120,10 @@ ActiveRecord::Schema.define(version: 20150314192715) do
     t.datetime "updated_at"
     t.string   "token"
     t.datetime "last_notification_sent_at"
+    t.integer  "locality_id"
   end
+
+  add_index "users", ["locality_id"], name: "index_users_on_locality_id", using: :btree
 
   create_table "users_groups", id: false, force: true do |t|
     t.integer "user_id"

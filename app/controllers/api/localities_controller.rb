@@ -8,7 +8,7 @@ class Api::LocalitiesController < ApiController
   before_action :set_group, only: [:notify_locality]
   before_action :set_notifier_builder, only: [:notify_locality]
   before_action :check_locality, only: [:notify_locality, :set_locality_classification]
-  before_action :check_last_notification_sent_at, only: [:notify_locality]
+  before_action :check_last_notification, only: [:notify_locality]
 
   def notify_locality
     frequency = @current_user.frequencies.select { |s| s.locality_id == @locality.id }.first
@@ -181,18 +181,26 @@ class Api::LocalitiesController < ApiController
   end
 
   private
-  def check_last_notification_sent_at
-    if @current_user.last_notification_sent_at && @current_user.last_notification_sent_at > seconds_ago(15)
-      render_json({error: "You sent a notification a while ago"},400)
+  def check_last_notification
+    if ignore_locality?
+      render_json({error: "Last notification will be ignored"},400)
     else
+      @current_user.last_locality = @locality
       @current_user.update_last_notification_sent_at
       @current_user.save
     end
   end
 
   private
-  def seconds_ago(number)
-    Time.now - number.seconds
+  def ignore_locality?
+    locality_has_changed = @current_user.last_locality.nil? || @current_user.last_locality.id != @locality.id
+    min_time_has_elapsed = @current_user.last_notification_sent_at.nil? || @current_user.last_notification_sent_at <= minutes_ago(30)
+    !(locality_has_changed || min_time_has_elapsed)
+  end
+
+  private
+  def minutes_ago(number)
+    Time.now - number.minutes
   end
 
 end
