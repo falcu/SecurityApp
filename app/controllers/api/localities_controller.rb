@@ -8,6 +8,7 @@ class Api::LocalitiesController < ApiController
   before_action :set_group, only: [:notify_locality]
   before_action :set_notifier_builder, only: [:notify_locality]
   before_action :check_locality, only: [:notify_locality, :set_locality_classification]
+  before_action :check_last_notification_sent_at, only: [:notify_locality]
 
   def notify_locality
     frequency = @current_user.frequencies.select { |s| s.locality_id == @locality.id }.first
@@ -177,6 +178,21 @@ class Api::LocalitiesController < ApiController
   private
   def localities_to_json(localities)
     localities.collect { |locality| locality.as_json(:only => [:id, :name]) }
+  end
+
+  private
+  def check_last_notification_sent_at
+    if @current_user.last_notification_sent_at && @current_user.last_notification_sent_at > seconds_ago(15)
+      render_json({error: "You sent a notification a while ago"},400)
+    else
+      @current_user.update_last_notification_sent_at
+      @current_user.save
+    end
+  end
+
+  private
+  def seconds_ago(number)
+    Time.now - number.seconds
   end
 
 end
