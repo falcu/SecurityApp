@@ -16,7 +16,7 @@
     <data-source source="LOCAL" name="Rails SecurityApp: production" uuid="284917f6-2deb-4a2a-a9cd-16b7e5a172b4">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1/SecurityApp_production</jdbc-url>
+      <jdbc-url>jdbc:mysql://aa1208efyfrkmlt.cydd7ssqfcnq.sa-east-1.rds.amazonaws.com:3306/ebdb</jdbc-url>
       <libraries />
     </data-source>
   </component>
