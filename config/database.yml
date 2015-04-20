@@ -52,6 +52,6 @@ production:
   encoding: utf8
   database: ebdb
   username: falcu
-  password: elmillo1123
+  password: 12345678
   host: aa1tqe4xjittmz1.cydd7ssqfcnq.sa-east-1.rds.amazonaws.com
   port: 3306
