@@ -15,6 +15,7 @@
 /log/*.log
 /tmp
 
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
