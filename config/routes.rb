@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'welcome/index'
+
   namespace :api do
 
     post "users/create", to: "users#create", as: "create"
