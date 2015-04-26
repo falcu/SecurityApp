@@ -53,5 +53,5 @@ production:
   database: ebdb
   username: falcu
   password: 12345678
-  host: aa1b9htrezpiz91.cp8on4guicto.us-west-2.rds.amazonaws.com
+  host: aa14v0rxr7xwwc0.cp8on4guicto.us-west-2.rds.amazonaws.com
   port: 3306
