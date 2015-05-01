@@ -9,6 +9,7 @@ class Api::LocalitiesController < ApiController
   before_action :set_notifier_builder, only: [:notify_locality]
   before_action :check_locality, only: [:notify_locality, :set_locality_classification]
   before_action :check_last_notification, only: [:notify_locality]
+  before_action :set_frequency_calculator, only: [:notify_locality]
 
   def notify_locality
     frequency = @current_user.frequencies.select { |s| s.locality_id == @locality.id }.first
@@ -19,7 +20,7 @@ class Api::LocalitiesController < ApiController
       frequency = @current_user.frequencies.build(locality_id: @locality.id, value: 1)
     end
 
-    if is_insecure && @group && @group.members.any?
+    if  (@group && @group.members.any?) && (is_insecure || @frequency_calculator.is_infrequent?(@locality))
       notify_current_locality
     end
 
@@ -201,6 +202,12 @@ class Api::LocalitiesController < ApiController
   private
   def minutes_ago(number)
     Time.now - number.minutes
+  end
+
+  private
+  def set_frequency_calculator
+    frequency_builder = FrequencyCalculatorBuilder.new
+    @frequency_calculator = frequency_builder.get_calculator(@current_user)
   end
 
 end
