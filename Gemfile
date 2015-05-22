@@ -45,6 +45,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.14.2'
+  gem "rails-erd"
 end
 
 group :test do

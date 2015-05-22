@@ -313,6 +313,119 @@ describe Api::LocalitiesController do
       expect(user.last_locality.name).to eq("Martinez")
     end
 
+    context "Notify locality due to frequency"
+
+      it "User notifies olivos(secure), sum_threshold is not meet, no notification is sent" do
+        olivos = File.read(olivos_path)
+        user = User.find_by_email("user1@email.com")
+        group = Group.find_by_name("group1")
+        double = double("Notifier")
+        expect(double).not_to receive(:notify)
+        expect(double).not_to receive(:app_name=)
+        Notifier.stub(:new).and_return(double)
+        timeNow = Time.utc(2000,"jan",1,20,15,0)
+        Time.stub(:now).and_return(timeNow)
+        Net::HTTP.stub(:get).and_return(olivos)
+
+        request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+        put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
+
+      end
+
+    it "User notifies olivos(secure), thresholds are meet and percentage < epsilon, notification is sent" do
+      olivos = File.read(olivos_path)
+      user = User.find_by_email("user1@email.com")
+      user.frequencies.build(locality_id: Locality.find_by_name("Martinez").id, value: 102)
+      user.frequencies.build(locality_id: Locality.find_by_name("Florida").id, value: 1)
+      user.save
+      group = Group.find_by_name("group1")
+      timeNow = Time.utc(2000,"jan",1,20,15,0)
+      Time.stub(:now).and_return(timeNow)
+      Net::HTTP.stub(:get).and_return(olivos)
+      frequencyBuilderDouble = double("FrequencyCalculatorBuilder")
+      allow(frequencyBuilderDouble).to receive(:get_calculator) do |aUser|
+                                         calculator = LowFrequencyPercentage.new(aUser)
+                                         calculator.set_quantity_threshold(2)
+                                         calculator.set_sum_threshold(100)
+                                         calculator.set_epsilon(0.01)
+                                         calculator
+                                       end
+      FrequencyCalculatorBuilder.stub(:new).and_return(frequencyBuilderDouble)
+
+      double = double("Notifier")
+      expect(double).to receive(:notify)
+      expect(double).to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
+
+    end
+
+    it "User notifies olivos(secure), thresholds are meet but percentage > epsilon, notification is not sent" do
+      olivos = File.read(olivos_path)
+      user = User.find_by_email("user1@email.com")
+      user.frequencies.build(locality_id: Locality.find_by_name("Martinez").id, value: 102)
+      user.frequencies.build(locality_id: Locality.find_by_name("Florida").id, value: 1)
+      user.frequencies.build(locality_id: Locality.find_by_name("Olivos").id, value: 1)
+      user.save
+      group = Group.find_by_name("group1")
+      timeNow = Time.utc(2000,"jan",1,20,15,0)
+      Time.stub(:now).and_return(timeNow)
+      Net::HTTP.stub(:get).and_return(olivos)
+      frequencyBuilderDouble = double("FrequencyCalculatorBuilder")
+      allow(frequencyBuilderDouble).to receive(:get_calculator) do |aUser|
+        calculator = LowFrequencyPercentage.new(aUser)
+        calculator.set_quantity_threshold(2)
+        calculator.set_sum_threshold(100)
+        calculator.set_epsilon(0.01)
+        calculator
+      end
+      FrequencyCalculatorBuilder.stub(:new).and_return(frequencyBuilderDouble)
+
+      double = double("Notifier")
+      expect(double).not_to receive(:notify)
+      expect(double).not_to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
+
+    end
+
+    it "User notifies olivos(insecure), although thresholds are meet and percentage < epsilon, notification is sent" do
+      olivos = File.read(olivos_path)
+      user = User.find_by_email("user1@email.com")
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :set_locality_classification, {locality_name: "Olivos",locality_classification: "insecure" ,:format => "json"}
+      user.frequencies.build(locality_id: Locality.find_by_name("Martinez").id, value: 102)
+      user.frequencies.build(locality_id: Locality.find_by_name("Florida").id, value: 1)
+      user.frequencies.build(locality_id: Locality.find_by_name("Olivos").id, value: 1)
+      user.save
+      group = Group.find_by_name("group1")
+      timeNow = Time.utc(2000,"jan",1,20,15,0)
+      Time.stub(:now).and_return(timeNow)
+      Net::HTTP.stub(:get).and_return(olivos)
+      frequencyBuilderDouble = double("FrequencyCalculatorBuilder")
+      allow(frequencyBuilderDouble).to receive(:get_calculator) do |aUser|
+        calculator = LowFrequencyPercentage.new(aUser)
+        calculator.set_quantity_threshold(1)
+        calculator.set_sum_threshold(1)
+        calculator.set_epsilon(0)
+        calculator
+      end
+      FrequencyCalculatorBuilder.stub(:new).and_return(frequencyBuilderDouble)
+
+      double = double("Notifier")
+      expect(double).to receive(:notify)
+      expect(double).to receive(:app_name=)
+      Notifier.stub(:new).and_return(double)
+
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+      put :notify_locality, {latitude: "-34.510462", longitude: "-58.496691", group_id: group.id, :format => "json"}
+
+    end
+
   end
 
   context "Set custom secure/insecure/unclassified locality" do

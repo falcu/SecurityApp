@@ -1,17 +1,66 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+
 
 Locality.create(name: "Olivos")
 Locality.create(name: "Acassuso")
 Locality.create(name: "Florida")
 Locality.create(name: "San isidro")
-Locality.create(name: "Martinez", insecure: true)
+Locality.create(name: "Martinez",insecure: true)
 Locality.create(name: "Vicente López Partido")
+Locality.create(name: "La Plata")
+Locality.create(name: "Los Hornos")
+Locality.create(name: "Altos de San Lorenzo")
+Locality.create(name: "Villa Elvira")
+Locality.create(name: "Lisandro Olmos")
+Locality.create(name: "Abasto")
+Locality.create(name: "San Carlos")
+Locality.create(name: "Tolosa")
+Locality.create(name: "Ringuelet")
+Locality.create(name: "City Bell")
+Locality.create(name: "Arturo Seguí")
+Locality.create(name: "Berisso")
+Locality.create(name: "Ensenada")
+Locality.create(name: "Punta Lara")
+Locality.create(name: "Magdalena")
+Locality.create(name: "Coronel Brandsen")
+Locality.create(name: "Berazategui")
+Locality.create(name: "Pereyra")
+Locality.create(name: "El Pato")
+Locality.create(name: "Guillermo Hudson")
+Locality.create(name: "Plátanos")
+Locality.create(name: "Ranelagh")
+Locality.create(name: "Sourigues")
+Locality.create(name: "Villa España")
+Locality.create(name: "Berazategui Oeste")
+Locality.create(name: "Florencio Varela")
+Locality.create(name: "Villa San Luis")
+Locality.create(name: "Santa Rosa")
+Locality.create(name: "La Capilla ")
+Locality.create(name: "Bosques")
+Locality.create(name: "Villa Vatteone")
+Locality.create(name: "Zeballos")
+Locality.create(name: "Villa Brown")
+Locality.create(name: "Gobernador Costa")
+Locality.create(name: "Presidente Perón")
+Locality.create(name: "San Vicente")
+Locality.create(name: "Alejandro Korn")
+Locality.create(name: "Quilmes")
+Locality.create(name: "Ezpeleta")
+Locality.create(name: "Ezpeleta Oeste")
+Locality.create(name: "Quilmes Oeste")
+Locality.create(name: "Villa la Florida")
+Locality.create(name: "Bernal")
+Locality.create(name: "Don Bosco")
+Locality.create(name: "Bernal Oeste")
+Locality.create(name: "San Francisco Solano")
+Locality.create(name: "Rafael Calzada")
+Locality.create(name: "José Marmol")
+Locality.create(name: "San José")
+Locality.create(name: "Burzaco")
+Locality.create(name: "Malvinas Argentinas")
+Locality.create(name: "Puerto Madero")
+Locality.create(name: "Turdera")
+Locality.create(name: "Adrogué")
+
 
 app = Rpush::Gcm::App.new
 app.name = "android_app"
@@ -19,17 +68,3 @@ app.auth_key = "AIzaSyAzvDbjBqR65YEVc21goUpVsm8jpH3aRIE"
 app.connections = 1
 app.save!
 
-
-user_prefix = "user"
-i = 0
-n = 5
-
-until i > n do
-  name = user_prefix + (i+1).to_s
-  email = name + "@hotmail.com"
-  reg_id = name + "_" + (i+1).to_s
-  user = User.create(name: name, email: email, password: "123456")
-  user.devices << Device.new(registration_id: reg_id)
-  user.save
-  i=i+1
-end
