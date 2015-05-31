@@ -29,6 +29,8 @@ Rpush.configure do |config|
   # Define a custom logger.
   # config.logger = MyLogger.new
 
+  ActiveSupport.on_load(:after_initialize) { Rpush.embed }
+
  end
 
 Rpush.reflect do |on|
